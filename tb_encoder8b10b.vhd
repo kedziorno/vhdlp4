@@ -2,7 +2,7 @@
 -- Company: 
 -- Engineer:
 --
--- Create Date:   14:52:24 09/12/2022
+-- Create Date:   17:16:50 09/12/2022
 -- Design Name:   
 -- Module Name:   /home/user/workspace/pata_sata/tb_encoder8b10b.vhd
 -- Project Name:  pata_sata
@@ -40,24 +40,22 @@ ARCHITECTURE behavior OF tb_encoder8b10b IS
 -- Component Declaration for the Unit Under Test (UUT)
 COMPONENT encoder8b10b
 PORT(
-pcmpls4 : IN  std_logic;
-pndfs6 : IN  std_logic;
-ncmpls6 : IN  std_logic;
 pk : IN  std_logic;
+pndfs6 : IN  std_logic;
 ipt : IN  std_logic_vector(7 downto 0);
-opt : OUT  std_logic_vector(9 downto 0)
+opt : OUT  std_logic_vector(9 downto 0);
+pbalby : OUT  std_logic
 );
 END COMPONENT;
 
 --Inputs
-signal pcmpls4 : std_logic := '0';
-signal pndfs6 : std_logic := '0';
-signal ncmpls6 : std_logic := '0';
 signal pk : std_logic := '0';
+signal pndfs6 : std_logic := '0';
 signal ipt : std_logic_vector(7 downto 0) := (others => '0');
 
 --Outputs
 signal opt : std_logic_vector(9 downto 0);
+signal pbalby : std_logic;
 
 constant clock_period : time := 10 ns;
 signal clock : std_logic;
@@ -66,13 +64,15 @@ BEGIN
 
 -- Instantiate the Unit Under Test (UUT)
 uut: encoder8b10b PORT MAP (
-pcmpls4 => pcmpls4,
-pndfs6 => pndfs6,
-ncmpls6 => ncmpls6,
 pk => pk,
+pndfs6 => pndfs6,
 ipt => ipt,
-opt => opt
+opt => opt,
+pbalby => pbalby
 );
+
+pk <= '0';
+pndfs6 <= '0';
 
 -- Clock process definitions
 clock_process :process
@@ -83,19 +83,22 @@ clock <= '1';
 wait for clock_period/2;
 end process;
 
-pk <= '0';
-pndfs6 <= '0';
-pcmpls4 <= '0';
-ncmpls6 <= '0';
-
 -- Stimulus process
-stim_proc : process
+stim_proc: process
 begin
 -- hold reset state for 100 ns.
 wait for 100 ns;
 wait for clock_period*10;
 -- insert stimulus here
+ipt <= x"45"; wait for clock_period;
 ipt <= "11010101"; wait for clock_period;
+ipt <= "11101010"; wait for clock_period;
+ipt <= "00101010"; wait for clock_period;
+ipt <= "00010101"; wait for clock_period;
+ipt <= "10101011"; wait for clock_period;
+ipt <= "01010111"; wait for clock_period;
+ipt <= "10101000"; wait for clock_period;
+ipt <= "01010100"; wait for clock_period;
 wait;
 end process;
 
