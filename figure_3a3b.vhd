@@ -29,45 +29,25 @@ use IEEE.STD_LOGIC_1164.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity encoder8b10b is
+entity figure_3a3b is
 port (
 pk : in std_logic;
 pndfs6 : in std_logic;
-ipt : in std_logic_vector(7 downto 0);
-opt : out std_logic_vector(9 downto 0);
+pa,pb,pc,pd,pe,pf,pg,ph : in std_logic;
+pca,pcb,pcc,pcd,pce,pci,pcf,pcg,pch,pcj : out std_logic;
 pbalby : out std_logic
 );
-end entity encoder8b10b;
+end entity figure_3a3b;
 
 -- XXX US6977599.pdf
 -- XXX 8B/10B ENCODING AND DECODING FOR HIGH SPEED APPLICATIONS
-architecture Behavioral of encoder8b10b is
+architecture Behavioral of figure_3a3b is
 	signal pcmpls4,ncmpls6 : std_logic;
-	signal pa,pb,pc,pd,pe,pf,pg,ph : std_logic;
-	signal pca,pcb,pcc,pcd,pce,pcf,pcg,pch,pci,pcj : std_logic;
 	signal na,nb,nc,nd,ne,nf : std_logic;
 	signal n10,n9,n8,n6,n5,n4,n3,n2,n1,n0 : std_logic;
 	signal pl03,pl30,pl21,pfnhn,pbf,nbg,nj,nl30d,peodn,nl12dnen,nl03d,pdnen,pdne,nde,nden,nbb,pfgh,nl03den,pde,pbi,pkoduee,pdenfgh,nbc,nbd,pbe,nfgh,nk,nfghk,pfghasak,pdfs6,ndne,pdnefgh,pl12 : std_logic;
-	signal pfueg,pndfs6adnen,pndfs6aden,pndfs6adoen,pdfs6ade,pdfs6aeodn,pdfss6aedn,pdoeakn,ng,npdrs4,pdrs4apdfs6,pdrs4andfs6,pndrs4andfs6,pndrs4apdfs6,pndfapdrs6,pdfandrs6,pdfsd6aedn,pbals6,nbals6,nbals4,nfghn,ndrs4 : std_logic;
+	signal pfueg,pndfs6adnen,pndfs6aden,pndfs6adoen,pdfs6ade,pdfs6aeodn,pdfss6aedn,pdoeakn,ng,npdrs4,pdrs4apdfs6,pdrs4andfs6,pndrs4andfs6,pndrs4apdfs6,pndfapdrs6,pdfandrs6,pbals6,nbals6,nbals4,nfghn,ndrs4 : std_logic;
 begin
-	aa1 : pa <= ipt(0);
-	aa2 : pb <= ipt(1);
-	aa3 : pc <= ipt(2);
-	aa4 : pd <= ipt(3);
-	aa5 : pe <= ipt(4);
-	aa6 : pf <= ipt(5);
-	aa7 : pg <= ipt(6);
-	aa8 : ph <= ipt(7);
-	bb1 : opt(9) <= pca;
-	bb2 : opt(8) <= pcb;
-	bb3 : opt(7) <= pcc;
-	bb4 : opt(6) <= pcd;
-	bb5 : opt(5) <= pce;
-	bb6 : opt(4) <= pci;
-	bb7 : opt(3) <= pcf;
-	bb8 : opt(2) <= pcg;
-	bb9 : opt(1) <= pch;
-	bb10 : opt(0) <= pcj;
 	a301 : nb <= not pb;
 	a302 : na <= not pa;
 	a303 : nc <= not pc;
@@ -138,9 +118,9 @@ begin
 	b370 : pdoeakn <= (pd or ne) and nk;
 	b301 : ng <= not pg;
 	b361 : npdrs4 <= not ((nf and ng) or (pfueg and pk));
-	b325 : pdrs4apdfs6 <= (not npdrs4) and (not pndfs6); -- XXX
-	b326 : pdrs4andfs6 <= (not npdrs4) and (not pdfs6); -- XXX
-	b327 : pndrs4andfs6 <= (not ndrs4) and (not pdfs6); -- XXX
+	b325 : pdrs4apdfs6 <= (not npdrs4) and (not pndfs6);
+	b326 : pdrs4andfs6 <= (not npdrs4) and (not pdfs6);
+	b327 : pndrs4andfs6 <= (not ndrs4) and (not pdfs6);
 	b328 : pndrs4apdfs6 <= (not pndfs6) and (not ndrs4);
 	b350 : pndfapdrs6 <= (pl12 and pndfs6adnen) or (pl30 and pndfs6aden) or (pndfs6adoen and pl03);
 	b351 : pdfandrs6 <= (pl21 and pdfs6ade) or (pl30 and pdfs6aeodn) or (pl03 and pdfss6aedn) or (pdfs6 and pk);

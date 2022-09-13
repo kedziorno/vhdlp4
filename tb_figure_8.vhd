@@ -2,15 +2,15 @@
 -- Company: 
 -- Engineer:
 --
--- Create Date:   17:16:50 09/12/2022
+-- Create Date:   15:47:53 09/13/2022
 -- Design Name:   
--- Module Name:   /home/user/workspace/pata_sata/tb_encoder8b10b.vhd
+-- Module Name:   /home/user/workspace/pata_sata/tb_figure_8.vhd
 -- Project Name:  pata_sata
 -- Target Device:  
 -- Tool versions:  
 -- Description:   
 -- 
--- VHDL Test Bench Created by ISE for module: encoder8b10b
+-- VHDL Test Bench Created by ISE for module: figure_8
 -- 
 -- Dependencies:
 -- 
@@ -32,30 +32,40 @@ USE ieee.std_logic_1164.ALL;
 -- arithmetic functions with Signed or Unsigned values
 --USE ieee.numeric_std.ALL;
 
-ENTITY tb_encoder8b10b IS
-END tb_encoder8b10b;
+ENTITY tb_figure_8 IS
+END tb_figure_8;
 
-ARCHITECTURE behavior OF tb_encoder8b10b IS 
+ARCHITECTURE behavior OF tb_figure_8 IS
 
 -- Component Declaration for the Unit Under Test (UUT)
-COMPONENT encoder8b10b
+COMPONENT figure_8
 PORT(
-pk : IN  std_logic;
-pndfs6 : IN  std_logic;
-ipt : IN  std_logic_vector(7 downto 0);
-opt : OUT  std_logic_vector(9 downto 0);
-pbalby : OUT  std_logic
+pndfw : IN  std_logic;
+pndew : OUT  std_logic;
+pd0 : IN  std_logic_vector(0 to 8);
+pd1 : IN  std_logic_vector(0 to 8);
+pd2 : IN  std_logic_vector(0 to 8);
+pd3 : IN  std_logic_vector(0 to 8);
+pdc0 : OUT  std_logic_vector(0 to 9);
+pdc1 : OUT  std_logic_vector(0 to 9);
+pdc2 : OUT  std_logic_vector(0 to 9);
+pdc3 : OUT  std_logic_vector(0 to 9)
 );
 END COMPONENT;
 
 --Inputs
-signal pk : std_logic := '0';
-signal pndfs6 : std_logic := '0';
-signal ipt : std_logic_vector(7 downto 0) := (others => '0');
+signal pndfw : std_logic := '0';
+signal pd0 : std_logic_vector(0 to 8) := (others => '0');
+signal pd1 : std_logic_vector(0 to 8) := (others => '0');
+signal pd2 : std_logic_vector(0 to 8) := (others => '0');
+signal pd3 : std_logic_vector(0 to 8) := (others => '0');
 
 --Outputs
-signal opt : std_logic_vector(9 downto 0);
-signal pbalby : std_logic;
+signal pndew : std_logic;
+signal pdc0 : std_logic_vector(0 to 9);
+signal pdc1 : std_logic_vector(0 to 9);
+signal pdc2 : std_logic_vector(0 to 9);
+signal pdc3 : std_logic_vector(0 to 9);
 
 constant clock_period : time := 10 ns;
 signal clock : std_logic;
@@ -63,16 +73,18 @@ signal clock : std_logic;
 BEGIN
 
 -- Instantiate the Unit Under Test (UUT)
-uut: encoder8b10b PORT MAP (
-pk => pk,
-pndfs6 => pndfs6,
-ipt => ipt,
-opt => opt,
-pbalby => pbalby
+uut: figure_8 PORT MAP (
+pndfw => pndfw,
+pndew => pndew,
+pd0 => pd0,
+pd1 => pd1,
+pd2 => pd2,
+pd3 => pd3,
+pdc0 => pdc0,
+pdc1 => pdc1,
+pdc2 => pdc2,
+pdc3 => pdc3
 );
-
-pk <= '0';
-pndfs6 <= '0';
 
 -- Clock process definitions
 clock_process :process
@@ -90,15 +102,7 @@ begin
 wait for 100 ns;
 wait for clock_period*10;
 -- insert stimulus here
-ipt <= x"45"; wait for clock_period;
-ipt <= "11010101"; wait for clock_period;
-ipt <= "11101010"; wait for clock_period;
-ipt <= "00101010"; wait for clock_period;
-ipt <= "00010101"; wait for clock_period;
-ipt <= "10101011"; wait for clock_period;
-ipt <= "01010111"; wait for clock_period;
-ipt <= "10101000"; wait for clock_period;
-ipt <= "01010100"; wait for clock_period;
+
 wait;
 end process;
 
