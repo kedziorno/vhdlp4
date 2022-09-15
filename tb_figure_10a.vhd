@@ -32,13 +32,13 @@ USE ieee.std_logic_1164.ALL;
 -- arithmetic functions with Signed or Unsigned values
 --USE ieee.numeric_std.ALL;
 
-ENTITY tb_figure_10 IS
-END tb_figure_10;
+ENTITY tb_figure_10a IS
+END tb_figure_10a;
 
-ARCHITECTURE behavior OF tb_figure_10 IS
+ARCHITECTURE behavior OF tb_figure_10a IS
 
 -- Component Declaration for the Unit Under Test (UUT)
-COMPONENT figure_10
+COMPONENT figure_10a
 PORT(
 pca : IN  std_logic;
 pcb : IN  std_logic;
@@ -105,7 +105,7 @@ oup(3) <= pd;
 oup(4) <= pe;
 
 -- Instantiate the Unit Under Test (UUT)
-uut: figure_10 PORT MAP (
+uut: figure_10a PORT MAP (
 pca => pca,
 pcb => pcb,
 pcc => pcc,

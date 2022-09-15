@@ -29,7 +29,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity figure_10 is
+entity figure_10a is
 port (
 pca,pcb,pcc,pcd,pce,pci : in std_logic;
 p3x,px3 : in std_logic;
@@ -37,9 +37,9 @@ pcndn,neuei,penin : out std_logic;
 ni,nk28,pinvr6 : out std_logic;
 pa,pb,pc,pd,pe : out std_logic
 );
-end figure_10;
+end figure_10a;
 
-architecture Behavioral of figure_10 is
+architecture Behavioral of figure_10a is
 
 signal a,b,c,d : std_logic;
 signal nc,panbn,pab,pn8,paueb,pcued,pei,np040p40,nb,n0,n5,nd,na,pdioen,ne,penoin,n4,n6,n3,np3xi,n2,np3xei,n1,npx3enin,n7,pcpla,pcplb,pcplc,pcpld,pcple : std_logic;
