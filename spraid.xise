@@ -258,6 +258,16 @@
       <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="0"/>
       <association xil_pn:name="Implementation" xil_pn:seqID="0"/>
     </file>
+    <file xil_pn:name="figure_13.vhd" xil_pn:type="FILE_VHDL">
+      <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="1"/>
+      <association xil_pn:name="Implementation" xil_pn:seqID="1"/>
+    </file>
+    <file xil_pn:name="tb_figure_13.vhd" xil_pn:type="FILE_VHDL">
+      <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="2"/>
+      <association xil_pn:name="PostMapSimulation" xil_pn:seqID="123"/>
+      <association xil_pn:name="PostRouteSimulation" xil_pn:seqID="123"/>
+      <association xil_pn:name="PostTranslateSimulation" xil_pn:seqID="123"/>
+    </file>
   </files>
 
   <properties>
@@ -387,6 +397,9 @@
     <property xil_pn:name="Implementation Top" xil_pn:value="Architecture|figure_10b|Behavioral" xil_pn:valueState="non-default"/>
     <property xil_pn:name="Implementation Top File" xil_pn:value="figure_10b.vhd" xil_pn:valueState="non-default"/>
     <property xil_pn:name="Implementation Top Instance Path" xil_pn:value="/figure_10b" xil_pn:valueState="non-default"/>
+    <property xil_pn:name="Implementation Top" xil_pn:value="Architecture|figure_13|Behavioral" xil_pn:valueState="non-default"/>
+    <property xil_pn:name="Implementation Top File" xil_pn:value="figure_13.vhd" xil_pn:valueState="non-default"/>
+    <property xil_pn:name="Implementation Top Instance Path" xil_pn:value="/figure_13" xil_pn:valueState="non-default"/>
     <property xil_pn:name="Include 'uselib Directive in Verilog File" xil_pn:value="false" xil_pn:valueState="default"/>
     <property xil_pn:name="Include SIMPRIM Models in Verilog File" xil_pn:value="false" xil_pn:valueState="default"/>
     <property xil_pn:name="Include UNISIM Models in Verilog File" xil_pn:value="false" xil_pn:valueState="default"/>
@@ -449,6 +462,7 @@
     <property xil_pn:name="Output File Name" xil_pn:value="encoder8b10b" xil_pn:valueState="default"/>
     <property xil_pn:name="Output File Name" xil_pn:value="figure_8" xil_pn:valueState="default"/>
     <property xil_pn:name="Output File Name" xil_pn:value="figure_10b" xil_pn:valueState="default"/>
+    <property xil_pn:name="Output File Name" xil_pn:value="figure_13" xil_pn:valueState="default"/>
     <property xil_pn:name="Overwrite Compiled Libraries" xil_pn:value="false" xil_pn:valueState="default"/>
     <property xil_pn:name="Pack I/O Registers into IOBs" xil_pn:value="Auto" xil_pn:valueState="default"/>
     <property xil_pn:name="Pack I/O Registers/Latches into IOBs" xil_pn:value="Off" xil_pn:valueState="default"/>
@@ -477,6 +491,10 @@
     <property xil_pn:name="Post Place &amp; Route Simulation Model Name" xil_pn:value="figure_10b_timesim.vhd" xil_pn:valueState="default"/>
     <property xil_pn:name="Post Synthesis Simulation Model Name" xil_pn:value="figure_10b_synthesis.vhd" xil_pn:valueState="default"/>
     <property xil_pn:name="Post Translate Simulation Model Name" xil_pn:value="figure_10b_translate.vhd" xil_pn:valueState="default"/>
+    <property xil_pn:name="Post Map Simulation Model Name" xil_pn:value="figure_13_map.vhd" xil_pn:valueState="default"/>
+    <property xil_pn:name="Post Place &amp; Route Simulation Model Name" xil_pn:value="figure_13_timesim.vhd" xil_pn:valueState="default"/>
+    <property xil_pn:name="Post Synthesis Simulation Model Name" xil_pn:value="figure_13_synthesis.vhd" xil_pn:valueState="default"/>
+    <property xil_pn:name="Post Translate Simulation Model Name" xil_pn:value="figure_13_translate.vhd" xil_pn:valueState="default"/>
     <property xil_pn:name="Power Reduction Map" xil_pn:value="false" xil_pn:valueState="default"/>
     <property xil_pn:name="Power Reduction Par" xil_pn:value="false" xil_pn:valueState="default"/>
     <property xil_pn:name="Preferred Language" xil_pn:value="VHDL" xil_pn:valueState="non-default"/>
@@ -500,6 +518,7 @@
     <property xil_pn:name="Rename Top Level Entity to" xil_pn:value="encoder8b10b" xil_pn:valueState="default"/>
     <property xil_pn:name="Rename Top Level Entity to" xil_pn:value="figure_8" xil_pn:valueState="default"/>
     <property xil_pn:name="Rename Top Level Entity to" xil_pn:value="figure_10b" xil_pn:valueState="default"/>
+    <property xil_pn:name="Rename Top Level Entity to" xil_pn:value="figure_13" xil_pn:valueState="default"/>
     <property xil_pn:name="Rename Top Level Module To" xil_pn:value="" xil_pn:valueState="default"/>
     <property xil_pn:name="Report Fastest Path(s) in Each Constraint" xil_pn:value="true" xil_pn:valueState="default"/>
     <property xil_pn:name="Report Fastest Path(s) in Each Constraint Post Trace" xil_pn:value="true" xil_pn:valueState="default"/>
@@ -531,6 +550,8 @@
     <property xil_pn:name="Selected Simulation Root Source Node Behavioral" xil_pn:value="work.tb_figure_8" xil_pn:valueState="non-default"/>
     <property xil_pn:name="Selected Module Instance Name" xil_pn:value="/tb_figure_10b" xil_pn:valueState="non-default"/>
     <property xil_pn:name="Selected Simulation Root Source Node Behavioral" xil_pn:value="work.tb_figure_10b" xil_pn:valueState="non-default"/>
+    <property xil_pn:name="Selected Module Instance Name" xil_pn:value="/tb_figure_13" xil_pn:valueState="non-default"/>
+    <property xil_pn:name="Selected Simulation Root Source Node Behavioral" xil_pn:value="work.tb_figure_13" xil_pn:valueState="non-default"/>
     <property xil_pn:name="Selected Simulation Root Source Node Post-Map" xil_pn:value="" xil_pn:valueState="default"/>
     <property xil_pn:name="Selected Simulation Root Source Node Post-Route" xil_pn:value="" xil_pn:valueState="default"/>
     <property xil_pn:name="Selected Simulation Root Source Node Post-Translate" xil_pn:value="" xil_pn:valueState="default"/>
@@ -554,6 +575,7 @@
     <property xil_pn:name="Specify Top Level Instance Names Behavioral" xil_pn:value="work.tb_encoder8b10b" xil_pn:valueState="default"/>
     <property xil_pn:name="Specify Top Level Instance Names Behavioral" xil_pn:value="work.tb_figure_8" xil_pn:valueState="default"/>
     <property xil_pn:name="Specify Top Level Instance Names Behavioral" xil_pn:value="work.tb_figure_10b" xil_pn:valueState="default"/>
+    <property xil_pn:name="Specify Top Level Instance Names Behavioral" xil_pn:value="work.tb_figure_13" xil_pn:valueState="default"/>
     <property xil_pn:name="Specify Top Level Instance Names Post-Map" xil_pn:value="Default" xil_pn:valueState="default"/>
     <property xil_pn:name="Specify Top Level Instance Names Post-Route" xil_pn:value="Default" xil_pn:valueState="default"/>
     <property xil_pn:name="Specify Top Level Instance Names Post-Translate" xil_pn:value="Default" xil_pn:valueState="default"/>
@@ -610,6 +632,7 @@
     <property xil_pn:name="PROP_BehavioralSimTop" xil_pn:value="Architecture|tb_encoder8b10b|behavior" xil_pn:valueState="non-default"/>
     <property xil_pn:name="PROP_BehavioralSimTop" xil_pn:value="Architecture|tb_figure_8|behavior" xil_pn:valueState="non-default"/>
     <property xil_pn:name="PROP_BehavioralSimTop" xil_pn:value="Architecture|tb_figure_10b|behavior" xil_pn:valueState="non-default"/>
+    <property xil_pn:name="PROP_BehavioralSimTop" xil_pn:value="Architecture|tb_figure_13|behavior" xil_pn:valueState="non-default"/>
     <property xil_pn:name="PROP_DesignName" xil_pn:value="pata_sata" xil_pn:valueState="non-default"/>
     <property xil_pn:name="PROP_DevFamilyPMName" xil_pn:value="spartan3e" xil_pn:valueState="default"/>
     <property xil_pn:name="PROP_FPGAConfiguration" xil_pn:value="FPGAConfiguration" xil_pn:valueState="default"/>
