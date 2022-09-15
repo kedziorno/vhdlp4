@@ -50,6 +50,7 @@ pcndn : OUT  std_logic;
 neuei : OUT  std_logic;
 nk28 : OUT  std_logic;
 pinvr6 : OUT  std_logic;
+ni : OUT  std_logic;
 pa : OUT  std_logic;
 pb : OUT  std_logic;
 pc : OUT  std_logic;
@@ -59,6 +60,7 @@ ndur6 : OUT  std_logic;
 ndvby : OUT  std_logic;
 p22 : OUT  std_logic;
 npdur6 : OUT  std_logic;
+penin : OUT  std_logic;
 pdrr4 : IN  std_logic;
 pndrr4 : IN  std_logic;
 pdfby : IN  std_logic;
@@ -83,6 +85,7 @@ signal pcndn : std_logic;
 signal neuei : std_logic;
 signal nk28 : std_logic;
 signal pinvr6 : std_logic;
+signal ni : std_logic;
 signal pa : std_logic;
 signal pb : std_logic;
 signal pc : std_logic;
@@ -92,6 +95,7 @@ signal ndur6 : std_logic;
 signal ndvby : std_logic;
 signal p22 : std_logic;
 signal npdur6 : std_logic;
+signal penin : std_logic;
 
 signal inp : std_logic_vector(0 to 5);
 signal oup : std_logic_vector(0 to 4);
@@ -125,6 +129,7 @@ pcndn => pcndn,
 neuei => neuei,
 nk28 => nk28,
 pinvr6 => pinvr6,
+ni => ni,
 pa => pa,
 pb => pb,
 pc => pc,
@@ -134,6 +139,7 @@ ndur6 => ndur6,
 ndvby => ndvby,
 p22 => p22,
 npdur6 => npdur6,
+penin => penin,
 pdrr4 => pdrr4,
 pndrr4 => pndrr4,
 pdfby => pdfby,

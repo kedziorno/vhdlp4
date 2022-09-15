@@ -33,25 +33,26 @@ entity figure_10b is
 port (
 pca,pcb,pcc,pcd,pce,pci : in std_logic;
 pcndn,neuei : out std_logic;
-nk28,pinvr6 : out std_logic;
+nk28,pinvr6,ni : out std_logic;
 pa,pb,pc,pd,pe : out std_logic;
-ndur6,ndvby,p22,npdur6 : out std_logic;
+ndur6,ndvby,p22,npdur6,penin : out std_logic;
 pdrr4,pndrr4,pdfby,pndfby : in std_logic
 );
 end figure_10b;
 
 architecture Behavioral of figure_10b is
 
-signal a,b,c,d : std_logic;
-signal ni,nc,panbn,pab,pn8,paueb,pcued,pei,np040p40,nb,n0,n5,nd,na,pdioen,ne,penoin,n4,n6,n3,np3xi,n2,np3xei,n1,npx3enin,n7,pcpla,pcplb,pcplc,pcpld,pcple : std_logic;
+signal a,b,c,d,e : std_logic;
+signal nc,panbn,pab,pn8,paueb,pcued,pei,np040p40,nb,n0,n5,nd,na,pdioen,ne,penoin,n4,n6,n3,np3xi,n2,np3xei,n1,npx3enin,n7,pcpla,pcplb,pcplc,pcpld,pcple : std_logic;
 signal nabc,nabd,nacd,nbcd,nab,nac,nbc,ndrr6,pdop2x,n21,nanbncn,n20,peoi,npdrr6,nanbndn,nancndn,nbncndn,nanbn,nancn,nbncn,pndr,pdr,pdnopx2,n22,n23,pn200px2,pn210p2x : std_logic;
-signal p3x,px3,penin : std_logic;
+signal p3x,px3 : std_logic;
 
 begin
 
 a1 : pcndn <= a;
 a2 : neuei <= b;
 a3 : penin <= c;
+a4 : ni <= e;
 a1030 : panbn <= (not pca) and (not pcb);
 a1050 : pab <= pca and pcb;
 a1010 : pn8 <= (not pca) or (not pcb);
@@ -71,7 +72,7 @@ a1070 : n5 <= not ((panbn or a) and c);
 a1061 : nk28 <= not ((d and pei) or (a and c));
 a1004 : ne <= not pce;
 a1005 : na <= not pca;
-a1006 : ni <= not pci;
+a1006 : e <= not pci;
 a1065 : pdioen <= ((pcd and pci) or ne);
 a1016 : penoin <= (not pci) or (not pce);
 a1012 : n4 <= not (b and pcued and na and pcb);
@@ -95,7 +96,7 @@ a1036 : pa <= not (na xor pcpla);
 a1037 : pb <= not (pcplb xor nb);
 a1038 : pc <= not (pcplc xor p3x);
 
-b1001 : peoi <= (not ne) or (not ni);
+b1001 : peoi <= (not ne) or (not e);
 b1002 : nabc <= not (pcb and pcc and pca);
 b1003 : nabd <= not (pca and pcb and pcd);
 b1004 : nacd <= not (pca and pcd and pcc);
@@ -111,7 +112,7 @@ b1012 : n21 <= not (pcd and nanbncn);
 b1013 : n20 <= not (nabc and nd);
 b1041 : npdur6 <= not ((p3x and peoi) or (pdop2x and pei));
 b1011 : pn210p2x <= (not n21) or (not nab) or (not nac) or (not nbc);
-b1042 : npdrr6 <= not ((penoin and px3) or (pn200px2 and penin) or (panbn and nc));
+b1042 : npdrr6 <= not ((penoin and px3) or (pn200px2 and c) or (panbn and nc));
 b1014 : nanbncn <= not (na and nc and nb);
 b1015 : nanbndn <= not (na and nb and nd);
 b1016 : nancndn <= not (na and nc and nd);
@@ -126,7 +127,7 @@ b1021 : pdnopx2 <= (not nanbn) or (not nancn) or (not nbncn) or (not pcd);
 b1043 : ndvby <= not ((pdfby and pndr) or (pndfby and pdr));
 b1025 : n22 <= not (ndrr6 and pdrr4);
 b1024 : n23 <= not (npdrr6 and pndrr4);
-b1044 : ndur6 <= not ((px3 and penoin) or (pdnopx2 and penin));
+b1044 : ndur6 <= not ((px3 and penoin) or (pdnopx2 and c));
 b1022 : pn200px2 <= (not n20) or (not nanbn) or (not nancn) or (not nbncn);
 
 end Behavioral;
