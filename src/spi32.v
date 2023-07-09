@@ -2,30 +2,51 @@
 `default_nettype none
 `timescale 1ns/1ns
 module spi32 (
-		input				reset,
-		input				clk,
+		reset,
+		clk,
 
-		input				read,
-		input				write,
+		read,
+		write,
 
-		input  [31:0]		din,
-//		output [31:0]		dout,
-		output reg [31:0]	dout,
+		din,
+		dout,
 
 		/* Get size for command */
-		input [1:0]			nbytes,
+		nbytes,
 
 		/* Busy signal for higher level control */
-//		output reg			busy,
-		output				busy,
+		busy,
 
 		/* SPI interface */
-		input				sdi,
-		output  			sdo,
-		output				clk_out,
-		output reg			cs
+		sdi,
+		sdo,
+		clk_out,
+		cs
 
 	);
+
+		input				reset;
+		input				clk;
+
+		input				read;
+		input				write;
+
+		input  [31:0]		din;
+//		output [31:0]		dout;
+		output reg [31:0]	dout;
+
+		/* Get size for command */
+		input [1:0]			nbytes;
+
+		/* Busy signal for higher level control */
+//		output reg			busy;
+		output				busy;
+
+		/* SPI interface */
+		input				sdi;
+		output  			sdo;
+		output				clk_out;
+		output reg			cs;
 
 	/* Read flag to store for read at later state */
 	reg read_flag;
@@ -168,12 +189,12 @@ module spi32 (
 					/* Writing, should have loaded data into shift register */
 					if( write && !read ) begin
 						tmp_busy <= 1'b1;
-						spi_state = `SPI_WRITE_FIFO;
+						spi_state <= `SPI_WRITE_FIFO;
 						bytes2write <= nbytes;
 					end
 					else if( !write && read ) begin
 						tmp_busy <= 1'b1;
-						spi_state = `SPI_WRITE_FIFO;
+						spi_state <= `SPI_WRITE_FIFO;
 						/* Used to change states later */
 						read_flag <= 1'b1;
 						bytes2write <= nbytes;

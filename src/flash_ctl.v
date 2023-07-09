@@ -10,24 +10,41 @@
 module flash_ctl #(
 		parameter FLASH_ADDR_SZ = 11
 	) (
-		input	reset,
-		input	clk,
-		input	read,
-		input	write,
+		reset,
+		clk,
+		read,
+		write,
 
-		input [15:0] addr,
-		input [7:0] din,
-		output[7:0] dout,
+		addr,
+		din,
+		dout,
 
-		output reg busy,
+		busy,
 
 		/* SPI Connections */
-		output	spi_clk,
-		output	spi_cs,
-		output	spi_mosi,
-		input	spi_miso
+		spi_clk,
+		spi_cs,
+		spi_mosi,
+		spi_miso
 
 	);
+
+		input	reset;
+		input	clk;
+		input	read;
+		input	write;
+
+		input [15:0] addr;
+		input [7:0] din;
+		output[7:0] dout;
+
+		output reg busy;
+
+		/* SPI Connections */
+		output	spi_clk;
+		output	spi_cs;
+		output	spi_mosi;
+		input	spi_miso;
 
 	/* SPI Busy signal */
 	wire spi_busy;

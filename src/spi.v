@@ -2,27 +2,47 @@
 `default_nettype none
 `timescale 1ns/1ns
 module spi (
-		input				reset,
-		input				clk_in,
+		reset,
+		clk_in,
 
-		input				read,
-		input				write,
+		read,
+		write,
 
-		input[7:0]			din,
-		output reg[7:0]		dout,
+		din,
+		dout,
 
 		/* Get size for command */
 
 		/* Busy signal for higher level control */
-		output reg			busy,
+		busy,
 
 		/* SPI interface */
-		input				sdi,
-		output reg 			sdo,
-		output				clk_out,
-		output reg			cs
+		sdi,
+		sdo,
+		clk_out,
+		cs
 
 	);
+
+		input				reset;
+		input				clk_in;
+
+		input				read;
+		input				write;
+
+		input[7:0]			din;
+		output reg[7:0]		dout;
+
+		/* Get size for command */
+
+		/* Busy signal for higher level control */
+		output reg			busy;
+
+		/* SPI interface */
+		input				sdi;
+		output reg 			sdo;
+		output				clk_out;
+		output reg			cs;
 
 	/* Operation state */
 	`define OP_NOP			0

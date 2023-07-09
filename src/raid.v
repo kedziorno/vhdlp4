@@ -14,40 +14,73 @@ module raid #(
 		parameter NDRIVES = 4
 	)
 	(
-		input				reset,
-		input				clk,
-		input				read_en,
-		input				write_en,
+		reset,
+		clk,
+		read_en,
+		write_en,
 
 		/* Host connection  */
-		input      [31:0]	din,
-		input      [31:0]	addr,
-		output reg [31:0]	dout,
-		output reg			busy,
-		output reg			parity,		/* parity error that is non recoverable */
-		output reg			err,		/* error flag on raid0 consistency */
-		input [3:0]			raid_type,
+		din,
+		addr,
+		dout,
+		busy,
+		parity,		/* parity error that is non recoverable */
+		err,		/* error flag on raid0 consistency */
+		raid_type,
 
 		/* Drive controller connection */
-		output reg			w_drives,
-		output reg			r_drives,
-		output reg [31:0]	drive_addr,
-		input				busy_drive0,
-		input				busy_drive1,
-		input				busy_drive2,
-		input				busy_drive3,
+		w_drives,
+		r_drives,
+		drive_addr,
+		busy_drive0,
+		busy_drive1,
+		busy_drive2,
+		busy_drive3,
 
-		input      [31:0]	r_drive_data0,
-		input      [31:0]	r_drive_data1,
-		input      [31:0]	r_drive_data2,
-		input      [31:0]	r_drive_data3,
+		r_drive_data0,
+		r_drive_data1,
+		r_drive_data2,
+		r_drive_data3,
 
-		output reg [31:0]	w_drive_data0,
-		output reg [31:0]	w_drive_data1,
-		output reg [31:0]	w_drive_data2,
-		output reg [31:0]	w_drive_data3
+		w_drive_data0,
+		w_drive_data1,
+		w_drive_data2,
+		w_drive_data3
 
 	);
+
+		input				reset;
+		input				clk;
+		input				read_en;
+		input				write_en;
+
+		/* Host connection  */
+		input      [31:0]	din;
+		input      [31:0]	addr;
+		output reg [31:0]	dout;
+		output reg			busy;
+		output reg			parity;		/* parity error that is non recoverable */
+		output reg			err;		/* error flag on raid0 consistency */
+		input [3:0]			raid_type;
+
+		/* Drive controller connection */
+		output reg			w_drives;
+		output reg			r_drives;
+		output reg [31:0]	drive_addr;
+		input				busy_drive0;
+		input				busy_drive1;
+		input				busy_drive2;
+		input				busy_drive3;
+
+		input      [31:0]	r_drive_data0;
+		input      [31:0]	r_drive_data1;
+		input      [31:0]	r_drive_data2;
+		input      [31:0]	r_drive_data3;
+
+		output reg [31:0]	w_drive_data0;
+		output reg [31:0]	w_drive_data1;
+		output reg [31:0]	w_drive_data2;
+		output reg [31:0]	w_drive_data3;
 
 	/* Statemachine for operation */
 	`define OP_NOP	 		0

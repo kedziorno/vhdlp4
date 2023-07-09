@@ -2,15 +2,23 @@
 `default_nettype none
 `timescale 1ns/1ns
 module flashtb (
-		input		reset,
-		input		clk,
-		input		read,
-		input		write,
-		input[7:0]	din,
-		output[7:0]	dout,
-		output		busy
+		reset,
+		clk,
+		read,
+		write,
+		din,
+		dout,
+		busy
 
 	);
+
+		input		reset;
+		input		clk;
+		input		read;
+		input		write;
+		input[7:0]	din;
+		output[7:0]	dout;
+		output		busy;
 
 	/* SPI Connections */
 	wire spi_mosi;

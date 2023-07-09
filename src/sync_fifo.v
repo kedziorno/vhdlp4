@@ -7,33 +7,44 @@ module sync_fifo
 	)
 
 	(
-		input							reset,
-		input							clk,
-		input							read_en,
-		input							write_en,
-		input [FIFO_WIDTH-1:0]			din,
-
-		output [FIFO_WIDTH-1:0]			dout,
-		output  						fifo_full,
-		output 							fifo_empty,
-		output [$clog2(FIFO_DEPTH)-1:0]	count_out
-		
-
-
+		reset,
+		clk,
+		read_en,
+		write_en,
+		din,
+		dout,
+		fifo_full,
+		fifo_empty,
+		count_out
 	);
 
+		input							reset;
+		input							clk;
+		input							read_en;
+		input							write_en;
+		input [FIFO_WIDTH-1:0]			din;
+
+		output [FIFO_WIDTH-1:0]			dout;
+		output  						fifo_full;
+		output 							fifo_empty;
+//		output [$clog2(FIFO_DEPTH)-1:0]	count_out;
+		output [2-1:0]	count_out;
+
 	/* Have the current amount of bytes output to control above */
-	assign count_out = counter;
 
 	/* Words in FIFO */
-	reg [$clog2(FIFO_DEPTH)-1:0] counter;
+//	reg [$clog2(FIFO_DEPTH)-1:0] counter;
+	reg [2-1:0] counter;
+	assign count_out = counter;
 
 	/* Actual FIFO */
 	reg [FIFO_WIDTH-1:0] buffer[FIFO_DEPTH-1:0];
 
 	/* Read and write pointers */
-	reg [$clog2(FIFO_DEPTH)-1:0] readptr;
-	reg [$clog2(FIFO_DEPTH)-1:0] writeptr;
+//	reg [$clog2(FIFO_DEPTH)-1:0] readptr;
+	reg [2-1:0] readptr;
+//	reg [$clog2(FIFO_DEPTH)-1:0] writeptr;
+	reg [2-1:0] writeptr;
 
 
 	assign fifo_full 	= (counter == FIFO_DEPTH-1);

@@ -8,26 +8,44 @@
 `define TEST_DATA	8'h55
 
 module flash_test (
-		input	reset,
-		input	clk,
+		reset,
+		clk,
 	
-		output	busy,
+		busy,
 	
-(*keep*)	input	BTN1,	/* test write */
-(*keep*)	input	BTN2,	/* test read */
+		BTN1,	/* test write */
+		BTN2,	/* test read */
 
-		output reg LED1,
-		output reg LED2,
-		output reg LED3,
+		LED1,
+		LED2,
+		LED3,
 	
 		/* spi */
-(*keep*)		output spi_clk,
-(*keep*)		output spi_cs,
-(*keep*)		output spi_mosi,
-(*keep*)		input  spi_miso
+		spi_clk,
+		spi_cs,
+		spi_mosi,
+		spi_miso
 
 
 	);
+
+		input	reset;
+		input	clk;
+	
+		output	busy;
+	
+(*keep*)	input	BTN1;	/* test write */
+(*keep*)	input	BTN2;	/* test read */
+
+		output reg LED1;
+		output reg LED2;
+		output reg LED3;
+	
+		/* spi */
+(*keep*)		output spi_clk;
+(*keep*)		output spi_cs;
+(*keep*)		output spi_mosi;
+(*keep*)		input  spi_miso;
 
 //	reg [7:0] clk_div;
 //	wire clk_div8;

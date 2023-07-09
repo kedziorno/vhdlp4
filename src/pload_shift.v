@@ -5,14 +5,22 @@ module pload_shift #(
 		parameter LOAD_WIDTH = 32,
 		parameter OUT_WIDTH = 8
 	)(
-		input 						clk,
-		input						reset,
-		input[LOAD_WIDTH-1:0]		din,
-		input						enable,	/* Trigger to start operation to write out */
+		clk,
+		reset,
+		din,
+		enable,	/* Trigger to start operation to write out */
 
-		output reg [OUT_WIDTH-1:0]	dout,
-		output reg					busy	
+		dout,
+		busy	
 	);
+
+		input 						clk;
+		input						reset;
+		input[LOAD_WIDTH-1:0]		din;
+		input						enable;	/* Trigger to start operation to write out */
+
+		output reg [OUT_WIDTH-1:0]	dout;
+		output reg					busy;
 
 	/* Statemachine values */
 	`define OP_IDLE		0
@@ -22,10 +30,12 @@ module pload_shift #(
 	/* Required calculation to get correct number of stages for entire width
 	* parallel load */
 //	reg [OUT_WIDTH-1:0]  data [((LOAD_WIDTH >> $clog2(8)) - 1):0 ];
-	reg [7:0] data [3:0];
+	reg [OUT_WIDTH-1:0]  data [((LOAD_WIDTH >> 3) - 1):0 ];
+//	reg [7:0] data [3:0];
 
 	/* Counter for how many bytes are left to shift out */
-	reg [ ((LOAD_WIDTH >> $clog2(8)) - 1) : 0] dcount;
+//	reg [ ((LOAD_WIDTH >> $clog2(8)) - 1) : 0] dcount;
+	reg [ ((LOAD_WIDTH >> 3) - 1) : 0] dcount;
 
 	always @(posedge clk or posedge reset ) begin
 		if( reset ) begin
@@ -45,7 +55,8 @@ module pload_shift #(
 			end
 			else if( (op == `OP_IDLE) && enable ) begin
 				op <= `OP_WRITE;
-				dcount <= (LOAD_WIDTH >> $clog2(8)) - 1;
+//				dcount <= (LOAD_WIDTH >> $clog2(8)) - 1;
+				dcount <= (LOAD_WIDTH >> 3) - 1;
 				data[0] <= din[7:0];
 				data[1] <= din[15:8];
 				data[2] <= din[23:16];

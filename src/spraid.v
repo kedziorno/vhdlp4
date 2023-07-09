@@ -9,49 +9,90 @@
 
 
 module spraid(
-		input			reset,
-		input			clk,
+		reset,
+		clk,
 
-		input [3:0]		raid_type,
+		raid_type,
 
-		input			read,
-		input			write,
-		input [31:0]	addr,
-		input [31:0]	din,
-		output reg [31:0]	dout,
-		output			busy,
-		output reg		wbs_ack_o,	/* needed for wishbone */
+		read,
+		write,
+		addr,
+		din,
+		dout,
+		busy,
+		wbs_ack_o,	/* needed for wishbone */
 
-		output			parity,
-		output			err,
+		parity,
+		err,
 
 
 
 		/* SPI0 */
-		output 			spi0_clk,
-		output 			spi0_cs,
-		output 			spi0_mosi,
-		input  			spi0_miso,
+		spi0_clk,
+		spi0_cs,
+		spi0_mosi,
+		spi0_miso,
 
 		/* SPI1 */
-		output 			spi1_clk,
-		output 			spi1_cs,
-		output 			spi1_mosi,
-		input			spi1_miso,
+		spi1_clk,
+		spi1_cs,
+		spi1_mosi,
+		spi1_miso,
 
 		/* SPI2 */
-		output 			spi2_clk,
-		output 			spi2_cs,
-		output 			spi2_mosi,
-		input			spi2_miso,
+		spi2_clk,
+		spi2_cs,
+		spi2_mosi,
+		spi2_miso,
 
 		/* SPI3 */
-		output 			spi3_clk,
-		output 			spi3_cs,
-		output 			spi3_mosi,
-		input			spi3_miso
+		spi3_clk,
+		spi3_cs,
+		spi3_mosi,
+		spi3_miso
 
 	);
+		input			reset;
+		input			clk;
+
+		input [3:0]		raid_type;
+
+		input			read;
+		input			write;
+		input [31:0]	addr;
+		input [31:0]	din;
+		output reg [31:0]	dout;
+		output			busy;
+		output reg		wbs_ack_o;	/* needed for wishbone */
+
+		output			parity;
+		output			err;
+
+
+
+		/* SPI0 */
+		output 			spi0_clk;
+		output 			spi0_cs;
+		output 			spi0_mosi;
+		input  			spi0_miso;
+
+		/* SPI1 */
+		output 			spi1_clk;
+		output 			spi1_cs;
+		output 			spi1_mosi;
+		input			spi1_miso;
+
+		/* SPI2 */
+		output 			spi2_clk;
+		output 			spi2_cs;
+		output 			spi2_mosi;
+		input			spi2_miso;
+
+		/* SPI3 */
+		output 			spi3_clk;
+		output 			spi3_cs;
+		output 			spi3_mosi;
+		input			spi3_miso;
 
 
 	/* raid - spi wires */

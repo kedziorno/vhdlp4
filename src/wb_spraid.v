@@ -10,50 +10,93 @@
 `define SPRAID_STATUS		(`WB_ADDR_BASE + `SPRAID_MEM_SZ + 2)
 
 module wb_spraid (
-	input			wb_clk_i,
-	input  [31:0] 	wb_dat_i,
-	output [31:0]	wb_dat_o,
-	input			wb_rst_i,
-	output			wb_ack_o,
-	input  [31:0]	wb_adr_i,
-	input			wb_cyc_i,
-	output			wb_stall_o,
-	output			wb_err_o,
+	wb_clk_i,
+	wb_dat_i,
+	wb_dat_o,
+	wb_rst_i,
+	wb_ack_o,
+	wb_adr_i,
+	wb_cyc_i,
+	wb_stall_o,
+	wb_err_o,
 	/* Not used */
-//	input			wb_lock_i,
-	output			wb_rty_o,
+//	wb_lock_i,
+	wb_rty_o,
 	/* Not used */
-//	input  [3:0]	wb_sel_i,
-	input			wb_stb_i,
-	input			wb_we_i,
+//	wb_sel_i,
+	wb_stb_i,
+	wb_we_i,
 
 	/* SPI interface connections */
 
 	/* SPI0 */
-	output 			spi0_clk,
-	output 			spi0_cs,
-	output 			spi0_mosi,
-	input  			spi0_miso,
+	spi0_clk,
+	spi0_cs,
+	spi0_mosi,
+	spi0_miso,
 
 	/* SPI1 */
-	output 			spi1_clk,
-	output 			spi1_cs,
-	output 			spi1_mosi,
-	input			spi1_miso,
+	spi1_clk,
+	spi1_cs,
+	spi1_mosi,
+	spi1_miso,
 
 	/* SPI2 */
-	output 			spi2_clk,
-	output 			spi2_cs,
-	output 			spi2_mosi,
-	input			spi2_miso,
+	spi2_clk,
+	spi2_cs,
+	spi2_mosi,
+	spi2_miso,
 
 	/* SPI3 */
-	output 			spi3_clk,
-	output 			spi3_cs,
-	output 			spi3_mosi,
-	input			spi3_miso
+	spi3_clk,
+	spi3_cs,
+	spi3_mosi,
+	spi3_miso
 
 );
+
+	input			wb_clk_i;
+	input  [31:0] 	wb_dat_i;
+	output [31:0]	wb_dat_o;
+	input			wb_rst_i;
+	output			wb_ack_o;
+	input  [31:0]	wb_adr_i;
+	input			wb_cyc_i;
+	output			wb_stall_o;
+	output			wb_err_o;
+	/* Not used */
+//	input			wb_lock_i;
+	output			wb_rty_o;
+	/* Not used */
+//	input  [3:0]	wb_sel_i;
+	input			wb_stb_i;
+	input			wb_we_i;
+
+	/* SPI interface connections */
+
+	/* SPI0 */
+	output 			spi0_clk;
+	output 			spi0_cs;
+	output 			spi0_mosi;
+	input  			spi0_miso;
+
+	/* SPI1 */
+	output 			spi1_clk;
+	output 			spi1_cs;
+	output 			spi1_mosi;
+	input			spi1_miso;
+
+	/* SPI2 */
+	output 			spi2_clk;
+	output 			spi2_cs;
+	output 			spi2_mosi;
+	input			spi2_miso;
+
+	/* SPI3 */
+	output 			spi3_clk;
+	output 			spi3_cs;
+	output 			spi3_mosi;
+	input			spi3_miso;
 
 	/* not used */
 	assign wb_rty_o = 1'b0;

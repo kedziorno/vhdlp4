@@ -35,29 +35,48 @@ module spi_master
     parameter CLKS_PER_HALF_BIT = 2)
   (
    // Control/Data Signals,
-   input        i_Rst_L,     // FPGA Reset
-   input        i_Clk,       // FPGA Clock
+   i_Rst_L,     // FPGA Reset
+   i_Clk,       // FPGA Clock
    
    // TX (MOSI) Signals
-   input [7:0]  i_TX_Byte,        // Byte to transmit on MOSI
-   input        i_TX_DV,          // Data Valid Pulse with i_TX_Byte
-   output reg   o_TX_Ready,       // Transmit Ready for next byte
+   i_TX_Byte,        // Byte to transmit on MOSI
+   i_TX_DV,          // Data Valid Pulse with i_TX_Byte
+   o_TX_Ready,       // Transmit Ready for next byte
    
    // RX (MISO) Signals
-   output reg       o_RX_DV,     // Data Valid pulse (1 clock cycle)
-   output reg [7:0] o_RX_Byte,   // Byte received on MISO
+   o_RX_DV,     // Data Valid pulse (1 clock cycle)
+   o_RX_Byte,   // Byte received on MISO
 
    // SPI Interface
-   output reg o_SPI_Clk,
-   input      i_SPI_MISO,
-   output reg o_SPI_MOSI
+   o_SPI_Clk,
+   i_SPI_MISO,
+   o_SPI_MOSI
    );
+
+   // Control/Data Signals,
+   input        i_Rst_L;     // FPGA Reset
+   input        i_Clk;       // FPGA Clock
+   
+   // TX (MOSI) Signals
+   input [7:0]  i_TX_Byte;        // Byte to transmit on MOSI
+   input        i_TX_DV;          // Data Valid Pulse with i_TX_Byte
+   output reg   o_TX_Ready;       // Transmit Ready for next byte
+   
+   // RX (MISO) Signals
+   output reg       o_RX_DV;     // Data Valid pulse (1 clock cycle)
+   output reg [7:0] o_RX_Byte;   // Byte received on MISO
+
+   // SPI Interface
+   output reg o_SPI_Clk;
+   input      i_SPI_MISO;
+   output reg o_SPI_MOSI;
 
   // SPI Interface (All Runs at SPI Clock Domain)
   wire w_CPOL;     // Clock polarity
   wire w_CPHA;     // Clock phase
 
-  reg [$clog2(CLKS_PER_HALF_BIT*2)-1:0] r_SPI_Clk_Count;
+//  reg [$clog2(CLKS_PER_HALF_BIT*2)-1:0] r_SPI_Clk_Count;
+  reg [2-1:0] r_SPI_Clk_Count;
   reg r_SPI_Clk;
   reg [4:0] r_SPI_Clk_Edges;
   reg r_Leading_Edge;
