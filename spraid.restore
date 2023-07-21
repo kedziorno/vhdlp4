@@ -1401,11 +1401,11 @@ proc restore { { project_dir "" } } {
    set libraries {
       "fmf"
       {
-       "s25fl064a.vhd"
        "idt7202.vhd"
        "flash.vhd"
        "conversions.vhd"
        "m25p80.vhd"
+       "s25fl064a.vhd"
        "gen_utils.vhd"
        }
    }
