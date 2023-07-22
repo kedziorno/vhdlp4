@@ -845,6 +845,7 @@ proc restore { { project_dir "" } } {
       "idt7202.vhd" 
       "m25p80.vhd" 
       "module524.vhd" 
+      "module681.vhd" 
       "s25fl064a.vhd" 
       "sata_defines.vhd" 
       "sim_src/MX25V1006F.v" 
@@ -1401,11 +1402,11 @@ proc restore { { project_dir "" } } {
    set libraries {
       "fmf"
       {
+       "s25fl064a.vhd"
        "idt7202.vhd"
        "flash.vhd"
        "conversions.vhd"
        "m25p80.vhd"
-       "s25fl064a.vhd"
        "gen_utils.vhd"
        }
    }
