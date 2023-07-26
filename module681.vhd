@@ -289,5 +289,84 @@ begin
   end if;
 end process process_6.8.1.1.2;
 
+constant C_COMRESET_burst_counter : integer := HOST_COMRESET_BURST/GEN1_1_DWORD;
+signal COMRESET_burst_counter : integer range 0 to C_COMRESET_burst_counter - 1;
+signal COMRESET_burst_enable : std_logic;
+type COMRESET_burst_states is (COMRESET_burst_state_a,COMRESET_burst_state_b);
+signal COMRESET_burst_state : COMRESET_burst_states;
+process_COMRESET_burst_counter : process (i_clock) is
+begin
+  if (rising_edge (i_clock)) then
+    if (i_reset = '1') then
+      COMRESET_burst_state <= a;
+    else
+      case (COMRESET_burst_state) is
+        when a =>
+          if (COMRESET_burst_enable = '1') then
+            COMRESET_burst_state <= b;
+            COMRESET_burst_counter <= 0;
+          else
+            COMRESET_burst_state <= a;
+          end if;
+        when b =>
+          if (COMRESET_burst_counter = C_COMRESET_burst_counter - 1) then
+            COMRESET_burst_state <= a;
+            COMRESET_burst_counter <= 0;
+          else
+            COMRESET_burst_counter <= COMRESET_burst_counter + 1;
+          end if;
+      end case;
+    end if;
+  end if;
+end process process_COMRESET_burst_counter;
+
+constant C_COMRESET_idle_counter : integer := HOST_COMRESET_IDLE/GEN1_1_DWORD;
+signal COMRESET_idle_counter : integer range 0 to C_COMRESET_burst_counter - 1;
+signal COMRESET_idle_enable : std_logic;
+type COMRESET_idle_states is (COMRESET_idle_state_a,COMRESET_idle_state_b);
+signal COMRESET_idle_state : COMRESET_idle_states;
+process_COMRESET_idle_counter : process (i_clock) is
+begin
+  if (rising_edge (i_clock)) then
+    if (i_reset = '1') then
+      COMRESET_idle_state <= a;
+    else
+      case (COMRESET_idle_state) is
+        when a =>
+          if (COMRESET_idle_enable = '1') then
+            COMRESET_idle_state <= b;
+            COMRESET_idle_counter <= 0;
+          else
+            COMRESET_idle_state <= a;
+          end if;
+        when b =>
+          if (COMRESET_idle_counter = C_COMRESET_idle_counter - 1) then
+            COMRESET_idle_state <= a;
+            COMRESET_idle_counter <= 0;
+          else
+            COMRESET_idle_counter <= COMRESET_idle_counter + 1;
+          end if;
+      end case;
+    end if;
+  end if;
+end process process_COMRESET_idle_counter;
+
+-- 6.8.1.2 Power-on sequence timing diagram p. 125
+--type power_on_states is ();
+--signal power_on_state : power_on_states;
+--signal power_on_counter : integer;
+--process_6.8.1.2 : process (i_clock) is
+--begin
+--  if (rising_edge (i_clock)) then
+--    if (i_reset = '1') then
+--      
+--    else
+--      case (power_on_state) is
+--        
+--      end case;
+--    end if;
+--  end if;
+--end process process_6.8.1.2;
+
 end Behavioral;
 

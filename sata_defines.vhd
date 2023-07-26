@@ -53,7 +53,9 @@ package sata_defines is
   constant HOST_COMWAKE_FAIL_MIN : integer := 55 ns;
   constant HOST_COMWAKE_FAIL_MAX : integer := 175 ns;
 
-  constant GEN1_DWORD : time := 26.65 ns;
+  constant GEN1_1_DWORD : time := 26.65 ns;
+  constant GEN1_2048_DWORD : time := GEN1_1_DWORD * 2048; -- 56.6us
+  constant GEN1_32768_DWORD : time := GEN1_1_DWORD * 32768; -- 880us
 
 subtype enc10b8b is std_logic_vector (7 downto 0);
 subtype enc8b10b is std_logic_vector (9 downto 0);
