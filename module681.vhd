@@ -289,39 +289,39 @@ begin
   end if;
 end process process_6.8.1.1.2;
 
-constant C_COMRESET_burst_counter : integer := HOST_COMRESET_BURST/GEN1_1_DWORD;
-signal COMRESET_burst_counter : integer range 0 to C_COMRESET_burst_counter - 1;
-signal COMRESET_burst_enable : std_logic;
-type COMRESET_burst_states is (COMRESET_burst_state_a,COMRESET_burst_state_b);
-signal COMRESET_burst_state : COMRESET_burst_states;
-process_COMRESET_burst_counter : process (i_clock) is
-begin
-  if (rising_edge (i_clock)) then
-    if (i_reset = '1') then
-      COMRESET_burst_state <= a;
-    else
-      case (COMRESET_burst_state) is
-        when a =>
-          if (COMRESET_burst_enable = '1') then
-            COMRESET_burst_state <= b;
-            COMRESET_burst_counter <= 0;
-          else
-            COMRESET_burst_state <= a;
-          end if;
-        when b =>
-          if (COMRESET_burst_counter = C_COMRESET_burst_counter - 1) then
-            COMRESET_burst_state <= a;
-            COMRESET_burst_counter <= 0;
-          else
-            COMRESET_burst_counter <= COMRESET_burst_counter + 1;
-          end if;
-      end case;
-    end if;
-  end if;
-end process process_COMRESET_burst_counter;
+--constant C_COMRESET_burst_counter : integer := HOST_COMRESET_BURST/GEN1_1_DWORD;
+--signal COMRESET_burst_counter : integer range 0 to C_COMRESET_burst_counter - 1;
+--signal COMRESET_burst_enable : std_logic;
+--type COMRESET_burst_states is (COMRESET_burst_state_a,COMRESET_burst_state_b);
+--signal COMRESET_burst_state : COMRESET_burst_states;
+--process_COMRESET_burst_counter : process (i_clock) is
+--begin
+--  if (rising_edge (i_clock)) then
+--    if (i_reset = '1') then
+--      COMRESET_burst_state <= a;
+--    else
+--      case (COMRESET_burst_state) is
+--        when a =>
+--          if (COMRESET_burst_enable = '1') then
+--            COMRESET_burst_state <= b;
+--            COMRESET_burst_counter <= 0;
+--          else
+--            COMRESET_burst_state <= a;
+--          end if;
+--        when b =>
+--          if (COMRESET_burst_counter = C_COMRESET_burst_counter - 1) then
+--            COMRESET_burst_state <= a;
+--            COMRESET_burst_counter <= 0;
+--          else
+--            COMRESET_burst_counter <= COMRESET_burst_counter + 1;
+--          end if;
+--      end case;
+--    end if;
+--  end if;
+--end process process_COMRESET_burst_counter;
 
 constant C_COMRESET_idle_counter : integer := HOST_COMRESET_IDLE/GEN1_1_DWORD;
-signal COMRESET_idle_counter : integer range 0 to C_COMRESET_burst_counter - 1;
+signal COMRESET_idle_counter : integer range 0 to C_COMRESET_idle_counter - 1;
 signal COMRESET_idle_enable : std_logic;
 type COMRESET_idle_states is (COMRESET_idle_state_a,COMRESET_idle_state_b);
 signal COMRESET_idle_state : COMRESET_idle_states;
@@ -352,21 +352,134 @@ begin
 end process process_COMRESET_idle_counter;
 
 -- 6.8.1.2 Power-on sequence timing diagram p. 125
---type power_on_states is ();
---signal power_on_state : power_on_states;
+constant C_COMRESET_burst_counter : integer := HOST_COMRESET_BURST/GEN1_1_DWORD;
+signal COMRESET_burst_counter : integer range 0 to C_COMRESET_burst_counter - 1;
+constant C_COMRESET_idle_counter : integer := HOST_COMRESET_IDLE/GEN1_1_DWORD;
+signal COMRESET_idle_counter : integer range 0 to C_COMRESET_idle_counter - 1;
+type power_on_states is (CR1,CRw1,CR2,CRw2,CR3,CRw3,CR4,CRw4,CR5,CRw5,CR6,CRw6);
+signal power_on_state : power_on_states;
 --signal power_on_counter : integer;
---process_6.8.1.2 : process (i_clock) is
---begin
---  if (rising_edge (i_clock)) then
---    if (i_reset = '1') then
---      
---    else
---      case (power_on_state) is
---        
---      end case;
---    end if;
---  end if;
---end process process_6.8.1.2;
+process_6.8.1.2 : process (i_clock) is
+begin
+  if (rising_edge (i_clock)) then
+    if (i_reset = '1') then
+      power_on_state <= CR1;
+      COMRESET_burst_counter <= 0;
+      COMRESET_idle_counter <= 0;
+    else
+      case (power_on_state) is
+        when CR1 =>
+          TX <= '1';
+          if (COMRESET_burst_counter = C_COMRESET_burst_counter - 1) then
+            power_on_state <= CRw1;
+            COMRESET_burst_counter <= 0;
+          else
+            power_on_state <= CR1;
+            COMRESET_burst_counter <= COMRESET_burst_counter + 1;
+          end if;
+        when CRw1 =>
+          TX <= '0';
+          if (COMRESET_idle_counter = C_COMRESET_idle_counter - 1) then
+            power_on_state <= CR2;
+            COMRESET_idle_counter <= 0;
+          else
+            power_on_state <= CRw1;
+            COMRESET_idle_counter <= COMRESET_idle_counter + 1;
+          end if;
+        when CR2 =>
+          TX <= '1';
+          if (COMRESET_burst_counter = C_COMRESET_burst_counter - 1) then
+            power_on_state <= CRw2;
+            COMRESET_burst_counter <= 0;
+          else
+            power_on_state <= CR2;
+            COMRESET_burst_counter <= COMRESET_burst_counter + 1;
+          end if;
+        when CRw2 =>
+          TX <= '0';
+          if (COMRESET_idle_counter = C_COMRESET_idle_counter - 1) then
+            power_on_state <= CR3;
+            COMRESET_idle_counter <= 0;
+          else
+            power_on_state <= CRw2;
+            COMRESET_idle_counter <= COMRESET_idle_counter + 1;
+          end if;
+        when CR3 =>
+          TX <= '1';
+          if (COMRESET_burst_counter = C_COMRESET_burst_counter - 1) then
+            power_on_state <= CRw3;
+            COMRESET_burst_counter <= 0;
+          else
+            power_on_state <= CR3;
+            COMRESET_burst_counter <= COMRESET_burst_counter + 1;
+          end if;
+        when CRw3 =>
+          TX <= '0';
+          if (COMRESET_idle_counter = C_COMRESET_idle_counter - 1) then
+            power_on_state <= CR4;
+            COMRESET_idle_counter <= 0;
+          else
+            power_on_state <= CRw3;
+            COMRESET_idle_counter <= COMRESET_idle_counter + 1;
+          end if;
+        when CR4 =>
+          TX <= '1';
+          if (COMRESET_burst_counter = C_COMRESET_burst_counter - 1) then
+            power_on_state <= CRw4;
+            COMRESET_burst_counter <= 0;
+          else
+            power_on_state <= CR4;
+            COMRESET_burst_counter <= COMRESET_burst_counter + 1;
+          end if;
+        when CRw4 =>
+          TX <= '0';
+          if (COMRESET_idle_counter = C_COMRESET_idle_counter - 1) then
+            power_on_state <= CR5;
+            COMRESET_idle_counter <= 0;
+          else
+            power_on_state <= CRw4;
+            COMRESET_idle_counter <= COMRESET_idle_counter + 1;
+          end if;
+        when CR5 =>
+          TX <= '1';
+          if (COMRESET_burst_counter = C_COMRESET_burst_counter - 1) then
+            power_on_state <= CRw5;
+            COMRESET_burst_counter <= 0;
+          else
+            power_on_state <= CR5;
+            COMRESET_burst_counter <= COMRESET_burst_counter + 1;
+          end if;
+        when CRw5 =>
+          TX <= '0';
+          if (COMRESET_idle_counter = C_COMRESET_idle_counter - 1) then
+            power_on_state <= CR6;
+            COMRESET_idle_counter <= 0;
+          else
+            power_on_state <= CRw5;
+            COMRESET_idle_counter <= COMRESET_idle_counter + 1;
+          end if;
+        when CR6 =>
+          TX <= '1';
+          if (COMRESET_burst_counter = C_COMRESET_burst_counter - 1) then
+            power_on_state <= CRw6;
+            COMRESET_burst_counter <= 0;
+          else
+            power_on_state <= CR6;
+            COMRESET_burst_counter <= COMRESET_burst_counter + 1;
+          end if;
+        when CRw6 =>
+          TX <= '0';
+          if (COMRESET_idle_counter = C_COMRESET_idle_counter - 1) then
+            power_on_state <= CRw6;
+            COMRESET_idle_counter <= 0;
+          else
+            power_on_state <= CRw6;
+            COMRESET_idle_counter <= COMRESET_idle_counter + 1;
+          end if;
+      end case;
+    end if;
+  end if;
+end process process_6.8.1.2;
 
 end Behavioral;
 
