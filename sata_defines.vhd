@@ -182,6 +182,11 @@ constant ALIGN_N : ST_ALIGN_N := (K28_5_N,D10_2_N,D10_2_N,D27_3_N);
 --1010110011 D31.3 (-) 7Fh 
 --0101001100 D31.3 (+) 7Fh 
 
+CONSTANT RXPERIOD : Time := 668 ps; -- 1497.00599 MHZ
+CONSTANT TXPERIOD : Time := 666.43 ps; -- 1500.53269
+--CONSTANT RXPERIOD : Time := 666.43 ps; -- 1500.53269
+--CONSTANT TXPERIOD : Time := 667 ps; -- 1499.25037
+
 end sata_defines;
 
 package body sata_defines is
