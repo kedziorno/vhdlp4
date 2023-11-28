@@ -740,6 +740,137 @@ begin
   end if;
 end process process_6.8.1.2_COMWAKE;
 
+constant C_PMREQ_burst_counter : integer := HOST_COMWAKE_BURST/GEN1_1_DWORD;
+signal PMREQ_burst_counter : integer range 0 to C_PMREQ_burst_counter - 1;
+type partial_slumber_PMREQ_states is (CI1, CI2, CI3, CI4, CI5, CI6, CI7);
+signal partial_slumber_PMREQ_state : partial_slumber_PMREQ_states;
+
+process_6.8.1.4.1_PMREQ_HOST : process (i_clock) is
+begin
+  if (rising_edge (i_clock)) then
+    if (i_reset = '1') then
+      partial_slumber_PMREQ_state <= CI1;
+      PMREQ_burst_counter <= 0;
+      TX_PMREQ <= '0';
+    else
+      case (partial_slumber_PMREQ_state) is
+        when CI1 =>
+          TX_PMREQ <= '1';
+          if (PMREQ_burst_counter = C_PMREQ_burst_counter - 1) then
+            partial_slumber_PMREQ_state <= CI2;
+            PMREQ_burst_counter <= 0;
+          else
+            partial_slumber_PMREQ_state <= CI1;
+            PMREQ_burst_counter <= PMREQ_burst_counter + 1;
+          end if;
+        when CI2 =>
+          TX_PMREQ <= '1';
+          if (PMREQ_burst_counter = C_PMREQ_burst_counter - 1) then
+            partial_slumber_PMREQ_state <= CI3;
+            PMREQ_burst_counter <= 0;
+          else
+            partial_slumber_PMREQ_state <= CI2;
+            PMREQ_burst_counter <= PMREQ_burst_counter + 1;
+          end if;
+        when CI3 =>
+          TX_PMREQ <= '1';
+          if (PMREQ_burst_counter = C_PMREQ_burst_counter - 1) then
+            partial_slumber_PMREQ_state <= CI4;
+            PMREQ_burst_counter <= 0;
+          else
+            partial_slumber_PMREQ_state <= CI3;
+            PMREQ_burst_counter <= PMREQ_burst_counter + 1;
+          end if;
+        when CI4 =>
+          TX_PMREQ <= '1';
+          if (PMREQ_burst_counter = C_PMREQ_burst_counter - 1) then
+            partial_slumber_PMREQ_state <= CI5;
+            PMREQ_burst_counter <= 0;
+          else
+            partial_slumber_PMREQ_state <= CI4;
+            PMREQ_burst_counter <= PMREQ_burst_counter + 1;
+          end if;
+        when CI5 =>
+          TX_PMREQ <= '0';
+          if (RX_PMACK = '1') then
+            partial_slumber_PMREQ_state <= CI6;
+          else
+            partial_slumber_PMREQ_state <= CI1;
+          end if;
+        when CI6 =>
+          -- Host to partial mode
+          partial_slumber_PMREQ_state <= CI7;
+        when CI7 =>
+          -- Partial mode
+      end case;
+    end if;
+  end if;
+end process process_6.8.1.4.1_PMREQ_HOST;
+
+constant C_PMACK_burst_counter : integer := HOST_COMWAKE_BURST/GEN1_1_DWORD;
+signal PMACK_burst_counter : integer range 0 to C_PMACK_burst_counter - 1;
+type partial_slumber_PMACK_states is (idle, CI1, CI2, CI3, CI4, CI5);
+signal partial_slumber_PMACK_state : partial_slumber_PMACK_states;
+
+process_6.8.1.4.2_PMACK_HOST : process (i_clock) is
+begin
+  if (rising_edge (i_clock)) then
+    if (i_reset = '1') then
+      partial_slumber_PMACK_state <= idle;
+      PMACK_burst_counter <= 0;
+      TX_PMACK <= '0';
+    else
+      case (partial_slumber_PMREQ_state) is
+        when idle =>
+          if (RX_PMREQ = '1') then
+            partial_slumber_PMACK_state <= CI1;
+          else
+            partial_slumber_PMACK_state <= idle;
+          end if;
+        when CI1
+          TX_PMACK <= '1';
+          if (PMREQ_burst_counter = C_PMREQ_burst_counter - 1) then
+            partial_slumber_PMREQ_state <= CI2;
+            PMREQ_burst_counter <= 0;
+          else
+            partial_slumber_PMREQ_state <= CI1;
+            PMREQ_burst_counter <= PMREQ_burst_counter + 1;
+          end if;
+        when CI2 =>
+          TX_PMACK <= '1';
+          if (PMREQ_burst_counter = C_PMREQ_burst_counter - 1) then
+            partial_slumber_PMREQ_state <= CI3;
+            PMREQ_burst_counter <= 0;
+          else
+            partial_slumber_PMREQ_state <= CI2;
+            PMREQ_burst_counter <= PMREQ_burst_counter + 1;
+          end if;
+        when CI3 =>
+          TX_PMACK <= '1';
+          if (PMREQ_burst_counter = C_PMREQ_burst_counter - 1) then
+            partial_slumber_PMREQ_state <= CI4;
+            PMREQ_burst_counter <= 0;
+          else
+            partial_slumber_PMREQ_state <= CI3;
+            PMREQ_burst_counter <= PMREQ_burst_counter + 1;
+          end if;
+        when CI4 =>
+          TX_PMACK <= '1';
+          if (PMREQ_burst_counter = C_PMREQ_burst_counter - 1) then
+            partial_slumber_PMREQ_state <= CI5;
+            PMREQ_burst_counter <= 0;
+          else
+            partial_slumber_PMREQ_state <= CI4;
+            PMREQ_burst_counter <= PMREQ_burst_counter + 1;
+          end if;
+        when CI5 =>
+          TX_PMACK <= '0';
+          -- Host to partial mode
+      end case;
+    end if;
+  end if;
+end process process_6.8.1.4.2_PMACK_HOST;
+
 constant C_CLOCK_M1 : integer := 1;
 constant C_CLOCK_M2 : integer := 2;
 constant C_CLOCK_M3 : integer := 3;
