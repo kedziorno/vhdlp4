@@ -21,7 +21,6 @@ BEGIN SCHEMATIC
         SIGNAL icn
         SIGNAL idn
         SIGNAL ien
-        SIGNAL ikn
         SIGNAL oa
         SIGNAL ob
         SIGNAL oc
@@ -39,11 +38,6 @@ BEGIN SCHEMATIC
         SIGNAL c03o
         SIGNAL c02o
         SIGNAL c01o
-        SIGNAL XLXN_292
-        SIGNAL XLXN_293
-        SIGNAL XLXN_295
-        SIGNAL XLXN_297
-        SIGNAL XLXN_298
         SIGNAL d09o
         SIGNAL d08o
         SIGNAL d07o
@@ -105,6 +99,7 @@ BEGIN SCHEMATIC
         SIGNAL a30o
         SIGNAL a31o
         SIGNAL a32o
+        SIGNAL b16o
         PORT Input clk
         PORT Input rd4
         PORT Input ia
@@ -290,10 +285,6 @@ BEGIN SCHEMATIC
             PIN I ie
             PIN O ien
         END BLOCK
-        BEGIN BLOCK XLXI_58 inv
-            PIN I ik
-            PIN O ikn
-        END BLOCK
         BEGIN BLOCK ffa copy_of_fd
             PIN C clk
             PIN D d01o
@@ -354,7 +345,7 @@ BEGIN SCHEMATIC
             PIN O c04o
         END BLOCK
         BEGIN BLOCK c05 or4
-            PIN I0 b13o
+            PIN I0 b16o
             PIN I1 b15o
             PIN I2 b08o
             PIN I3 b03o
@@ -398,16 +389,16 @@ BEGIN SCHEMATIC
         END BLOCK
         BEGIN BLOCK d07 and4
             PIN I0 DOS6_2not
-            PIN I1 XLXN_293
-            PIN I2 XLXN_292
+            PIN I1 rd4n
+            PIN I2 b02o
             PIN I3 c05o
             PIN O d07o
         END BLOCK
         BEGIN BLOCK d08 and4
-            PIN I0 XLXN_298
-            PIN I1 XLXN_297
+            PIN I0 id
+            PIN I1 b02o_not
             PIN I2 c05o_not
-            PIN I3 XLXN_295
+            PIN I3 rd4
             PIN O d08o
         END BLOCK
         BEGIN BLOCK d09 or2
@@ -509,7 +500,7 @@ BEGIN SCHEMATIC
             PIN I0 a32o
             PIN I1 a22o
             PIN I2 a21o
-            PIN O b13o
+            PIN O b16o
         END BLOCK
         BEGIN BLOCK b17 or3
             PIN I0 a24o
@@ -825,19 +816,9 @@ BEGIN SCHEMATIC
                 ALIGNMENT SOFT-BCENTER
             END DISPLAY
         END BRANCH
-        BEGIN BRANCH ik
-            WIRE 96 576 112 576
-            WIRE 112 576 128 576
-            WIRE 112 576 112 3808
-            WIRE 112 3808 928 3808
-            BEGIN DISPLAY 112 576 ATTR Name
-                ALIGNMENT SOFT-BCENTER
-            END DISPLAY
-        END BRANCH
         INSTANCE XLXI_54 128 368 R0
         INSTANCE XLXI_55 128 448 R0
         INSTANCE XLXI_56 128 528 R0
-        INSTANCE XLXI_58 128 608 R0
         BEGIN BRANCH ian
             WIRE 352 176 368 176
             WIRE 368 176 368 176
@@ -874,14 +855,6 @@ BEGIN SCHEMATIC
             WIRE 368 496 368 496
             WIRE 368 496 384 496
             BEGIN DISPLAY 376 496 ATTR Name
-                ALIGNMENT SOFT-BCENTER
-            END DISPLAY
-        END BRANCH
-        BEGIN BRANCH ikn
-            WIRE 352 576 368 576
-            WIRE 368 576 368 576
-            WIRE 368 576 384 576
-            BEGIN DISPLAY 376 576 ATTR Name
                 ALIGNMENT SOFT-BCENTER
             END DISPLAY
         END BRANCH
@@ -1064,12 +1037,6 @@ BEGIN SCHEMATIC
                 ALIGNMENT SOFT-RIGHT
             END DISPLAY
         END BRANCH
-        BEGIN BRANCH b13o
-            WIRE 2720 784 2768 784
-            BEGIN DISPLAY 2720 784 ATTR Name
-                ALIGNMENT SOFT-RIGHT
-            END DISPLAY
-        END BRANCH
         BEGIN BRANCH b19o
             WIRE 2720 800 2768 800
             BEGIN DISPLAY 2720 800 ATTR Name
@@ -1221,11 +1188,17 @@ BEGIN SCHEMATIC
                 ALIGNMENT SOFT-RIGHT
             END DISPLAY
         END BRANCH
-        BEGIN BRANCH XLXN_292
+        BEGIN BRANCH b02o
             WIRE 3888 752 3920 752
+            BEGIN DISPLAY 3888 752 ATTR Name
+                ALIGNMENT SOFT-RIGHT
+            END DISPLAY
         END BRANCH
-        BEGIN BRANCH XLXN_293
+        BEGIN BRANCH rd4n
             WIRE 3888 816 3920 816
+            BEGIN DISPLAY 3888 816 ATTR Name
+                ALIGNMENT SOFT-RIGHT
+            END DISPLAY
         END BRANCH
         BEGIN BRANCH DOS6_2not
             WIRE 3888 880 3920 880
@@ -1233,8 +1206,11 @@ BEGIN SCHEMATIC
                 ALIGNMENT SOFT-RIGHT
             END DISPLAY
         END BRANCH
-        BEGIN BRANCH XLXN_295
+        BEGIN BRANCH rd4
             WIRE 3888 896 3920 896
+            BEGIN DISPLAY 3888 896 ATTR Name
+                ALIGNMENT SOFT-RIGHT
+            END DISPLAY
         END BRANCH
         BEGIN BRANCH c05o_not
             WIRE 3888 960 3920 960
@@ -1242,11 +1218,17 @@ BEGIN SCHEMATIC
                 ALIGNMENT SOFT-RIGHT
             END DISPLAY
         END BRANCH
-        BEGIN BRANCH XLXN_297
+        BEGIN BRANCH b02o_not
             WIRE 3888 1024 3920 1024
+            BEGIN DISPLAY 3888 1024 ATTR Name
+                ALIGNMENT SOFT-RIGHT
+            END DISPLAY
         END BRANCH
-        BEGIN BRANCH XLXN_298
+        BEGIN BRANCH id
             WIRE 3888 1088 3920 1088
+            BEGIN DISPLAY 3888 1088 ATTR Name
+                ALIGNMENT SOFT-RIGHT
+            END DISPLAY
         END BRANCH
         BEGIN BRANCH d07o
             WIRE 3888 1120 3920 1120
@@ -1823,27 +1805,23 @@ BEGIN SCHEMATIC
         END BRANCH
         BEGIN BRANCH b18o
             WIRE 2144 2464 2160 2464
+            WIRE 2160 2464 2160 2464
             WIRE 2160 2464 2192 2464
-            BEGIN DISPLAY 2166 2464 ATTR Name
+            BEGIN DISPLAY 2164 2464 ATTR Name
                 ALIGNMENT SOFT-BCENTER
             END DISPLAY
         END BRANCH
         BEGIN BRANCH b17o
             WIRE 2144 2320 2176 2320
+            WIRE 2176 2320 2176 2320
             WIRE 2176 2320 2192 2320
-            BEGIN DISPLAY 2182 2320 ATTR Name
-                ALIGNMENT SOFT-BCENTER
-            END DISPLAY
-        END BRANCH
-        BEGIN BRANCH b13o
-            WIRE 2144 2176 2176 2176
-            WIRE 2176 2176 2192 2176
-            BEGIN DISPLAY 2176 2176 ATTR Name
+            BEGIN DISPLAY 2180 2320 ATTR Name
                 ALIGNMENT SOFT-BCENTER
             END DISPLAY
         END BRANCH
         BEGIN BRANCH b15o
             WIRE 2144 2032 2176 2032
+            WIRE 2176 2032 2176 2032
             WIRE 2176 2032 2192 2032
             BEGIN DISPLAY 2172 2032 ATTR Name
                 ALIGNMENT SOFT-BCENTER
@@ -1851,22 +1829,24 @@ BEGIN SCHEMATIC
         END BRANCH
         BEGIN BRANCH b14o
             WIRE 2144 1888 2176 1888
+            WIRE 2176 1888 2176 1888
             WIRE 2176 1888 2192 1888
             BEGIN DISPLAY 2172 1888 ATTR Name
                 ALIGNMENT SOFT-BCENTER
             END DISPLAY
         END BRANCH
         BEGIN BRANCH b13o
-            WIRE 2144 1744 2176 1744
-            WIRE 2176 1744 2192 1744
-            BEGIN DISPLAY 2170 1744 ATTR Name
+            WIRE 2144 1744 2160 1744
+            WIRE 2160 1744 2160 1744
+            WIRE 2160 1744 2192 1744
+            BEGIN DISPLAY 2168 1744 ATTR Name
                 ALIGNMENT SOFT-BCENTER
             END DISPLAY
         END BRANCH
         BEGIN BRANCH b12o
             WIRE 2144 1600 2176 1600
             WIRE 2176 1600 2192 1600
-            BEGIN DISPLAY 2178 1600 ATTR Name
+            BEGIN DISPLAY 2176 1600 ATTR Name
                 ALIGNMENT SOFT-BCENTER
             END DISPLAY
         END BRANCH
@@ -1879,35 +1859,36 @@ BEGIN SCHEMATIC
         BEGIN BRANCH b10o
             WIRE 2144 1344 2176 1344
             WIRE 2176 1344 2192 1344
-            BEGIN DISPLAY 2175 1344 ATTR Name
+            BEGIN DISPLAY 2176 1344 ATTR Name
                 ALIGNMENT SOFT-BCENTER
             END DISPLAY
         END BRANCH
         BEGIN BRANCH b09o
             WIRE 2144 1200 2176 1200
+            WIRE 2176 1200 2176 1200
             WIRE 2176 1200 2192 1200
-            BEGIN DISPLAY 2173 1200 ATTR Name
+            BEGIN DISPLAY 2172 1200 ATTR Name
                 ALIGNMENT SOFT-BCENTER
             END DISPLAY
         END BRANCH
         BEGIN BRANCH b08o
             WIRE 2144 1056 2176 1056
             WIRE 2176 1056 2192 1056
-            BEGIN DISPLAY 2178 1056 ATTR Name
+            BEGIN DISPLAY 2176 1056 ATTR Name
                 ALIGNMENT SOFT-BCENTER
             END DISPLAY
         END BRANCH
         BEGIN BRANCH b07o
             WIRE 2144 912 2176 912
             WIRE 2176 912 2192 912
-            BEGIN DISPLAY 2178 912 ATTR Name
+            BEGIN DISPLAY 2176 912 ATTR Name
                 ALIGNMENT SOFT-BCENTER
             END DISPLAY
         END BRANCH
         BEGIN BRANCH b06o
             WIRE 2144 784 2176 784
             WIRE 2176 784 2192 784
-            BEGIN DISPLAY 2178 784 ATTR Name
+            BEGIN DISPLAY 2176 784 ATTR Name
                 ALIGNMENT SOFT-BCENTER
             END DISPLAY
         END BRANCH
@@ -1920,15 +1901,17 @@ BEGIN SCHEMATIC
         END BRANCH
         BEGIN BRANCH b04o
             WIRE 2144 512 2176 512
+            WIRE 2176 512 2176 512
             WIRE 2176 512 2192 512
-            BEGIN DISPLAY 2179 512 ATTR Name
+            BEGIN DISPLAY 2180 512 ATTR Name
                 ALIGNMENT SOFT-BCENTER
             END DISPLAY
         END BRANCH
         BEGIN BRANCH b03o
             WIRE 2144 368 2176 368
+            WIRE 2176 368 2176 368
             WIRE 2176 368 2192 368
-            BEGIN DISPLAY 2173 368 ATTR Name
+            BEGIN DISPLAY 2172 368 ATTR Name
                 ALIGNMENT SOFT-BCENTER
             END DISPLAY
         END BRANCH
@@ -2004,8 +1987,7 @@ BEGIN SCHEMATIC
             WIRE 592 3536 928 3536
             WIRE 592 3200 928 3200
             WIRE 592 2976 928 2976
-            WIRE 592 2528 880 2528
-            WIRE 880 2528 928 2528
+            WIRE 592 2528 928 2528
             WIRE 592 1072 928 1072
             WIRE 592 960 928 960
             WIRE 592 848 928 848
@@ -2038,8 +2020,7 @@ BEGIN SCHEMATIC
             WIRE 688 3344 928 3344
             WIRE 688 3232 928 3232
             WIRE 688 2928 928 2928
-            WIRE 688 2736 880 2736
-            WIRE 880 2736 928 2736
+            WIRE 688 2736 928 2736
             BEGIN DISPLAY 688 48 ATTR Name
                 ALIGNMENT SOFT-VLEFT
             END DISPLAY
@@ -2060,8 +2041,7 @@ BEGIN SCHEMATIC
             WIRE 784 2464 784 3152
             WIRE 784 3152 784 3824
             WIRE 784 3152 928 3152
-            WIRE 784 2464 880 2464
-            WIRE 880 2464 928 2464
+            WIRE 784 2464 928 2464
             WIRE 784 1024 928 1024
             WIRE 784 912 928 912
             WIRE 784 800 928 800
@@ -2295,8 +2275,8 @@ BEGIN SCHEMATIC
         END BRANCH
         BEGIN BRANCH a24o
             WIRE 1184 2800 1200 2800
-            WIRE 1200 2800 1216 2800
-            WIRE 1216 2800 1232 2800
+            WIRE 1200 2800 1200 2800
+            WIRE 1200 2800 1232 2800
             BEGIN DISPLAY 1208 2800 ATTR Name
                 ALIGNMENT SOFT-BCENTER
             END DISPLAY
@@ -2331,6 +2311,7 @@ BEGIN SCHEMATIC
         END BRANCH
         BEGIN BRANCH a29o
             WIRE 1184 3360 1216 3360
+            WIRE 1216 3360 1216 3360
             WIRE 1216 3360 1232 3360
             BEGIN DISPLAY 1224 3360 ATTR Name
                 ALIGNMENT SOFT-BCENTER
@@ -2380,19 +2361,13 @@ BEGIN SCHEMATIC
             WIRE 656 3088 656 3584
             WIRE 656 3584 656 3680
             WIRE 656 3680 656 3824
-            WIRE 656 3680 880 3680
-            WIRE 880 3680 928 3680
-            WIRE 656 3584 880 3584
-            WIRE 880 3584 928 3584
-            WIRE 656 3088 880 3088
-            WIRE 880 3088 928 3088
+            WIRE 656 3680 928 3680
+            WIRE 656 3584 928 3584
+            WIRE 656 3088 928 3088
             WIRE 656 2688 928 2688
-            WIRE 656 2560 880 2560
-            WIRE 880 2560 928 2560
-            WIRE 656 2416 880 2416
-            WIRE 880 2416 928 2416
-            WIRE 656 2304 880 2304
-            WIRE 880 2304 928 2304
+            WIRE 656 2560 928 2560
+            WIRE 656 2416 928 2416
+            WIRE 656 2304 928 2304
             WIRE 656 992 928 992
             WIRE 656 736 928 736
             WIRE 656 336 928 336
@@ -2423,14 +2398,10 @@ BEGIN SCHEMATIC
             WIRE 848 2512 848 3072
             WIRE 848 3072 848 3184
             WIRE 848 3184 848 3824
-            WIRE 848 3184 880 3184
-            WIRE 880 3184 928 3184
-            WIRE 848 3072 880 3072
-            WIRE 880 3072 928 3072
-            WIRE 848 2512 880 2512
-            WIRE 880 2512 928 2512
-            WIRE 848 2400 880 2400
-            WIRE 880 2400 928 2400
+            WIRE 848 3184 928 3184
+            WIRE 848 3072 928 3072
+            WIRE 848 2512 928 2512
+            WIRE 848 2400 928 2400
             BEGIN DISPLAY 848 48 ATTR Name
                 ALIGNMENT SOFT-VLEFT
             END DISPLAY
@@ -2464,20 +2435,13 @@ BEGIN SCHEMATIC
             WIRE 720 3120 720 3488
             WIRE 720 3488 720 3632
             WIRE 720 3632 720 3824
-            WIRE 720 3632 880 3632
-            WIRE 880 3632 928 3632
-            WIRE 720 3488 880 3488
-            WIRE 880 3488 928 3488
-            WIRE 720 3120 880 3120
-            WIRE 880 3120 928 3120
-            WIRE 720 3008 880 3008
-            WIRE 880 3008 928 3008
-            WIRE 720 2848 880 2848
-            WIRE 880 2848 928 2848
-            WIRE 720 2592 880 2592
-            WIRE 880 2592 928 2592
-            WIRE 720 2352 880 2352
-            WIRE 880 2352 928 2352
+            WIRE 720 3632 928 3632
+            WIRE 720 3488 928 3488
+            WIRE 720 3120 928 3120
+            WIRE 720 3008 928 3008
+            WIRE 720 2848 928 2848
+            WIRE 720 2592 928 2592
+            WIRE 720 2352 928 2352
             BEGIN DISPLAY 720 48 ATTR Name
                 ALIGNMENT SOFT-VLEFT
             END DISPLAY
@@ -2499,16 +2463,11 @@ BEGIN SCHEMATIC
             WIRE 752 3264 752 3376
             WIRE 752 3376 752 3744
             WIRE 752 3744 752 3824
-            WIRE 752 3744 880 3744
-            WIRE 880 3744 928 3744
-            WIRE 752 3376 880 3376
-            WIRE 880 3376 928 3376
-            WIRE 752 3264 880 3264
-            WIRE 880 3264 928 3264
-            WIRE 752 3040 880 3040
-            WIRE 880 3040 928 3040
-            WIRE 752 2624 880 2624
-            WIRE 880 2624 928 2624
+            WIRE 752 3744 928 3744
+            WIRE 752 3376 928 3376
+            WIRE 752 3264 928 3264
+            WIRE 752 3040 928 3040
+            WIRE 752 2624 928 2624
             BEGIN DISPLAY 752 48 ATTR Name
                 ALIGNMENT SOFT-VLEFT
             END DISPLAY
@@ -2526,8 +2485,7 @@ BEGIN SCHEMATIC
             WIRE 624 1856 928 1856
             WIRE 624 1856 624 2128
             WIRE 624 2128 928 2128
-            WIRE 624 2128 624 2688
-            WIRE 624 2688 624 2800
+            WIRE 624 2128 624 2800
             WIRE 624 2800 624 2896
             WIRE 624 2896 624 3456
             WIRE 624 3456 624 3824
@@ -2539,5 +2497,28 @@ BEGIN SCHEMATIC
             END DISPLAY
         END BRANCH
         INSTANCE a23 928 2736 R0
+        BEGIN BRANCH ik
+            WIRE 96 576 112 576
+            WIRE 112 576 112 3808
+            WIRE 112 3808 928 3808
+            BEGIN DISPLAY 112 576 ATTR Name
+                ALIGNMENT SOFT-BCENTER
+            END DISPLAY
+        END BRANCH
+        BEGIN BRANCH b16o
+            WIRE 2144 2176 2176 2176
+            WIRE 2176 2176 2176 2176
+            WIRE 2176 2176 2192 2176
+            BEGIN DISPLAY 2180 2176 ATTR Name
+                ALIGNMENT SOFT-BCENTER
+            END DISPLAY
+        END BRANCH
+        BEGIN BRANCH b16o
+            WIRE 2720 784 2736 784
+            WIRE 2736 784 2768 784
+            BEGIN DISPLAY 2736 784 ATTR Name
+                ALIGNMENT SOFT-BCENTER
+            END DISPLAY
+        END BRANCH
     END SHEET
 END SCHEMATIC
