@@ -96,6 +96,10 @@ begin
 wait for 100 ns;
 wait for clock_period*10;
 -- insert stimulus here
+pcd <= "0101010101"; wait for clock_period*10;
+pcd <= "1001110101"; wait for clock_period*10;
+pcd <= "1001001010"; wait for clock_period*10;
+
 pcd <= "0010101010"; wait for clock_period;
 pcd <= "0001010101"; wait for clock_period;
 pcd <= "1110101010"; wait for clock_period;
