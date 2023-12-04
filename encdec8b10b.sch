@@ -1,6 +1,6 @@
 VERSION 6
 BEGIN SCHEMATIC
-    BEGIN ATTR DeviceFamilyName "virtex5"
+    BEGIN ATTR DeviceFamilyName "virtex4"
         DELETE all:0
         EDITNAME all:0
         EDITTRAIT all:0
@@ -172,20 +172,6 @@ BEGIN SCHEMATIC
             LINE N 0 0 64 0 
             LINE N 64 -128 64 0 
         END BLOCKDEF
-        BEGIN BLOCKDEF copy_of_and6
-            TIMESTAMP 2023 12 4 12 23 4
-            LINE N 256 -80 192 -80 
-            LINE N 64 -128 144 -128 
-            LINE N 144 -32 64 -32 
-            ARC N 96 -128 192 -32 144 -32 144 -128 
-            LINE N 64 -160 64 0 
-            LINE N 0 -96 64 -96 
-            LINE N 0 -64 64 -64 
-            LINE N 0 -32 64 -32 
-            LINE N 0 -128 64 -128 
-            LINE N 0 -160 64 -160 
-            LINE N 0 0 64 0 
-        END BLOCKDEF
         BEGIN BLOCKDEF and3
             TIMESTAMP 2000 1 1 10 10 10
             LINE N 0 -64 64 -64 
@@ -260,6 +246,20 @@ BEGIN SCHEMATIC
             LINE N 0 -192 64 -192 
             LINE N 0 -128 64 -128 
             LINE N 0 -64 64 -64 
+        END BLOCKDEF
+        BEGIN BLOCKDEF and6
+            TIMESTAMP 2000 1 1 10 10 10
+            LINE N 0 -64 64 -64 
+            LINE N 0 -128 64 -128 
+            LINE N 0 -192 64 -192 
+            LINE N 0 -256 64 -256 
+            LINE N 0 -320 64 -320 
+            LINE N 0 -384 64 -384 
+            LINE N 256 -224 192 -224 
+            LINE N 64 -272 144 -272 
+            LINE N 144 -176 64 -176 
+            ARC N 96 -272 192 -176 144 -176 144 -272 
+            LINE N 64 -64 64 -384 
         END BLOCKDEF
         BEGIN BLOCK XLXI_1 inv
             PIN I rd4
@@ -737,15 +737,6 @@ BEGIN SCHEMATIC
             PIN I2 ian
             PIN I0 icn
         END BLOCK
-        BEGIN BLOCK a32 copy_of_and6
-            PIN O a32o
-            PIN I3 ic
-            PIN I2 id
-            PIN I1 ie
-            PIN I4 ibn
-            PIN I5 ian
-            PIN I0 ik
-        END BLOCK
         BEGIN BLOCK a29 copy_of_and4
             PIN O a29o
             PIN I2 ic
@@ -758,6 +749,15 @@ BEGIN SCHEMATIC
             PIN O a23o
             PIN I2 ia
             PIN I0 ic
+        END BLOCK
+        BEGIN BLOCK XLXI_57 and6
+            PIN I0 ik
+            PIN I1 ie
+            PIN I2 id
+            PIN I3 ic
+            PIN I4 ibn
+            PIN I5 ian
+            PIN O a32o
         END BLOCK
     END NETLIST
     BEGIN SHEET 1 7040 5440
@@ -1949,8 +1949,8 @@ BEGIN SCHEMATIC
             WIRE 560 2752 560 2864
             WIRE 560 2864 560 3312
             WIRE 560 3312 560 3424
-            WIRE 560 3424 560 3824
             WIRE 560 3424 928 3424
+            WIRE 560 3424 560 4192
             WIRE 560 3312 928 3312
             WIRE 560 2864 928 2864
             WIRE 560 2752 928 2752
@@ -1958,70 +1958,6 @@ BEGIN SCHEMATIC
             WIRE 560 448 928 448
             WIRE 560 304 928 304
             BEGIN DISPLAY 560 48 ATTR Name
-                ALIGNMENT SOFT-VLEFT
-            END DISPLAY
-        END BRANCH
-        BEGIN BRANCH ian
-            WIRE 592 48 592 80
-            WIRE 592 80 592 560
-            WIRE 592 560 592 848
-            WIRE 592 848 592 960
-            WIRE 592 960 592 1072
-            WIRE 592 1072 592 1184
-            WIRE 592 1184 928 1184
-            WIRE 592 1184 592 1296
-            WIRE 592 1296 928 1296
-            WIRE 592 1296 592 1744
-            WIRE 592 1744 928 1744
-            WIRE 592 1744 592 2080
-            WIRE 592 2080 928 2080
-            WIRE 592 2080 592 2192
-            WIRE 592 2192 928 2192
-            WIRE 592 2192 592 2528
-            WIRE 592 2528 592 2976
-            WIRE 592 2976 592 3200
-            WIRE 592 3200 592 3536
-            WIRE 592 3536 592 3648
-            WIRE 592 3648 592 3824
-            WIRE 592 3648 928 3648
-            WIRE 592 3536 928 3536
-            WIRE 592 3200 928 3200
-            WIRE 592 2976 928 2976
-            WIRE 592 2528 928 2528
-            WIRE 592 1072 928 1072
-            WIRE 592 960 928 960
-            WIRE 592 848 928 848
-            WIRE 592 560 928 560
-            WIRE 592 80 928 80
-            BEGIN DISPLAY 592 48 ATTR Name
-                ALIGNMENT SOFT-VLEFT
-            END DISPLAY
-        END BRANCH
-        BEGIN BRANCH ic
-            WIRE 688 48 688 512
-            WIRE 688 512 928 512
-            WIRE 688 512 688 1216
-            WIRE 688 1216 928 1216
-            WIRE 688 1216 688 1472
-            WIRE 688 1472 928 1472
-            WIRE 688 1472 688 1568
-            WIRE 688 1568 928 1568
-            WIRE 688 1568 688 1680
-            WIRE 688 1680 928 1680
-            WIRE 688 1680 688 2176
-            WIRE 688 2176 928 2176
-            WIRE 688 2176 688 2736
-            WIRE 688 2736 688 2928
-            WIRE 688 2928 688 3232
-            WIRE 688 3232 688 3344
-            WIRE 688 3344 688 3712
-            WIRE 688 3712 688 3824
-            WIRE 688 3712 928 3712
-            WIRE 688 3344 928 3344
-            WIRE 688 3232 928 3232
-            WIRE 688 2928 928 2928
-            WIRE 688 2736 928 2736
-            BEGIN DISPLAY 688 48 ATTR Name
                 ALIGNMENT SOFT-VLEFT
             END DISPLAY
         END BRANCH
@@ -2039,8 +1975,8 @@ BEGIN SCHEMATIC
             WIRE 784 1248 928 1248
             WIRE 784 1248 784 2464
             WIRE 784 2464 784 3152
-            WIRE 784 3152 784 3824
             WIRE 784 3152 928 3152
+            WIRE 784 3152 784 4192
             WIRE 784 2464 928 2464
             WIRE 784 1024 928 1024
             WIRE 784 912 928 912
@@ -2050,30 +1986,6 @@ BEGIN SCHEMATIC
             WIRE 784 240 928 240
             WIRE 784 176 928 176
             BEGIN DISPLAY 784 48 ATTR Name
-                ALIGNMENT SOFT-VLEFT
-            END DISPLAY
-        END BRANCH
-        BEGIN BRANCH ie
-            WIRE 816 48 816 432
-            WIRE 816 432 816 944
-            WIRE 816 944 816 1056
-            WIRE 816 1056 928 1056
-            WIRE 816 1056 816 1616
-            WIRE 816 1616 928 1616
-            WIRE 816 1616 816 2960
-            WIRE 816 2960 816 3296
-            WIRE 816 3296 816 3408
-            WIRE 816 3408 816 3520
-            WIRE 816 3520 816 3776
-            WIRE 816 3776 816 3824
-            WIRE 816 3776 928 3776
-            WIRE 816 3520 928 3520
-            WIRE 816 3408 928 3408
-            WIRE 816 3296 928 3296
-            WIRE 816 2960 928 2960
-            WIRE 816 944 928 944
-            WIRE 816 432 928 432
-            BEGIN DISPLAY 816 48 ATTR Name
                 ALIGNMENT SOFT-VLEFT
             END DISPLAY
         END BRANCH
@@ -2106,7 +2018,6 @@ BEGIN SCHEMATIC
         INSTANCE a28 928 3296 R0
         INSTANCE a30 928 3520 R0
         INSTANCE a31 928 3632 R0
-        INSTANCE a32 928 3808 R0
         BEGIN BRANCH a01o
             WIRE 1184 128 1216 128
             WIRE 1216 128 1216 128
@@ -2333,49 +2244,7 @@ BEGIN SCHEMATIC
                 ALIGNMENT SOFT-BCENTER
             END DISPLAY
         END BRANCH
-        BEGIN BRANCH a32o
-            WIRE 1184 3728 1216 3728
-            WIRE 1216 3728 1216 3728
-            WIRE 1216 3728 1232 3728
-            BEGIN DISPLAY 1220 3728 ATTR Name
-                ALIGNMENT SOFT-BCENTER
-            END DISPLAY
-        END BRANCH
         INSTANCE a29 928 3408 R0
-        BEGIN BRANCH ibn
-            WIRE 656 48 656 112
-            WIRE 656 112 656 336
-            WIRE 656 336 656 736
-            WIRE 656 736 656 992
-            WIRE 656 992 656 1104
-            WIRE 656 1104 928 1104
-            WIRE 656 1104 656 1328
-            WIRE 656 1328 928 1328
-            WIRE 656 1328 656 1632
-            WIRE 656 1632 928 1632
-            WIRE 656 1632 656 2304
-            WIRE 656 2304 656 2416
-            WIRE 656 2416 656 2560
-            WIRE 656 2560 656 2688
-            WIRE 656 2688 656 3088
-            WIRE 656 3088 656 3584
-            WIRE 656 3584 656 3680
-            WIRE 656 3680 656 3824
-            WIRE 656 3680 928 3680
-            WIRE 656 3584 928 3584
-            WIRE 656 3088 928 3088
-            WIRE 656 2688 928 2688
-            WIRE 656 2560 928 2560
-            WIRE 656 2416 928 2416
-            WIRE 656 2304 928 2304
-            WIRE 656 992 928 992
-            WIRE 656 736 928 736
-            WIRE 656 336 928 336
-            WIRE 656 112 928 112
-            BEGIN DISPLAY 656 48 ATTR Name
-                ALIGNMENT SOFT-VLEFT
-            END DISPLAY
-        END BRANCH
         BEGIN BRANCH ien
             WIRE 848 48 848 288
             WIRE 848 288 928 288
@@ -2397,8 +2266,8 @@ BEGIN SCHEMATIC
             WIRE 848 2400 848 2512
             WIRE 848 2512 848 3072
             WIRE 848 3072 848 3184
-            WIRE 848 3184 848 3824
             WIRE 848 3184 928 3184
+            WIRE 848 3184 848 4192
             WIRE 848 3072 928 3072
             WIRE 848 2512 928 2512
             WIRE 848 2400 928 2400
@@ -2434,8 +2303,8 @@ BEGIN SCHEMATIC
             WIRE 720 3008 720 3120
             WIRE 720 3120 720 3488
             WIRE 720 3488 720 3632
-            WIRE 720 3632 720 3824
             WIRE 720 3632 928 3632
+            WIRE 720 3632 720 4192
             WIRE 720 3488 928 3488
             WIRE 720 3120 928 3120
             WIRE 720 3008 928 3008
@@ -2443,32 +2312,6 @@ BEGIN SCHEMATIC
             WIRE 720 2592 928 2592
             WIRE 720 2352 928 2352
             BEGIN DISPLAY 720 48 ATTR Name
-                ALIGNMENT SOFT-VLEFT
-            END DISPLAY
-        END BRANCH
-        BEGIN BRANCH id
-            WIRE 752 48 752 544
-            WIRE 752 544 928 544
-            WIRE 752 544 752 1360
-            WIRE 752 1360 928 1360
-            WIRE 752 1360 752 1504
-            WIRE 752 1504 928 1504
-            WIRE 752 1504 752 1904
-            WIRE 752 1904 928 1904
-            WIRE 752 1904 752 2064
-            WIRE 752 2064 928 2064
-            WIRE 752 2064 752 2624
-            WIRE 752 2624 752 3040
-            WIRE 752 3040 752 3264
-            WIRE 752 3264 752 3376
-            WIRE 752 3376 752 3744
-            WIRE 752 3744 752 3824
-            WIRE 752 3744 928 3744
-            WIRE 752 3376 928 3376
-            WIRE 752 3264 928 3264
-            WIRE 752 3040 928 3040
-            WIRE 752 2624 928 2624
-            BEGIN DISPLAY 752 48 ATTR Name
                 ALIGNMENT SOFT-VLEFT
             END DISPLAY
         END BRANCH
@@ -2488,8 +2331,8 @@ BEGIN SCHEMATIC
             WIRE 624 2128 624 2800
             WIRE 624 2800 624 2896
             WIRE 624 2896 624 3456
-            WIRE 624 3456 624 3824
             WIRE 624 3456 928 3456
+            WIRE 624 3456 624 4192
             WIRE 624 2896 928 2896
             WIRE 624 2800 928 2800
             BEGIN DISPLAY 624 48 ATTR Name
@@ -2497,14 +2340,6 @@ BEGIN SCHEMATIC
             END DISPLAY
         END BRANCH
         INSTANCE a23 928 2736 R0
-        BEGIN BRANCH ik
-            WIRE 96 576 112 576
-            WIRE 112 576 112 3808
-            WIRE 112 3808 928 3808
-            BEGIN DISPLAY 112 576 ATTR Name
-                ALIGNMENT SOFT-BCENTER
-            END DISPLAY
-        END BRANCH
         BEGIN BRANCH b16o
             WIRE 2144 2176 2176 2176
             WIRE 2176 2176 2176 2176
@@ -2520,5 +2355,169 @@ BEGIN SCHEMATIC
                 ALIGNMENT SOFT-BCENTER
             END DISPLAY
         END BRANCH
+        BEGIN BRANCH ik
+            WIRE 96 576 112 576
+            WIRE 112 576 112 4176
+            WIRE 112 4176 928 4176
+            BEGIN DISPLAY 112 576 ATTR Name
+                ALIGNMENT SOFT-BCENTER
+            END DISPLAY
+        END BRANCH
+        BEGIN BRANCH ie
+            WIRE 816 48 816 432
+            WIRE 816 432 928 432
+            WIRE 816 432 816 944
+            WIRE 816 944 928 944
+            WIRE 816 944 816 1056
+            WIRE 816 1056 928 1056
+            WIRE 816 1056 816 1616
+            WIRE 816 1616 928 1616
+            WIRE 816 1616 816 2960
+            WIRE 816 2960 928 2960
+            WIRE 816 2960 816 3296
+            WIRE 816 3296 928 3296
+            WIRE 816 3296 816 3408
+            WIRE 816 3408 928 3408
+            WIRE 816 3408 816 3520
+            WIRE 816 3520 928 3520
+            WIRE 816 3520 816 4112
+            WIRE 816 4112 816 4192
+            WIRE 816 4112 928 4112
+            BEGIN DISPLAY 816 48 ATTR Name
+                ALIGNMENT SOFT-VLEFT
+            END DISPLAY
+        END BRANCH
+        BEGIN BRANCH id
+            WIRE 752 48 752 544
+            WIRE 752 544 928 544
+            WIRE 752 544 752 1360
+            WIRE 752 1360 928 1360
+            WIRE 752 1360 752 1504
+            WIRE 752 1504 928 1504
+            WIRE 752 1504 752 1904
+            WIRE 752 1904 928 1904
+            WIRE 752 1904 752 2064
+            WIRE 752 2064 928 2064
+            WIRE 752 2064 752 2624
+            WIRE 752 2624 928 2624
+            WIRE 752 2624 752 3040
+            WIRE 752 3040 928 3040
+            WIRE 752 3040 752 3264
+            WIRE 752 3264 928 3264
+            WIRE 752 3264 752 3376
+            WIRE 752 3376 928 3376
+            WIRE 752 3376 752 4048
+            WIRE 752 4048 752 4192
+            WIRE 752 4048 928 4048
+            BEGIN DISPLAY 752 48 ATTR Name
+                ALIGNMENT SOFT-VLEFT
+            END DISPLAY
+        END BRANCH
+        BEGIN BRANCH ic
+            WIRE 688 48 688 512
+            WIRE 688 512 928 512
+            WIRE 688 512 688 1216
+            WIRE 688 1216 928 1216
+            WIRE 688 1216 688 1472
+            WIRE 688 1472 928 1472
+            WIRE 688 1472 688 1568
+            WIRE 688 1568 928 1568
+            WIRE 688 1568 688 1680
+            WIRE 688 1680 928 1680
+            WIRE 688 1680 688 2176
+            WIRE 688 2176 928 2176
+            WIRE 688 2176 688 2736
+            WIRE 688 2736 928 2736
+            WIRE 688 2736 688 2928
+            WIRE 688 2928 928 2928
+            WIRE 688 2928 688 3232
+            WIRE 688 3232 928 3232
+            WIRE 688 3232 688 3344
+            WIRE 688 3344 928 3344
+            WIRE 688 3344 688 3984
+            WIRE 688 3984 688 4192
+            WIRE 688 3984 928 3984
+            BEGIN DISPLAY 688 48 ATTR Name
+                ALIGNMENT SOFT-VLEFT
+            END DISPLAY
+        END BRANCH
+        BEGIN BRANCH ibn
+            WIRE 656 48 656 112
+            WIRE 656 112 928 112
+            WIRE 656 112 656 336
+            WIRE 656 336 928 336
+            WIRE 656 336 656 736
+            WIRE 656 736 928 736
+            WIRE 656 736 656 992
+            WIRE 656 992 928 992
+            WIRE 656 992 656 1104
+            WIRE 656 1104 928 1104
+            WIRE 656 1104 656 1328
+            WIRE 656 1328 928 1328
+            WIRE 656 1328 656 1632
+            WIRE 656 1632 928 1632
+            WIRE 656 1632 656 2304
+            WIRE 656 2304 928 2304
+            WIRE 656 2304 656 2416
+            WIRE 656 2416 928 2416
+            WIRE 656 2416 656 2560
+            WIRE 656 2560 928 2560
+            WIRE 656 2560 656 2688
+            WIRE 656 2688 928 2688
+            WIRE 656 2688 656 3088
+            WIRE 656 3088 928 3088
+            WIRE 656 3088 656 3584
+            WIRE 656 3584 928 3584
+            WIRE 656 3584 656 3920
+            WIRE 656 3920 656 4192
+            WIRE 656 3920 928 3920
+            BEGIN DISPLAY 656 48 ATTR Name
+                ALIGNMENT SOFT-VLEFT
+            END DISPLAY
+        END BRANCH
+        BEGIN BRANCH ian
+            WIRE 592 48 592 80
+            WIRE 592 80 928 80
+            WIRE 592 80 592 560
+            WIRE 592 560 928 560
+            WIRE 592 560 592 848
+            WIRE 592 848 928 848
+            WIRE 592 848 592 960
+            WIRE 592 960 928 960
+            WIRE 592 960 592 1072
+            WIRE 592 1072 928 1072
+            WIRE 592 1072 592 1184
+            WIRE 592 1184 928 1184
+            WIRE 592 1184 592 1296
+            WIRE 592 1296 928 1296
+            WIRE 592 1296 592 1744
+            WIRE 592 1744 928 1744
+            WIRE 592 1744 592 2080
+            WIRE 592 2080 928 2080
+            WIRE 592 2080 592 2192
+            WIRE 592 2192 928 2192
+            WIRE 592 2192 592 2528
+            WIRE 592 2528 928 2528
+            WIRE 592 2528 592 2976
+            WIRE 592 2976 928 2976
+            WIRE 592 2976 592 3200
+            WIRE 592 3200 928 3200
+            WIRE 592 3200 592 3536
+            WIRE 592 3536 928 3536
+            WIRE 592 3536 592 3856
+            WIRE 592 3856 592 4192
+            WIRE 592 3856 928 3856
+            BEGIN DISPLAY 592 48 ATTR Name
+                ALIGNMENT SOFT-VLEFT
+            END DISPLAY
+        END BRANCH
+        BEGIN BRANCH a32o
+            WIRE 1184 4016 1248 4016
+            WIRE 1248 4016 1264 4016
+            BEGIN DISPLAY 1250 4016 ATTR Name
+                ALIGNMENT SOFT-BCENTER
+            END DISPLAY
+        END BRANCH
+        INSTANCE XLXI_57 928 4240 R0
     END SHEET
 END SCHEMATIC
