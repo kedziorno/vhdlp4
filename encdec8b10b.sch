@@ -261,6 +261,149 @@ BEGIN SCHEMATIC
             ARC N 96 -272 192 -176 144 -176 144 -272 
             LINE N 64 -64 64 -384 
         END BLOCKDEF
+        BEGIN BLOCKDEF title
+            TIMESTAMP 2000 1 1 10 10 10
+            LINE N -764 -288 -796 -256 
+            LINE N -732 -256 -764 -288 
+            LINE N -776 -256 -732 -256 
+            LINE N -788 -264 -776 -256 
+            LINE N -840 -256 -796 -256 
+            LINE N -804 -256 -836 -288 
+            LINE N -800 -256 -832 -288 
+            LINE N -796 -256 -828 -288 
+            LINE N -832 -288 -800 -320 
+            LINE N -828 -288 -796 -320 
+            LINE N -828 -352 -796 -384 
+            LINE N -840 -384 -796 -384 
+            LINE N -796 -384 -764 -352 
+            LINE N -800 -320 -832 -352 
+            LINE N -796 -320 -828 -352 
+            LINE N -804 -320 -836 -352 
+            LINE N -832 -352 -800 -384 
+            LINE N -836 -352 -804 -384 
+            LINE N -872 -352 -840 -384 
+            LINE N -868 -352 -836 -384 
+            LINE N -732 -384 -764 -352 
+            LINE N -776 -384 -732 -384 
+            LINE N -788 -376 -776 -384 
+            LINE N -764 -356 -736 -384 
+            LINE N -768 -360 -740 -384 
+            LINE N -768 -356 -740 -384 
+            LINE N -772 -360 -744 -384 
+            LINE N -772 -360 -748 -384 
+            LINE N -772 -360 -752 -384 
+            LINE N -840 -352 -808 -384 
+            LINE N -844 -352 -812 -384 
+            LINE N -848 -352 -816 -384 
+            LINE N -852 -352 -820 -384 
+            LINE N -816 -256 -848 -288 
+            LINE N -820 -256 -852 -288 
+            LINE N -872 -352 -828 -352 
+            LINE N -836 -320 -868 -352 
+            LINE N -832 -320 -864 -352 
+            LINE N -828 -320 -860 -352 
+            LINE N -824 -320 -856 -352 
+            LINE N -872 -288 -840 -320 
+            LINE N -872 -288 -828 -288 
+            LINE N -860 -352 -828 -384 
+            LINE N -864 -352 -832 -384 
+            LINE N -856 -352 -824 -384 
+            LINE N -856 -288 -824 -320 
+            LINE N -852 -288 -820 -320 
+            LINE N -848 -288 -816 -320 
+            LINE N -844 -288 -812 -320 
+            LINE N -840 -288 -808 -320 
+            LINE N -836 -288 -804 -320 
+            LINE N -868 -288 -836 -320 
+            LINE N -864 -288 -832 -320 
+            LINE N -860 -288 -828 -320 
+            LINE N -840 -320 -872 -352 
+            LINE N -820 -320 -852 -352 
+            LINE N -816 -320 -848 -352 
+            LINE N -812 -320 -844 -352 
+            LINE N -808 -320 -840 -352 
+            LINE N -808 -256 -840 -288 
+            LINE N -812 -256 -844 -288 
+            LINE N -836 -256 -868 -288 
+            LINE N -840 -256 -872 -288 
+            LINE N -824 -256 -856 -288 
+            LINE N -828 -256 -860 -288 
+            LINE N -832 -256 -864 -288 
+            LINE N -772 -364 -756 -384 
+            LINE N -776 -364 -756 -384 
+            LINE N -776 -368 -760 -384 
+            LINE N -780 -368 -764 -384 
+            LINE N -780 -372 -768 -384 
+            LINE N -784 -372 -772 -384 
+            LINE N -784 -376 -772 -384 
+            LINE N -612 -272 -612 -368 
+            LINE N -616 -272 -616 -368 
+            LINE N -620 -272 -620 -368 
+            LINE N -564 -276 -612 -276 
+            LINE N -456 -272 -456 -368 
+            LINE N -460 -272 -460 -368 
+            LINE N -640 -272 -640 -368 
+            LINE N -392 -272 -444 -368 
+            LINE N -392 -368 -444 -272 
+            LINE N -660 -272 -712 -368 
+            LINE N -660 -368 -716 -272 
+            LINE N -544 -272 -544 -368 
+            LINE N -644 -272 -644 -368 
+            LINE N -636 -272 -636 -368 
+            LINE N -656 -272 -708 -368 
+            LINE N -468 -272 -520 -368 
+            LINE N -660 -272 -716 -368 
+            LINE N -664 -272 -720 -368 
+            LINE N -524 -272 -524 -368 
+            LINE N -528 -272 -528 -368 
+            LINE N -632 -272 -632 -368 
+            LINE N -468 -272 -524 -368 
+            LINE N -540 -272 -540 -368 
+            LINE N -464 -272 -516 -368 
+            LINE N -460 -272 -516 -368 
+            LINE N -548 -272 -548 -368 
+            LINE N -388 -272 -440 -368 
+            LINE N -564 -272 -612 -272 
+            LINE N -664 -368 -720 -272 
+            LINE N -772 -256 -784 -264 
+            LINE N -784 -268 -772 -256 
+            LINE N -768 -256 -780 -268 
+            LINE N -780 -272 -764 -256 
+            LINE N -760 -256 -776 -272 
+            LINE N -776 -276 -756 -256 
+            LINE N -756 -256 -772 -276 
+            LINE N -772 -280 -752 -256 
+            LINE N -748 -256 -772 -280 
+            LINE N -772 -280 -744 -256 
+            LINE N -740 -256 -768 -280 
+            LINE N -768 -284 -740 -256 
+            LINE N -736 -256 -764 -284 
+            LINE N -388 -272 -436 -368 
+            LINE N -384 -272 -436 -368 
+            LINE N -388 -368 -440 -272 
+            LINE N -112 -176 -1140 -176 
+            BEGIN LINE W -1136 -416 -1136 -212 
+            END LINE
+            BEGIN LINE W -80 -416 -80 -220 
+            END LINE
+            BEGIN LINE W -1136 -416 -80 -416 
+            END LINE
+            LINE N -1136 -128 -80 -128 
+            LINE N -1132 -220 -80 -220 
+            BEGIN LINE W -80 -80 -352 -80 
+            END LINE
+            BEGIN LINE W -1136 -80 -352 -80 
+            END LINE
+            BEGIN LINE W -1136 -224 -1136 -80 
+            END LINE
+            BEGIN LINE W -144 -80 -152 -80 
+            END LINE
+            BEGIN LINE W -80 -224 -80 -80 
+            END LINE
+            LINE N -112 -176 -80 -176 
+            LINE N -176 -128 -144 -128 
+            LINE N -296 -128 -296 -80 
+        END BLOCKDEF
         BEGIN BLOCK XLXI_1 inv
             PIN I rd4
             PIN O rd4n
@@ -758,6 +901,11 @@ BEGIN SCHEMATIC
             PIN C clk
             PIN D d09o
             PIN Q os
+        END BLOCK
+        BEGIN BLOCK XLXI_132 title
+            ATTR TitleFieldText "  PATENT US 2004/0233075A1 8B/10B ENCODER/DECODER INCLUDING
+LOGIC GATES"
+            ATTR NameFieldText "  5B/6B ENCODER"
         END BLOCK
     END NETLIST
     BEGIN SHEET 1 3801 5382
@@ -2520,5 +2668,7 @@ BEGIN SCHEMATIC
         IOMARKER 3632 432 oe R0 28
         IOMARKER 3632 512 oi R0 28
         IOMARKER 3632 592 os R0 28
+        BEGIN INSTANCE XLXI_132 3856 5440 R0
+        END INSTANCE
     END SHEET
 END SCHEMATIC
