@@ -750,7 +750,7 @@ BEGIN SCHEMATIC
             PIN I2 ia
             PIN I0 ic
         END BLOCK
-        BEGIN BLOCK XLXI_57 and6
+        BEGIN BLOCK a32 and6
             PIN I0 ik
             PIN I1 ie
             PIN I2 id
@@ -2512,12 +2512,11 @@ BEGIN SCHEMATIC
             END DISPLAY
         END BRANCH
         BEGIN BRANCH a32o
-            WIRE 1184 4016 1248 4016
-            WIRE 1248 4016 1264 4016
-            BEGIN DISPLAY 1250 4016 ATTR Name
-                ALIGNMENT SOFT-BCENTER
+            WIRE 1184 4016 1232 4016
+            BEGIN DISPLAY 1232 4016 ATTR Name
+                ALIGNMENT SOFT-LEFT
             END DISPLAY
         END BRANCH
-        INSTANCE XLXI_57 928 4240 R0
+        INSTANCE a32 928 4240 R0
     END SHEET
 END SCHEMATIC
