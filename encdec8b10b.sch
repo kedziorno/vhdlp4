@@ -760,7 +760,9 @@ BEGIN SCHEMATIC
             PIN Q os
         END BLOCK
     END NETLIST
-    BEGIN SHEET 1 7040 5440
+    BEGIN SHEET 1 3801 5382
+        ATTR LengthUnitName "CM"
+        ATTR GridsPerUnit "4"
         BEGIN BRANCH rd4
             WIRE 96 96 128 96
         END BRANCH
