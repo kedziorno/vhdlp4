@@ -848,6 +848,7 @@ proc restore { { project_dir "" } } {
       "encdec8b10b.sch" 
       "encdec8b10b_fig1_prior_art.sch" 
       "encdec8b10b_fig2_prior_art.sch" 
+      "encdec8b10b_fig3_prior_art.sch" 
       "flash.vhd" 
       "fpga/flash_test.v" 
       "gen_utils.vhd" 
