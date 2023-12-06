@@ -844,6 +844,7 @@ proc restore { { project_dir "" } } {
       "copy_of_and5.sym" 
       "copy_of_and6.sym" 
       "copy_of_fd.sym" 
+      "decoder8b10b_equations.sch" 
       "enc8b10b.sch" 
       "encdec8b10b.sch" 
       "encdec8b10b_fig1_prior_art.sch" 
