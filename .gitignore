@@ -1,4 +1,13 @@
 *
 !*.vhd
+!*.vhdl
 !*.v
 !*.sch
+!*.sym
+!*.ucf
+!*.ise
+!*.xise
+!*.do
+!*.fdo
+!*.udo
+!*.tbw
