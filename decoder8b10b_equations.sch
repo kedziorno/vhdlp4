@@ -24,7 +24,7 @@ BEGIN SCHEMATIC
         SIGNAL fn
         SIGNAL gn
         SIGNAL hn
-        SIGNAL in
+        SIGNAL inn
         SIGNAL jn
         SIGNAL k3o
         SIGNAL k1o
@@ -474,7 +474,7 @@ BEGIN SCHEMATIC
         END BLOCK
         BEGIN BLOCK XLXI_9 inv
             PIN I i
-            PIN O in
+            PIN O inn
         END BLOCK
         BEGIN BLOCK XLXI_10 inv
             PIN I j
@@ -502,7 +502,7 @@ BEGIN SCHEMATIC
             PIN O k2o
         END BLOCK
         BEGIN BLOCK k4 and4
-            PIN I0 in
+            PIN I0 inn
             PIN I1 en
             PIN I2 dn
             PIN I3 cn
@@ -570,7 +570,7 @@ BEGIN SCHEMATIC
         BEGIN BLOCK g1 and6
             PIN I0 jn
             PIN I1 gn
-            PIN I2 in
+            PIN I2 inn
             PIN I3 en
             PIN I4 dn
             PIN I5 cn
@@ -579,7 +579,7 @@ BEGIN SCHEMATIC
         BEGIN BLOCK g2 and6
             PIN I0 hn
             PIN I1 gn
-            PIN I2 in
+            PIN I2 inn
             PIN I3 en
             PIN I4 dn
             PIN I5 cn
@@ -611,7 +611,7 @@ BEGIN SCHEMATIC
         END BLOCK
         BEGIN BLOCK f1 and5
             PIN I0 gn
-            PIN I1 in
+            PIN I1 inn
             PIN I2 en
             PIN I3 dn
             PIN I4 cn
@@ -642,7 +642,7 @@ BEGIN SCHEMATIC
             PIN O f5o
         END BLOCK
         BEGIN BLOCK e1 and5
-            PIN I0 in
+            PIN I0 inn
             PIN I1 d
             PIN I2 cn
             PIN I3 bn
@@ -666,7 +666,7 @@ BEGIN SCHEMATIC
             PIN O e3o
         END BLOCK
         BEGIN BLOCK e4 and5
-            PIN I0 in
+            PIN I0 inn
             PIN I1 d
             PIN I2 c
             PIN I3 bn
@@ -674,14 +674,14 @@ BEGIN SCHEMATIC
             PIN O e4o
         END BLOCK
         BEGIN BLOCK e5 and4
-            PIN I0 in
+            PIN I0 inn
             PIN I1 e
             PIN I2 d
             PIN I3 b
             PIN O e5o
         END BLOCK
         BEGIN BLOCK e6 and4
-            PIN I0 in
+            PIN I0 inn
             PIN I1 en
             PIN I2 cn
             PIN I3 an
@@ -824,7 +824,7 @@ BEGIN SCHEMATIC
             PIN O d9o
         END BLOCK
         BEGIN BLOCK d10 and3
-            PIN I0 in
+            PIN I0 inn
             PIN I1 e
             PIN I2 d
             PIN O d10o
@@ -837,7 +837,7 @@ BEGIN SCHEMATIC
             PIN O d6o
         END BLOCK
         BEGIN BLOCK d5 and5
-            PIN I0 in
+            PIN I0 inn
             PIN I1 en
             PIN I2 d
             PIN I3 cn
@@ -860,7 +860,7 @@ BEGIN SCHEMATIC
             PIN O d3o
         END BLOCK
         BEGIN BLOCK d2 and5
-            PIN I0 in
+            PIN I0 inn
             PIN I1 d
             PIN I2 c
             PIN I3 bn
@@ -877,7 +877,7 @@ BEGIN SCHEMATIC
             PIN O d1o
         END BLOCK
         BEGIN BLOCK d12 and4
-            PIN I0 in
+            PIN I0 inn
             PIN I1 d
             PIN I2 c
             PIN I3 b
@@ -951,7 +951,7 @@ BEGIN SCHEMATIC
             PIN O c3o
         END BLOCK
         BEGIN BLOCK c4 and5
-            PIN I0 in
+            PIN I0 inn
             PIN I1 en
             PIN I2 dn
             PIN I3 c
@@ -975,7 +975,7 @@ BEGIN SCHEMATIC
             PIN O c6o
         END BLOCK
         BEGIN BLOCK c7 and4
-            PIN I0 in
+            PIN I0 inn
             PIN I1 en
             PIN I2 cn
             PIN I3 an
@@ -996,7 +996,7 @@ BEGIN SCHEMATIC
             PIN O c9o
         END BLOCK
         BEGIN BLOCK c10 and3
-            PIN I0 in
+            PIN I0 inn
             PIN I1 e
             PIN I2 c
             PIN O c10o
@@ -1009,7 +1009,7 @@ BEGIN SCHEMATIC
             PIN O c11o
         END BLOCK
         BEGIN BLOCK c12 and4
-            PIN I0 in
+            PIN I0 inn
             PIN I1 d
             PIN I2 c
             PIN I3 b
@@ -1133,13 +1133,13 @@ BEGIN SCHEMATIC
             PIN O b9o
         END BLOCK
         BEGIN BLOCK b10 and3
-            PIN I0 in
+            PIN I0 inn
             PIN I1 e
             PIN I2 b
             PIN O b10o
         END BLOCK
         BEGIN BLOCK b11 and4
-            PIN I0 in
+            PIN I0 inn
             PIN I1 d
             PIN I2 c
             PIN I3 b
@@ -1228,7 +1228,7 @@ BEGIN SCHEMATIC
             PIN O a4o
         END BLOCK
         BEGIN BLOCK a5 and5
-            PIN I0 in
+            PIN I0 inn
             PIN I1 en
             PIN I2 d
             PIN I3 cn
@@ -1236,7 +1236,7 @@ BEGIN SCHEMATIC
             PIN O a5o
         END BLOCK
         BEGIN BLOCK a6 and5
-            PIN I0 in
+            PIN I0 inn
             PIN I1 en
             PIN I2 d
             PIN I3 c
@@ -1267,7 +1267,7 @@ BEGIN SCHEMATIC
             PIN O a9o
         END BLOCK
         BEGIN BLOCK a10 and3
-            PIN I0 in
+            PIN I0 inn
             PIN I1 e
             PIN I2 a
             PIN O a10o
@@ -1388,7 +1388,7 @@ BEGIN SCHEMATIC
                 ALIGNMENT SOFT-VRIGHT
             END DISPLAY
         END BRANCH
-        BEGIN BRANCH in
+        BEGIN BRANCH inn
             WIRE 560 320 560 352
             BEGIN DISPLAY 560 352 ATTR Name
                 ALIGNMENT SOFT-VRIGHT
@@ -1509,7 +1509,7 @@ BEGIN SCHEMATIC
                 ALIGNMENT SOFT-RIGHT
             END DISPLAY
         END BRANCH
-        BEGIN BRANCH in
+        BEGIN BRANCH inn
             WIRE 48 1232 64 1232
             BEGIN DISPLAY 48 1232 ATTR Name
                 ALIGNMENT SOFT-RIGHT
@@ -1839,7 +1839,7 @@ BEGIN SCHEMATIC
                 ALIGNMENT SOFT-RIGHT
             END DISPLAY
         END BRANCH
-        BEGIN BRANCH in
+        BEGIN BRANCH inn
             WIRE 48 2592 64 2592
             BEGIN DISPLAY 48 2592 ATTR Name
                 ALIGNMENT SOFT-RIGHT
@@ -1875,7 +1875,7 @@ BEGIN SCHEMATIC
                 ALIGNMENT SOFT-RIGHT
             END DISPLAY
         END BRANCH
-        BEGIN BRANCH in
+        BEGIN BRANCH inn
             WIRE 48 2928 64 2928
             BEGIN DISPLAY 48 2928 ATTR Name
                 ALIGNMENT SOFT-RIGHT
@@ -1948,14 +1948,12 @@ BEGIN SCHEMATIC
             END DISPLAY
         END BRANCH
         BEGIN BRANCH g1o
-            WIRE 320 2560 320 2560
             WIRE 320 2560 336 2560
             BEGIN DISPLAY 336 2560 ATTR Name
                 ALIGNMENT SOFT-LEFT
             END DISPLAY
         END BRANCH
         BEGIN BRANCH g2o
-            WIRE 320 2896 320 2896
             WIRE 320 2896 336 2896
             BEGIN DISPLAY 336 2896 ATTR Name
                 ALIGNMENT SOFT-LEFT
@@ -1963,28 +1961,24 @@ BEGIN SCHEMATIC
         END BRANCH
         BEGIN BRANCH g3o
             WIRE 320 3136 336 3136
-            WIRE 336 3136 336 3136
             BEGIN DISPLAY 336 3136 ATTR Name
                 ALIGNMENT SOFT-LEFT
             END DISPLAY
         END BRANCH
         BEGIN BRANCH g4o
             WIRE 320 3280 336 3280
-            WIRE 336 3280 336 3280
             BEGIN DISPLAY 336 3280 ATTR Name
                 ALIGNMENT SOFT-LEFT
             END DISPLAY
         END BRANCH
         BEGIN BRANCH g5o
             WIRE 320 3424 336 3424
-            WIRE 336 3424 336 3424
             BEGIN DISPLAY 336 3424 ATTR Name
                 ALIGNMENT SOFT-LEFT
             END DISPLAY
         END BRANCH
         BEGIN BRANCH g6o
             WIRE 320 3568 336 3568
-            WIRE 336 3568 336 3568
             BEGIN DISPLAY 336 3568 ATTR Name
                 ALIGNMENT SOFT-LEFT
             END DISPLAY
@@ -2041,7 +2035,7 @@ BEGIN SCHEMATIC
                 ALIGNMENT SOFT-RIGHT
             END DISPLAY
         END BRANCH
-        BEGIN BRANCH in
+        BEGIN BRANCH inn
             WIRE 448 1072 464 1072
             BEGIN DISPLAY 448 1072 ATTR Name
                 ALIGNMENT SOFT-RIGHT
@@ -2183,7 +2177,7 @@ BEGIN SCHEMATIC
                 ALIGNMENT SOFT-RIGHT
             END DISPLAY
         END BRANCH
-        BEGIN BRANCH in
+        BEGIN BRANCH inn
             WIRE 448 2032 464 2032
             BEGIN DISPLAY 448 2032 ATTR Name
                 ALIGNMENT SOFT-RIGHT
@@ -2273,7 +2267,7 @@ BEGIN SCHEMATIC
                 ALIGNMENT SOFT-RIGHT
             END DISPLAY
         END BRANCH
-        BEGIN BRANCH in
+        BEGIN BRANCH inn
             WIRE 448 2848 464 2848
             BEGIN DISPLAY 448 2848 ATTR Name
                 ALIGNMENT SOFT-RIGHT
@@ -2297,7 +2291,7 @@ BEGIN SCHEMATIC
                 ALIGNMENT SOFT-RIGHT
             END DISPLAY
         END BRANCH
-        BEGIN BRANCH in
+        BEGIN BRANCH inn
             WIRE 448 3056 464 3056
             BEGIN DISPLAY 448 3056 ATTR Name
                 ALIGNMENT SOFT-RIGHT
@@ -2321,7 +2315,7 @@ BEGIN SCHEMATIC
                 ALIGNMENT SOFT-RIGHT
             END DISPLAY
         END BRANCH
-        BEGIN BRANCH in
+        BEGIN BRANCH inn
             WIRE 448 3264 464 3264
             BEGIN DISPLAY 448 3264 ATTR Name
                 ALIGNMENT SOFT-RIGHT
@@ -2948,7 +2942,7 @@ BEGIN SCHEMATIC
                 ALIGNMENT SOFT-RIGHT
             END DISPLAY
         END BRANCH
-        BEGIN BRANCH in
+        BEGIN BRANCH inn
             WIRE 864 608 880 608
             BEGIN DISPLAY 864 608 ATTR Name
                 ALIGNMENT SOFT-RIGHT
@@ -3032,7 +3026,7 @@ BEGIN SCHEMATIC
                 ALIGNMENT SOFT-RIGHT
             END DISPLAY
         END BRANCH
-        BEGIN BRANCH in
+        BEGIN BRANCH inn
             WIRE 864 1360 880 1360
             BEGIN DISPLAY 864 1360 ATTR Name
                 ALIGNMENT SOFT-RIGHT
@@ -3152,7 +3146,7 @@ BEGIN SCHEMATIC
                 ALIGNMENT SOFT-RIGHT
             END DISPLAY
         END BRANCH
-        BEGIN BRANCH in
+        BEGIN BRANCH inn
             WIRE 864 2400 880 2400
             BEGIN DISPLAY 864 2400 ATTR Name
                 ALIGNMENT SOFT-RIGHT
@@ -3240,7 +3234,7 @@ BEGIN SCHEMATIC
                 ALIGNMENT SOFT-RIGHT
             END DISPLAY
         END BRANCH
-        BEGIN BRANCH in
+        BEGIN BRANCH inn
             WIRE 864 2608 880 2608
             BEGIN DISPLAY 864 2608 ATTR Name
                 ALIGNMENT SOFT-RIGHT
@@ -3573,7 +3567,7 @@ BEGIN SCHEMATIC
                 ALIGNMENT SOFT-RIGHT
             END DISPLAY
         END BRANCH
-        BEGIN BRANCH in
+        BEGIN BRANCH inn
             WIRE 1280 1088 1296 1088
             BEGIN DISPLAY 1280 1088 ATTR Name
                 ALIGNMENT SOFT-RIGHT
@@ -3657,7 +3651,7 @@ BEGIN SCHEMATIC
                 ALIGNMENT SOFT-RIGHT
             END DISPLAY
         END BRANCH
-        BEGIN BRANCH in
+        BEGIN BRANCH inn
             WIRE 1280 1840 1296 1840
             BEGIN DISPLAY 1280 1840 ATTR Name
                 ALIGNMENT SOFT-RIGHT
@@ -3723,7 +3717,7 @@ BEGIN SCHEMATIC
                 ALIGNMENT SOFT-RIGHT
             END DISPLAY
         END BRANCH
-        BEGIN BRANCH in
+        BEGIN BRANCH inn
             WIRE 1280 2400 1296 2400
             BEGIN DISPLAY 1280 2400 ATTR Name
                 ALIGNMENT SOFT-RIGHT
@@ -3771,7 +3765,7 @@ BEGIN SCHEMATIC
                 ALIGNMENT SOFT-RIGHT
             END DISPLAY
         END BRANCH
-        BEGIN BRANCH in
+        BEGIN BRANCH inn
             WIRE 1280 2816 1296 2816
             BEGIN DISPLAY 1280 2816 ATTR Name
                 ALIGNMENT SOFT-RIGHT
@@ -3857,7 +3851,6 @@ BEGIN SCHEMATIC
         END BRANCH
         BEGIN BRANCH c14o
             WIRE 1552 3136 1568 3136
-            WIRE 1568 3136 1568 3136
             BEGIN DISPLAY 1568 3136 ATTR Name
                 ALIGNMENT SOFT-LEFT
             END DISPLAY
@@ -3936,7 +3929,6 @@ BEGIN SCHEMATIC
         END BRANCH
         BEGIN BRANCH c1o
             WIRE 1552 176 1568 176
-            WIRE 1568 176 1568 176
             BEGIN DISPLAY 1568 176 ATTR Name
                 ALIGNMENT SOFT-LEFT
             END DISPLAY
@@ -4331,7 +4323,7 @@ BEGIN SCHEMATIC
                 ALIGNMENT SOFT-RIGHT
             END DISPLAY
         END BRANCH
-        BEGIN BRANCH in
+        BEGIN BRANCH inn
             WIRE 1696 2528 1712 2528
             BEGIN DISPLAY 1696 2528 ATTR Name
                 ALIGNMENT SOFT-RIGHT
@@ -4355,7 +4347,7 @@ BEGIN SCHEMATIC
                 ALIGNMENT SOFT-RIGHT
             END DISPLAY
         END BRANCH
-        BEGIN BRANCH in
+        BEGIN BRANCH inn
             WIRE 1696 2736 1712 2736
             BEGIN DISPLAY 1696 2736 ATTR Name
                 ALIGNMENT SOFT-RIGHT
@@ -4786,7 +4778,7 @@ BEGIN SCHEMATIC
                 ALIGNMENT SOFT-RIGHT
             END DISPLAY
         END BRANCH
-        BEGIN BRANCH in
+        BEGIN BRANCH inn
             WIRE 2112 1424 2128 1424
             BEGIN DISPLAY 2112 1424 ATTR Name
                 ALIGNMENT SOFT-RIGHT
@@ -4816,7 +4808,7 @@ BEGIN SCHEMATIC
                 ALIGNMENT SOFT-RIGHT
             END DISPLAY
         END BRANCH
-        BEGIN BRANCH in
+        BEGIN BRANCH inn
             WIRE 2112 1696 2128 1696
             BEGIN DISPLAY 2112 1696 ATTR Name
                 ALIGNMENT SOFT-RIGHT
@@ -4918,7 +4910,7 @@ BEGIN SCHEMATIC
                 ALIGNMENT SOFT-RIGHT
             END DISPLAY
         END BRANCH
-        BEGIN BRANCH in
+        BEGIN BRANCH inn
             WIRE 2112 2592 2128 2592
             BEGIN DISPLAY 2112 2592 ATTR Name
                 ALIGNMENT SOFT-RIGHT
