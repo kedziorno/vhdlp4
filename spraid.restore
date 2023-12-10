@@ -939,7 +939,8 @@ proc restore { { project_dir "" } } {
       "wishbone_bfm/trunk/rtl/syscon.vhd" 
       "wishbone_bfm/trunk/rtl/wb_master.vhd" 
       "wishbone_bfm/trunk/rtl/wbmem32X16.vhd" 
-      "wishbone_bfm/trunk/rtl/wbtb_1m_1s.vhd"}
+      "wishbone_bfm/trunk/rtl/wbtb_1m_1s.vhd" 
+      "xapp336_page10.sch"}
 
   HandleException {
     AddUserFiles $iProjHelper $user_files
@@ -1541,9 +1542,9 @@ proc restore { { project_dir "" } } {
    set libraries {
       "fmf"
       {
+       "s25fl064a.vhd"
        "flash.vhd"
        "idt7202.vhd"
-       "s25fl064a.vhd"
        "m25p80.vhd"
        "conversions.vhd"
        "gen_utils.vhd"
