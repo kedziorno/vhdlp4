@@ -951,7 +951,8 @@ proc restore { { project_dir "" } } {
       "encdec8b10b_guide.ncd" 
       "sch1_guide.ncd" 
       "wb_spraid_guide.ncd" 
-      "xapp336_page10.sym"}
+      "xapp336_page10.sym" 
+      "xapp336_page10_guide.ncd"}
 
   set origination 2
 
