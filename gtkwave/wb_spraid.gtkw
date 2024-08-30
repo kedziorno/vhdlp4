@@ -1,0 +1,86 @@
+[*]
+[*] GTKWave Analyzer v3.3.111 (w)1999-2020 BSI
+[*] Thu Dec 30 20:57:51 2021
+[*]
+[dumpfile] "/home/bit0fun/Documents/workspace/ASIC/zero-to-asic-course/spraid/wb_spraid.vcd"
+[dumpfile_mtime] "Thu Dec 30 20:57:27 2021"
+[dumpfile_size] 206261
+[savefile] "/home/bit0fun/Documents/workspace/ASIC/zero-to-asic-course/spraid/gtkwave/wb_spraid.gtkw"
+[timestart] 500000
+[size] 1920 1019
+[pos] -1 -1
+*-20.961256 14560000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] wb_spraid.
+[treeopen] wb_spraid.spraid.
+[treeopen] wb_spraid.spraid.drive0.
+[sst_width] 223
+[signals_width] 250
+[sst_expanded] 1
+[sst_vpaned_height] 299
+@200
+-WB
+@28
+wb_spraid.wb_rst_i
+wb_spraid.wb_clk_i
+wb_spraid.wb_ack_o
+wb_spraid.wb_cyc_i
+wb_spraid.wb_stb_i
+wb_spraid.wb_we_i
+@22
+wb_spraid.wb_adr_i[31:0]
+wb_spraid.wb_dat_o[31:0]
+wb_spraid.wb_dat_i[31:0]
+@28
+wb_spraid.wb_stall_o
+wb_spraid.read
+wb_spraid.write
+@200
+-User Registers
+@28
+wb_spraid.ack
+wb_spraid.reg_access_ack
+wb_spraid.last_cycle_busy
+@22
+wb_spraid.raid_type[7:0]
+wb_spraid.status[7:0]
+@28
+wb_spraid.spraid_busy
+@22
+wb_spraid.buf_data_o[31:0]
+@200
+-RAID
+@22
+wb_spraid.spraid.raid_module.addr[31:0]
+wb_spraid.spraid.raid_module.din[31:0]
+wb_spraid.spraid.raid_module.dout[31:0]
+@200
+-SPI0
+@22
+wb_spraid.spraid.drive0.cmd[31:0]
+@28
+wb_spraid.spi0_clk
+wb_spraid.spi0_cs
+wb_spraid.spi0_mosi
+wb_spraid.spi0_miso
+@200
+-SPI1
+@28
+wb_spraid.spi1_clk
+wb_spraid.spi1_cs
+wb_spraid.spi1_miso
+wb_spraid.spi1_mosi
+@200
+-SPI2
+@28
+wb_spraid.spi2_clk
+wb_spraid.spi2_cs
+wb_spraid.spi2_miso
+wb_spraid.spi2_mosi
+@200
+-SPI3
+@28
+wb_spraid.spi3_clk
+wb_spraid.spi3_cs
+wb_spraid.spi3_miso
+[pattern_trace] 1
+[pattern_trace] 0

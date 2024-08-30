@@ -1,0 +1,6 @@
+CommandLine
+/home/user/.local/Xilinx/10.1/ISE/ISE/bin/lin64/unwrapped/xst -ise /home/user/workspace/sata_controller_core/sata_controller_core/sata_controller_core.ise -intstyle ise -ifn /home/user/workspace/sata_controller_core/sata_controller_core/fifo_generator_v9_3.xst -ofn /home/user/workspace/sata_controller_core/sata_controller_core/fifo_generator_v9_3.syr -finalclean 1
+s
+FormatString
+xst [-ifn <InputFile>] [-ofn <OutputFile>] [-ise <iseProjectFile>] [--quiet] [-intstyle <Style>] [--deb <DebugLevel>] [--finalclean <Clean>] [--PcubeFlow] [--globOptFlow] [--XstNtrc]
+s
