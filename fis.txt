@@ -1,0 +1,10 @@
+Hsata
+-----
+        Data0       Data1     Data2       Remark
+------------------------------------------------
+REM                                       5-44
+WAIT    hex(7-10)                         WAIT
+RGFIS                                     RGFIS
+READ    hex(7-7)    hex(9-9)  hex(11-14)  READ
+WRITE   hex(7-7)    hex(9-9)  hex(11-14)  WRITE
+

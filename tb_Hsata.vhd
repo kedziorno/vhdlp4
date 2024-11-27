@@ -114,7 +114,8 @@ reset <= '0';
 wait for clock_period*10;
 
 -- insert stimulus here 
-
+wait for 10 ms;
+report "tb done" severity failure;
 wait;
 end process;
 
