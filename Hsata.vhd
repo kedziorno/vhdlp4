@@ -86,6 +86,12 @@ ARCHITECTURE vhdl_behavioral of Hsata IS
     SIGNAL RXp_nwv             : std_ulogic := 'U';
     SIGNAL RXn_nwv             : std_ulogic := 'U';
     
+      function debug (constant s : in string)
+      return string is
+      begin
+        return "HOST : " & s;
+      end function debug;
+
 BEGIN               
                     
     ----------------------------------------------------------------------------
@@ -270,13 +276,19 @@ BEGIN
                           SIGNAL ld       : OUT std_logic;
                           SIGNAL reg      : OUT std_logic_vector(9 DOWNTO 0))
     IS
+      procedure debug (constant s : in string) is
+      begin
+        report debug("") & "SendALIGN : " & s;
+      end procedure debug;
     BEGIN                      
+        debug ("[SendAlign]");
         IF tx_empty = '0' THEN
             WAIT UNTIL tx_empty = '1';
         END IF;       
         WAIT UNTIL clk='1';
         -- negative rd assumed 
         reg <= cK285(0);
+        debug ("cK285");
 --        ld <= '1', '0' AFTER 1 ps;
         ld <= '1';
         WAIT UNTIL clk='1';
@@ -284,21 +296,25 @@ BEGIN
         WAIT UNTIL tx_empty = '1';
         WAIT UNTIL clk='1';
         reg <= cD102(1);
+        debug ("cD102");
         ld <= '1';
         WAIT UNTIL clk='1';
         ld <= '0';
         WAIT UNTIL tx_empty = '1';
         WAIT UNTIL clk='1';
         reg <= cD102(0);
+        debug ("cD102");
         ld <= '1';
         WAIT UNTIL clk='1';
         ld <= '0';
         WAIT UNTIL tx_empty = '1';
         WAIT UNTIL clk='1';
         reg <= cD273(1);
+        debug ("cD273");
         ld <= '1';
         WAIT UNTIL clk='1';
         ld <= '0';
+        debug ("[/SendAlign]");
     END SendALIGN;
 
     PROCEDURE encode (rd : INOUT std_logic;
@@ -307,6 +323,10 @@ BEGIN
     VARIABLE temp   : std_logic_vector(9 DOWNTO 0);
     VARIABLE x,y    : INTEGER;    
     VARIABLE rd6    : std_logic;    
+    procedure debug (constant s : in string) is
+    begin
+      report debug("") & "encode : " & s;
+    end procedure debug;
     BEGIN      
         x := to_nat(byte(4 DOWNTO 0));
         y := to_nat(byte(7 DOWNTO 5));
@@ -430,6 +450,7 @@ BEGIN
             WHEN others => rd := rd6;
         END CASE;
 
+        debug (to_hex_str(temp));
         code <= temp;
 --        RETURN temp;    
     END encode;
@@ -443,7 +464,10 @@ BEGIN
     VARIABLE rd6    : std_logic;
     VARIABLE err    : std_logic;               
     VARIABLE ctrl   : std_logic;               
-    
+          procedure debug (constant s : in string) is
+      begin
+        report debug("") & "decode : " & s;
+      end procedure debug;
     BEGIN         
         err := '0';      
         ctrl := '0';        
@@ -568,6 +592,7 @@ BEGIN
             END CASE;  
         END IF;
         temp := ctrl & err & y & x;            
+        debug (to_hex_str(temp));
         RETURN temp;    
     END decode;
     
@@ -575,6 +600,10 @@ BEGIN
                      code : IN std_logic_vector(9 DOWNTO 0)) RETURN std_logic IS
     VARIABLE n_ones   : INTEGER;
     VARIABLE rd6, rd4 : std_logic;
+    procedure debug (constant s : in string) is
+    begin
+      report debug ("") & "new_rd : " & s;
+    end procedure debug;
     BEGIN      
     -- NOTICE rd = 0 is negative running disparity
     --        rd = 1 is positive running disparity
@@ -609,6 +638,11 @@ BEGIN
             rd4 := rd6;
         END IF; 
         
+        if (rd4 = '0') then
+          debug ("negative running disparity");
+        else
+          debug ("positive running disparity");
+        end if;
         RETURN rd4;
     END new_rd;    
 
@@ -616,37 +650,49 @@ BEGIN
                     VARIABLE rnd_data : OUT    std_logic_vector(31 DOWNTO 0)) IS
     VARIABLE new_bit   : std_logic;
     VARIABLE lsfr_reg  : std_logic_vector(15 DOWNTO 0); 
+    VARIABLE temp : std_logic_vector(31 DOWNTO 0);
+    procedure debug (constant s : in string) is
+    begin
+      report debug ("") & "lsfr : " & s;
+    end procedure debug;
     BEGIN   
         lsfr_reg := state;
         FOR i IN 0 TO 31 LOOP
             rnd_data(i) := lsfr_reg(15);  
-            lsfr_reg := (lsfr_reg(15) XOR lsfr_reg(14))
+            temp := (lsfr_reg(15) XOR lsfr_reg(14))
                          & lsfr_reg(13) 
                          & (lsfr_reg(15) XOR lsfr_reg(12))
                          & lsfr_reg(11 DOWNTO 4) 
                          & (lsfr_reg(15) XOR lsfr_reg(3)) 
                          & lsfr_reg(2 DOWNTO 0) & lsfr_reg(15);    
         END LOOP;                             
+        debug (to_hex_str (temp));
+        rnd_data := temp;
         state <= lsfr_reg;
     END lsfr;   
 
     PROCEDURE get_crc (VARIABLE crc_accum : INOUT std_logic_vector(31 DOWNTO 0);
                        VARIABLE code      : IN std_logic_vector(31 DOWNTO 0)) IS
     VARIABLE i           : INTEGER;
+        procedure debug (constant s : in string) is
+    begin
+      report debug ("") & "get_crc : " & s;
+    end procedure debug;
     BEGIN      
-
+        debug ("[get_crc]");
         i := to_nat (crc_accum(31 DOWNTO 24) XOR code(31 DOWNTO 24));        
         crc_accum := (crc_accum(23 DOWNTO 0) & "00000000") XOR crc_table(i);
-
+        debug ("1  - " & to_hex_str (crc_accum));
         i := to_nat (crc_accum(31 DOWNTO 24) XOR code(23 DOWNTO 16));        
         crc_accum := (crc_accum(23 DOWNTO 0) & "00000000") XOR crc_table(i);
-
+        debug ("2  - " & to_hex_str (crc_accum));
         i := to_nat (crc_accum(31 DOWNTO 24) XOR code(15 DOWNTO 8));        
         crc_accum := (crc_accum(23 DOWNTO 0) & "00000000") XOR crc_table(i);
-
+        debug ("3  - " & to_hex_str (crc_accum));
         i := to_nat (crc_accum(31 DOWNTO 24) XOR code(7 DOWNTO 0));        
         crc_accum := (crc_accum(23 DOWNTO 0) & "00000000") XOR crc_table(i);
-
+        debug ("4* - " & to_hex_str (crc_accum));
+        debug ("[/get_crc]");
     END get_crc;
         
 
@@ -818,7 +864,12 @@ BEGIN
 
     CRC_INIT : PROCESS    
     VARIABLE crc_accum : std_logic_vector(31 DOWNTO 0);
+    procedure debug (constant s : in string) is
+    begin
+      report debug ("") & "CRC_INIT : " & s;
+    end procedure debug;
     BEGIN                
+        debug ("[CRC_INIT]");
         FOR i IN 0 TO 255 LOOP
             crc_accum := (others => '0');
             crc_accum(31 DOWNTO 24) := to_slv(i,8);
@@ -832,6 +883,7 @@ BEGIN
             END LOOP; 
             crc_table(i) <= crc_accum;
         END LOOP; 
+        debug ("[/CRC_INIT]");
         WAIT;
     END PROCESS CRC_INIT;
     ----------------------------------------------------------------------------
@@ -869,11 +921,16 @@ BEGIN
                     
     VARIABLE TmpPer         : Time := 0 ps;
     VARIABLE Last_clk_edge  : Time := 0 ps;
+    procedure debug (constant s : in string) is
+    begin
+      report debug ("") & "RX_CLK : " & s;
+    end procedure debug;
 
     BEGIN               
         TmpPer := NOW - Last_clk_edge;        
         IF falling_edge(rx_idle) OR ((RX_int'EVENT AND TmpPer > RXPERIOD/4) AND (rx_idle = '0')) OR rising_edge(RXclk_timeout) THEN
               RXclk <= not(RXclk);    
+              --debug ("RXclk tick");
               Last_clk_edge := NOW;                   
               RXclk_edge <= '1', '0' AFTER 1 ps;
         END IF;
@@ -888,22 +945,30 @@ BEGIN
     VARIABLE burst_start         : Time := 0 ps;
     VARIABLE space_start         : Time := 0 ps;
     VARIABLE tmp_time            : Time := 0 ps;
-
+    procedure debug (constant s : in string) is
+    begin
+      report debug ("") & "SPACE_CHECK : " & s;
+    end procedure debug;
+    
     BEGIN         
         IF falling_edge(rx_idle) THEN
             burst_start := NOW;
             tmp_time := NOW - space_start;
             IF (tmp_time > MIN_COMINIT_SPACE) AND (tmp_time < MAX_COMINIT_SPACE) THEN
                 cominit_space_ok <= '1';
+                debug ("cominit_space_ok = 1");
             END IF;
             IF (tmp_time > MIN_COMWAKE_SPACE) AND (tmp_time < MAX_COMWAKE_SPACE) THEN
                 comwake_space_ok <= '1';
+                debug ("comwake_space_ok = 1");
             END IF;
         ELSIF rising_edge(rx_idle) THEN
             space_start := NOW;
             tmp_time := NOW - burst_start;
             cominit_space_ok <= '0';
             comwake_space_ok <= '0';                            
+            debug ("cominit_space_ok = 0");
+            debug ("comwake_space_ok = 0");
         END IF;         
     END PROCESS;
 
@@ -913,9 +978,14 @@ BEGIN
     OOB_INIT : PROCESS
     VARIABLE cnt : INTEGER := 0;
     VARIABLE align_cnt : INTEGER := 0;
+    procedure debug (constant s : in string) is
+    begin
+      report debug("") & "OOB_INIT : " & s;
+    end procedure debug;
     BEGIN                       
         IF cnt > 7 THEN
             COMINIT <= '1';
+            debug ("COMINIT = 1 , CNT > 7");
            END IF; 
         WAIT UNTIL align = '1';
         align_cnt := 1;
@@ -928,28 +998,37 @@ BEGIN
              END IF;
          END LOOP;    
         IF align_cnt = 4 THEN
+        debug ("ALIGN_CNT = 4");
             cnt := cnt + 1;
             WAIT UNTIL cominit_space_ok = '1' FOR MAX_COMINIT_SPACE;
             IF cominit_space_ok = '1' THEN
                 cnt := cnt + 1;
+                debug ("align_cnt = 4 , cominit_space_ok = 1");
                ELSE
                 cnt := 0;           
                 COMINIT <= '0';
                 align_cnt := 0;
+                debug ("COMINIT = 0 , align_cnt = 4 , cominit_space_ok = 0");
             END IF;
         ELSE
             cnt := 0;           
             COMINIT <= '0';
             align_cnt := 0;
+            debug ("COMINIT = 0 , align_cnt < 4");
         END IF;
     END PROCESS OOB_INIT;
 
     OOB_WAKE : PROCESS
     VARIABLE cnt : INTEGER := 0;
     VARIABLE align_cnt : INTEGER := 0;
+    procedure debug (constant s : in string) is
+    begin
+      report debug("") & "OOB_WAKE : " & s;
+    end procedure debug;
     BEGIN                       
         IF cnt > 7 THEN
             COMWAKE <= '1';
+            debug ("COMWAKE = 1 , CNT > 7");
            END IF; 
         WAIT UNTIL align = '1';
         align_cnt := 1;
@@ -962,20 +1041,24 @@ BEGIN
              END IF;
          END LOOP;    
         IF align_cnt = 4 THEN
+          debug ("ALIGN_CNT = 4");
             cnt := cnt + 1;
             WAIT UNTIL comwake_space_ok = '1' FOR MAX_COMWAKE_SPACE;
             IF comwake_space_ok = '1' THEN
                 cnt := cnt + 1;
                 align_cnt := 0;
+                debug ("align_cnt = 4 , comwake_space_ok = 1");
                ELSE
                 cnt := 0;           
                 COMWAKE <= '0';
                 align_cnt := 0;
+                debug ("COMWAKE = 0 , align_cnt = 4 , comwake_space_ok = 0");
             END IF;
         ELSE
             cnt := 0;           
             COMWAKE <= '0';
             align_cnt := 0;
+            debug ("COMWAKE = 0");
         END IF;
     END PROCESS OOB_WAKE;
 
@@ -991,6 +1074,10 @@ BEGIN
     VARIABLE nonalign_detection : std_logic_vector(9 DOWNTO 0);
     VARIABLE RX_buffer : rx_buffer_type; 
     VARIABLE RX_shift_reg : std_logic_vector(9 DOWNTO 0) := "0000000000";
+    procedure debug (constant s : in string) is
+    begin
+      report debug("") & "RX_SHIFT : " & s;
+    end procedure debug;
     BEGIN                
         IF falling_edge(RXclk) THEN    
               RX_shift_reg(8 DOWNTO 0) := RX_shift_reg(9 DOWNTO 1);               
@@ -1011,26 +1098,33 @@ BEGIN
                        COMMA <= '1';              
                        rx_word_cnt := 1;
                        RX_buffer(0) := RX_shift_reg;
+                       debug ("COMMA = 1 , cK285(0) cK285(1)");
                    END IF;
                    IF RX_shift_reg = cK283(0) OR RX_shift_reg = cK283(1) THEN
+                    debug ("cK283(0) cK283(1)");
                        rx_word_cnt := 1;
                        RX_buffer(0) := RX_shift_reg;   
                     -- non-align pattern detection 
                     nonalign <= '1', '0' AFTER 1 ps;
                    END IF;
                    IF rx_word_cnt = 4 THEN                  
+                    debug ("COMMA = 0 , rx_word_cnt = 4");
                        COMMA <= '0';                    
                       rx_word_cnt := 0;      
                       IF RX_buffer(0) /= cK285(0) AND RX_buffer(0) /= cK285(1) THEN
                            RXCLOCK <= '1', '0' AFTER 20*RXPERIOD;
+                           debug ("RXLOCK");
                        END IF;
                        DATAOUT <= RX_buffer(3) & RX_buffer(2) & RX_buffer(1) & RX_buffer(0);
-
+                        debug ("DATAOUT : " & to_hex_str (DATAOUT));
+                        
                     IF ((RX_buffer(3) & RX_buffer(2) & RX_buffer(1) & RX_buffer(0)) = ALIGN_RDpos) OR 
                     ((RX_buffer(3) & RX_buffer(2) & RX_buffer(1) & RX_buffer(0)) = ALIGN_RDneg) THEN
                         align_ctrl <= '1';         
+                        debug ("align_ctrl = 1");
                     ELSE
                         align_ctrl <= '0';            
+                        debug ("align_ctrl = 0");
                     END IF;                   
 
                    END IF;     
@@ -1040,10 +1134,12 @@ BEGIN
                align_detection(39) := RX_int;
             IF (align_detection = ALIGN_RDpos) OR (align_detection = ALIGN_RDneg) THEN
                 align <= '1', '0' AFTER RXPERIOD;   
+                debug ("align pattern detection = 1");
                 rx_bit_cnt := 0;
                 rx_word_cnt := 0;
             ELSE
                 align <= '0';            
+                --debug ("align pattern detection = 0");
             END IF;                                               
         END IF;    
     END PROCESS RX_SHIFT;
@@ -1066,6 +1162,10 @@ BEGIN
     ----------------------------------------------------------------------------                   
     TX_SHIFT : PROCESS(TXclk, PHYRESET)   
     VARIABLE tx_cnt : INTEGER := 0;     
+    procedure debug (constant s : in string) is
+    begin
+      report debug("") & "TX_SHIFT : " & s;
+    end procedure debug;
     BEGIN                  
         IF rising_edge(PHYRESET) THEN
             tx_cnt := 0;
@@ -1077,20 +1177,25 @@ BEGIN
                    tx_cnt := 9;
                 TX_shift_reg <= TX_reg;
                 TX_shift_reg_empty <= '0';     
+                debug ("TX_ld = 1 , tx_cnt = 9");
             ELSIF tx_cnt > 2 THEN
                    TX_shift_reg(8 DOWNTO 0) <= TX_shift_reg(9 DOWNTO 1);
                 tx_cnt := tx_cnt - 1;
+                --debug ("tx_cnt > 2");
             ELSIF tx_cnt = 2 THEN
                    TX_shift_reg(8 DOWNTO 0) <= TX_shift_reg(9 DOWNTO 1);
                    tx_cnt := tx_cnt - 1;
                 TX_shift_rdy <= '1';            
+                --debug ("tx_cnt = 2");
             ELSIF tx_cnt = 1 THEN 
                    tx_cnt := tx_cnt - 1;            
                    TX_shift_reg(8 DOWNTO 0) <= TX_shift_reg(9 DOWNTO 1);  
                    TX_shift_rdy <= '1';
+                   --debug ("tx_cnt = 1");
             ELSIF tx_cnt = 0 THEN 
                 TX_shift_reg_empty <= '1';
                 TX_shift_rdy <= '1';                    
+                --debug ("tx_cnt = 0 , TX_shift_rdy = 1");                
             END IF;    
         END IF;    
     END PROCESS TX_SHIFT;
@@ -1121,9 +1226,14 @@ BEGIN
     -- Data transfer                                                          --
     ----------------------------------------------------------------------------                   
     DATA_TRANS : PROCESS
+    procedure debug (constant s : in string) is
+    begin
+      report debug("") & "DATA_TRANS : " & s;
+    end procedure debug;
     BEGIN                                                   
         WAIT ON TXclk; --transmit_comwake, transmit_comreset, transmit_align, transmit_D102;
         IF transmit_comreset = '1' AND transmit_comreset_end = '0' THEN
+        debug ("transmit_comreset = 1");
 --            WAIT UNTIL TXclk = '1';
             FOR i IN 0 TO 3 LOOP
                 SendAlign(TX_shift_rdy, TXclk, TX_ld, TX_reg);
@@ -1162,10 +1272,12 @@ BEGIN
             WAIT UNTIL TX_shift_reg_empty = '1';
             WAIT FOR MAX_COMRESET_SPACE;
             transmit_comreset_end <= '1', '0' AFTER 40 * RXPERIOD;
+            debug ("transmit_comreset_end = 1");
             WAIT UNTIL TXclk = '1';
 --            transmit_comreset_end <= '0';        
         END IF;
         IF transmit_comwake = '1' AND transmit_comwake_end = '0' THEN  
+          debug ("transmit_comwake = 1");
 --            WAIT UNTIL TXclk = '1';        
             FOR i IN 0 TO 3 LOOP
                 SendAlign(TX_shift_rdy, TXclk, TX_ld, TX_reg);
@@ -1205,10 +1317,12 @@ BEGIN
             WAIT FOR MAX_COMWAKE_SPACE; 
             WAIT UNTIL TXclk = '1';
             transmit_comwake_end <= '1', '0' AFTER 40 * RXPERIOD;
+            debug ("transmit_comwake_end = 1");
             WAIT UNTIL TXclk = '1';
 --            transmit_comwake_end <= '0';
         END IF;     
         IF transmit_D102 = '1' THEN 
+          debug ("transmit_D102 = 1");
             IF TX_shift_rdy = '0' THEN
                 WAIT UNTIL TX_shift_rdy = '1';
             END IF; 
@@ -1227,41 +1341,49 @@ BEGIN
                    TX_ld <= '0';         
             END LOOP;
             transmit_D102_end <= '1', '0' AFTER 40 * RXPERIOD;
+            debug ("transmit_D102_end = 1");
 --            transmit_D102_end <= '1';
             WAIT UNTIL TXclk = '1';
 --            transmit_D102_end <= '0';
         END IF;              
         IF transmit_align = '1' THEN 
+          debug ("transmit_align = 1");
             SendAlign(TX_shift_rdy, TXclk, TX_ld, TX_reg);
 --            transmit_align_end <= '1', '0' AFTER RXPERIOD;
             transmit_align_end <= '1';
+            debug ("transmit_align_end = 1");
             WAIT UNTIL TXclk = '1';
             transmit_align_end <= '0';
         END IF;      
         IF transmit_link_data = '1' THEN
+          debug ("transmit_link_data = 1");
             IF TX_shift_rdy = '0' THEN
                 WAIT UNTIL TX_shift_rdy = '1';
             END IF;
             WAIT UNTIL TXclk = '1';
             TX_reg <= DATAIN(9 DOWNTO 0);
+            debug ("DATAIN (9-0)");
                TX_ld <= '1';
             WAIT UNTIL TXclk = '1';        
                TX_ld <= '0';               
                WAIT UNTIL TX_shift_rdy = '1';
             WAIT UNTIL TXclk = '1';
                TX_reg <= DATAIN(19 DOWNTO 10);
+               debug ("DATAIN (19-10)");
                TX_ld <= '1';
             WAIT UNTIL TXclk = '1';        
                TX_ld <= '0';               
                WAIT UNTIL TX_shift_rdy = '1';
             WAIT UNTIL TXclk = '1';
                TX_reg <= DATAIN(29 DOWNTO 20);
+               debug ("DATAIN (29-20)");
                TX_ld <= '1';
             WAIT UNTIL TXclk = '1';        
                TX_ld <= '0';               
                WAIT UNTIL TX_shift_rdy = '1';
             WAIT UNTIL TXclk = '1';
                TX_reg <= DATAIN(39 DOWNTO 30);
+               debug ("DATAIN (39-30)");
                TX_ld <= '1';
             WAIT UNTIL TXclk = '1';        
                TX_ld <= '0'; 
@@ -1272,118 +1394,161 @@ BEGIN
     -- Control block                                                          --
     ----------------------------------------------------------------------------                   
     PHY_CONTROL : PROCESS(SYSTEMCLOCK, PHYRESET)   
+    procedure debug (constant s : in string) is
+    begin
+      report debug("") & "PHY_CONTROL : " & s;
+    end procedure debug;
     BEGIN           
         IF PHYRESET = '1' THEN       
             init_state <= HR_RESET;
         ELSIF rising_edge(SYSTEMCLOCK) THEN       
             CASE init_state IS
                 WHEN HR_RESET =>
+                debug ("state : " & phy_init'image(init_state));
                     IF PHYRESET = '0' THEN
                         init_state <= HR_AwaitCOMINIT;
+                        debug ("next_state : HR_AwaitCOMINIT , PHYRESET = 0");
                     ELSE
                         init_state <= HR_RESET;                    
                     END IF;
                 WHEN HR_AwaitCOMINIT =>         
+                debug ("state : " & phy_init'image(init_state));
                     IF COMINIT = '1' THEN
                         init_state <= HR_AwaitNoCOMINIT;
+                        debug ("next_state : HR_AwaitNoCOMINIT , COMINIT = 1");
                     ELSE   
                         init_state <= HR_AwaitCOMINIT;                    
                     END IF;                     
                 WHEN HR_AwaitNoCOMINIT =>
+                debug ("state : " & phy_init'image(init_state));
                     IF COMINIT = '0' THEN
                         init_state <= HR_Calibrate;
+                        debug ("next_state : HR_Calibrate , COMINIT = 0");
                     ELSE   
                         init_state <= HR_AwaitNoCOMINIT;                    
                     END IF;                                 
                 WHEN HR_Calibrate =>            
+                debug ("state : " & phy_init'image(init_state));
                     IF COMINIT = '1' THEN
                         init_state <= HR_AwaitNoCOMINIT;
+                        debug ("next_state : HR_AwaitNoCOMINIT , COMINIT = 1");
                     ELSIF calibration_end = '1' THEN
                         init_state <= HR_COMWAKE;
+                        debug ("next_state : HR_COMWAKE , calibration_end = 1");
                     ELSE 
                         init_state <= HR_Calibrate;
                     END IF;                                        
                 WHEN HR_COMWAKE => 
+                debug ("state : " & phy_init'image(init_state));
                     IF COMINIT = '1' THEN
                         init_state <= HR_AwaitNoCOMINIT;
+                        debug ("next_state : HR_AwaitNoCOMINIT , COMINIT = 1");
                     ELSIF transmit_comwake_end = '1' THEN
+                      debug ("transmit_comwake_end = 1");
                         IF COMWAKE = '1' THEN
                             init_state <= HR_AwaitNoCOMWAKE;
+                            debug ("next_state : HR_AwaitNoCOMWAKE , COMWAKE = 1");
                         ELSE   
                             init_state <= HR_AwaitCOMWAKE;                    
+                            debug ("next_state : HR_AwaitCOMWAKE");
                         END IF;
                     ELSE
                            init_state <= HR_COMWAKE;                    
                     END IF;                                         
                 WHEN HR_AwaitCOMWAKE =>         
+                debug ("state : " & phy_init'image(init_state));
                     IF COMINIT = '1' THEN
                         init_state <= HR_AwaitNoCOMINIT;
+                        debug ("next_state : HR_AwaitNoCOMINIT , COMINIT = 1");
                     ELSIF COMWAKE = '1' THEN
                         init_state <= HR_AwaitNoCOMWAKE;
+                        debug ("next_state : HR_AwaitNoCOMWAKE , COMWAKE = 0");
                     ELSE   
                         init_state <= HR_AwaitCOMWAKE;                    
                     END IF;                 
                 WHEN HR_AwaitNoCOMWAKE =>
+                debug ("state : " & phy_init'image(init_state));
                     IF COMINIT = '1' THEN
                         init_state <= HR_AwaitNoCOMINIT;
+                        debug ("next_state : HR_AwaitNoCOMINIT , COMINIT = 1");
                     ELSIF COMWAKE = '0' THEN
                         init_state <= HR_AwaitAlign;
+                        debug ("next_state : HR_AwaitAlign , COMWAKE = 0");
                     ELSE   
                         init_state <= HR_AwaitNoCOMWAKE;                    
                     END IF;                                 
                     WHEN HR_AwaitAlign =>
                     IF COMINIT = '1' THEN
                         init_state <= HR_AwaitNoCOMINIT;
+                        debug ("next_state : HR_AwaitNoCOMINIT , COMINIT = 1");
                     ELSIF align_ctrl  = '1' THEN
                         init_state <= HR_AdjustSpeed;
+                        debug ("next_state : HR_AdjustSpeed , align_ctrl = 1");
                     ELSIF align = '0' AND await_align_timeout = '1' THEN   
                         init_state <= HR_RESET; 
+                        debug ("next_state : HR_RESET , align = 0 , await_align_timeout = 1");
                     ELSE
                         init_state <= HR_AwaitAlign;                                           
                     END IF;                 
                     WHEN HR_SendAlign =>
                     IF COMINIT = '1' THEN
                         init_state <= HR_AwaitNoCOMINIT;
+                        debug ("next_state : HR_AwaitNoCOMINIT , COMINIT = 1");
                     ELSIF non_align_cnt  = 3 THEN
                         init_state <= HR_Ready;
+                        debug ("next_state : HR_Ready , non_align_cnt = 3");
                     ELSE
                         init_state <= HR_SendAlign;                                           
                     END IF;                 
                 WHEN HR_Ready =>
+                debug ("state : " & phy_init'image(init_state));
                     IF COMINIT = '1' THEN
                         init_state <= HR_AwaitNoCOMINIT;
+                        debug ("next_state : HR_AwaitNoCOMINIT , COMINIT = 1");
                     ELSIF PARTIAL  = '1' THEN
                         init_state <= HR_Partial;
+                        debug ("next_state : HR_Partial , PARTIAL = 1");
                     ELSIF SLUMBER = '1' THEN   
                         init_state <= HR_Slumber;   
+                        debug ("next_state : HR_Slumber , SLUMBER = 1");
                     ELSE 
                         init_state <= HR_Ready;                                        
                     END IF;                 
                 WHEN HR_Partial =>   
+                debug ("state : " & phy_init'image(init_state));
                     IF COMINIT = '1' THEN
                         init_state <= HR_AwaitNoCOMINIT;
+                        debug ("next_state : HR_AwaitNoCOMINIT , COMINIT = 1");
                     ELSIF PARTIAL  = '0' AND COMWAKE = '0' THEN
                         init_state <= HR_COMWAKE;
+                        debug ("next_state : HR_COMWAKE , PARTIAL = 0 , COMWAKE = 0");
                     ELSIF PARTIAL  = '0' AND COMWAKE = '1'  THEN   
                         init_state <= HR_AwaitNoCOMWAKE;   
+                        debug ("next_state : HR_AwaitNoCOMWAKE , PARTIAL = 0 , COMWAKE = 1");
                     ELSE 
                         init_state <= HR_Partial;                                        
                     END IF;                                 
                 WHEN HR_Slumber =>
+                debug ("state : " & phy_init'image(init_state));
                     IF COMINIT = '1' THEN
                         init_state <= HR_AwaitNoCOMINIT;
+                        debug ("next_state : HR_AwaitNoCOMINIT , COMINIT = 1");
                     ELSIF SLUMBER  = '0' AND COMWAKE = '0' THEN
                         init_state <= HR_COMWAKE;
+                        debug ("next_state : HR_COMWAKE , SLUMBER = 0 , COMWAKE = 0");
                     ELSIF SLUMBER  = '0' AND COMWAKE = '1'  THEN   
                         init_state <= HR_AwaitNoCOMWAKE;   
+                        debug ("next_state : HR_AwaitNoCOMWAKE , SLUMBER = 0 , COMWAKE = 1");
                     ELSE 
                         init_state <= HR_Slumber;                                        
                     END IF;                                 
                     WHEN HR_AdjustSpeed =>        
                     IF COMINIT = '1' THEN
                         init_state <= HR_AwaitNoCOMINIT;
+                        debug ("next_state : HR_AwaitNoCOMINIT , COMINIT = 1");
                     ELSE   
                         init_state <= HR_SendAlign;
+                        debug ("next_state : HR_SendAlign");
                     END IF;                    
                 WHEN others => 
                     init_state <= HR_RESET;                 
@@ -1392,6 +1557,10 @@ BEGIN
            END PROCESS PHY_CONTROL;
 
         CONTROL_OUT : PROCESS(init_state)--, transmit_comreset_end)
+        procedure debug (constant s : in string) is
+        begin
+          report debug("") & "CONTROL_OUT : " & s;
+        end procedure debug;
         BEGIN                      
             PHYRDY <= '0'; 
             transmit_align <= '0';
@@ -1400,18 +1569,31 @@ BEGIN
             transmit_comwake <= '0';
             CASE init_state IS
                 WHEN HR_RESET => transmit_comreset <= '1';
+                debug ("state : " & phy_init'image(init_state));
                 WHEN HR_AwaitCOMINIT =>         
+                debug ("state : " & phy_init'image(init_state));
                 WHEN HR_AwaitNoCOMINIT =>
+                debug ("state : " & phy_init'image(init_state));
                 WHEN HR_Calibrate => calibration_end <= '1' AFTER 100 ns;           
+                debug ("state : " & phy_init'image(init_state));
                 WHEN HR_COMWAKE => transmit_comwake <= '1'; --, '0' AFTER 1 ps;
+                debug ("state : " & phy_init'image(init_state));
                 WHEN HR_AwaitCOMWAKE =>         
+                debug ("state : " & phy_init'image(init_state));
                 WHEN HR_AwaitNoCOMWAKE =>
+                debug ("state : " & phy_init'image(init_state));
                     WHEN HR_AwaitAlign => transmit_D102 <= '1';
+                    debug ("state : " & phy_init'image(init_state));
                     WHEN HR_SendAlign => transmit_align <= '1';
+                    debug ("state : " & phy_init'image(init_state));
                 WHEN HR_Ready => PHYRDY <= '1';
+                debug ("state : " & phy_init'image(init_state));
                 WHEN HR_Partial =>    
+                debug ("state : " & phy_init'image(init_state));
                 WHEN HR_Slumber =>
+                debug ("state : " & phy_init'image(init_state));
                     WHEN HR_AdjustSpeed =>        
+                    debug ("state : " & phy_init'image(init_state));
                 WHEN others =>
             END CASE;        
         END PROCESS CONTROL_OUT;
@@ -1442,206 +1624,299 @@ BEGIN
                                 TP_result, 
                                 crc_check,
                                 SYNCp, R_RDYp, X_RDYp, SOFp, EOFp, WTRMp, HOLDp, HOLDAp,
-                                R_IPp, R_OKp, R_ERRp)
+                                R_IPp, R_OKp, R_ERRp)procedure debug (constant s : in string) is
+        begin
+          report debug("") & "LINK_TX_NXT : " & s;
+        end procedure debug;
         BEGIN 
             CASE link_state IS
                 WHEN L1_L_IDLE => 
+                debug ("state : " & link_state_type'image(link_state));
                     IF PHYRDY = '0' THEN
                         next_link_state <= LS1_L_NoCommErr;                    
+                        debug ("next_state : LS1_L_NoCommErr");
 --                    ELSIF TP_Frame_Rdy = '1' THEN
                     ELSIF TX_fifo_empty = '0' THEN
                         next_link_state <= LT1_HL_SendChkRdy;
+                        debug ("next_state : LT1_HL_SendChkRdy");
                     ELSIF X_RDYp = '1' THEN
                         next_link_state <= LR2_L_RcvWaitFifo;                    
+                        debug ("next_state : LR2_L_RcvWaitFifo");
                     ELSE
                         next_link_state <= L1_L_IDLE;                    
                     END IF;
                 WHEN LS1_L_NoCommErr => next_link_state <= LS2_L_NoComm;
+                debug ("state : " & link_state_type'image(link_state));
                 WHEN LS2_L_NoComm =>  
+                debug ("state : " & link_state_type'image(link_state));
                     IF PHYRDY = '1' THEN
                         next_link_state <= LS3_L_SendAlign;
+                        debug ("next_state : LS3_L_SendAlign");
                     ELSE
                         next_link_state <= LS2_L_NoComm;
                     END IF;
                 WHEN LS3_L_SendAlign =>
+                debug ("state : " & link_state_type'image(link_state));
                     IF PHYRDY = '1' THEN
                         next_link_state <= L1_L_IDLE;
+                        debug ("next_state : L1_L_IDLE");
                     ELSE
                         next_link_state <= LS1_L_NoCommErr;
+                        debug ("next_state : LS1_L_NoCommErr");
                     END IF;
                 WHEN LS4_L_RESET => next_link_state <= LS2_L_NoComm;
+                debug ("state : " & link_state_type'image(link_state));
                 WHEN LT1_HL_SendChkRdy =>  
+                debug ("state : " & link_state_type'image(link_state));
                     IF PHYRDY = '0' THEN
                         next_link_state <= LS1_L_NoCommErr;
+                        debug ("next_state : LS1_L_NoCommErr");
                     ELSIF R_RDYp = '1' THEN
                         next_link_state <= LT3_L_SendSOF;
+                        debug ("next_state : LT3_L_SendSOF");
                     ELSIF X_RDYp = '1' THEN
                         next_link_state <= LR2_L_RcvWaitFifo;
+                        debug ("next_state : LR2_L_RcvWaitFifo");
                     ELSE
                         next_link_state <= LT1_HL_SendChkRdy;
                     END IF;                
                 WHEN LT3_L_SendSOF =>
+                debug ("state : " & link_state_type'image(link_state));
                     IF PHYRDY = '0' THEN
                         next_link_state <= LS1_L_NoCommErr;
+                        debug ("next_state : LS1_L_NoCommErr");
                     ELSIF SYNCp = '1' THEN
                         next_link_state <= L1_L_IDLE;
+                        debug ("next_state : L1_L_IDLE");
                     ELSE
                         next_link_state <= LT4_L_SendData;
+                        debug ("next_state : LT4_L_SendData");
                     END IF;                                
                 WHEN LT4_L_SendData =>
+                debug ("state : " & link_state_type'image(link_state));
                     IF PHYRDY = '0' THEN
                         next_link_state <= LS1_L_NoCommErr;
+                        debug ("next_state : LS1_L_NoCommErr");
                     ELSIF SYNCp = '1' THEN
                         next_link_state <= L1_L_IDLE;
+                        debug ("next_state : L1_L_IDLE");
                     ELSIF HOLDp = '1' AND TX_fifo_empty = '0' THEN
                         next_link_state <= LT5_L_RcvrHold;
+                        debug ("next_state : LT5_L_RcvrHold");
 --                    ELSIF TP_no_data = '1' THEN
 --                    ELSIF TX_fifo_empty = '1' THEN
                     ELSIF TP_frame_end = '1' THEN
                         next_link_state <= LT7_L_SendCRC;
+                        debug ("next_state : LT7_L_SendCRC");
                     ELSE
                         next_link_state <= LT4_L_SendData;
                     END IF;                                                
                 WHEN LT5_L_RcvrHold =>                  
+                debug ("state : " & link_state_type'image(link_state));
                     IF PHYRDY = '0' THEN
                         next_link_state <= LS1_L_NoCommErr;
+                        debug ("next_state : LS1_L_NoCommErr");
                     ELSIF SYNCp = '1' THEN
                         next_link_state <= L1_L_IDLE;
+                        debug ("next_state : L1_L_IDLE");
                     ELSIF HOLDp = '1' AND TX_fifo_empty = '0' THEN
                         next_link_state <= LT5_L_RcvrHold;
+                        debug ("next_state : LT5_L_RcvrHold");
                     ELSE
                         next_link_state <= LT4_L_SendData;
+                        debug ("next_state : LT4_L_SendData");
                     END IF;                                                                
                 WHEN LT6_L_SendHold =>
+                debug ("state : " & link_state_type'image(link_state));
                 WHEN LT7_L_SendCRC => 
+                debug ("state : " & link_state_type'image(link_state));
                     IF PHYRDY = '0' THEN
                         next_link_state <= LS1_L_NoCommErr;
+                        debug ("next_state : LS1_L_NoCommErr");
                     ELSIF SYNCp = '1' THEN
                         next_link_state <= L1_L_IDLE;
+                        debug ("next_state : L1_L_IDLE");
                     ELSE
                         next_link_state <= LT8_L_SendEOF;
+                        debug ("next_state : LT8_L_SendEOF");
                     END IF;                    
                 WHEN LT8_L_SendEOF =>   
+                debug ("state : " & link_state_type'image(link_state));
                     IF PHYRDY = '0' THEN
                         next_link_state <= LS1_L_NoCommErr;
+                        debug ("next_state : LS1_L_NoCommErr");
                     ELSIF SYNCp = '1' THEN
                         next_link_state <= L1_L_IDLE;
+                        debug ("next_state : L1_L_IDLE");
                     ELSE
                         next_link_state <= LT9_L_Wait;
+                        debug ("next_state : LT9_L_Wait");
                     END IF;                                    
                 WHEN LT9_L_Wait =>          
+                debug ("state : " & link_state_type'image(link_state));
                     IF PHYRDY = '0' THEN
                         next_link_state <= LS1_L_NoCommErr;
+                        debug ("next_state : LS1_L_NoCommErr");
                     ELSIF SYNCp = '1' THEN  -- fail
                         next_link_state <= L1_L_IDLE;
+                        debug ("next_state : L1_L_IDLE , SYNCp = 1");
                     ELSIF R_OKp = '1' THEN  -- good
                         next_link_state <= L1_L_IDLE;                    
+                        debug ("next_state : L1_L_IDLE , R_OKp = 1");
                     ELSIF R_ERRp = '1' THEN -- bad 
                         next_link_state <= L1_L_IDLE;                    
+                        debug ("next_state : L1_L_IDLE , R_ERRp = 1");
                     ELSE
                         next_link_state <= LT9_L_Wait;
                     END IF;                                    
                 WHEN LR1_L_RcvChkRdy =>
+                debug ("state : " & link_state_type'image(link_state));
                     IF PHYRDY = '0' THEN
                         next_link_state <= LS1_L_NoCommErr;
+                        debug ("next_state : LS1_L_NoCommErr");
                     ELSIF X_RDYp = '1' THEN                
                         next_link_state <= LR1_L_RcvChkRdy;
+                        debug ("next_state : LR1_L_RcvChkRdy");
                     ELSIF SOFp = '1' THEN                
                         next_link_state <= LR3_L_RcvData;
+                        debug ("next_state : LR3_L_RcvData");
                     ELSE
                         next_link_state <= L1_L_IDLE;
+                        debug ("next_state : L1_L_IDLE");
                     END IF;                                    
                 WHEN LR2_L_RcvWaitFifo => 
+                debug ("state : " & link_state_type'image(link_state));
                     IF PHYRDY = '0' THEN
                         next_link_state <= LS1_L_NoCommErr;
+                        debug ("next_state : LS1_L_NoCommErr");
                     ELSIF RX_fifo_full = '0' AND X_RDYp = '1' THEN                
 --                    ELSIF TP_Fifo_Space_Avail = '1' AND X_RDYp = '1' THEN                
                         next_link_state <= LR1_L_RcvChkRdy;
+                        debug ("next_state : LR1_L_RcvChkRdy");
                     ELSIF RX_fifo_full = '1' AND X_RDYp = '1' THEN                
 --                    ELSIF TP_Fifo_Space_Avail = '0' AND X_RDYp = '1' THEN                
                         next_link_state <= LR2_L_RcvWaitFifo;
+                        debug ("next_state : LR2_L_RcvWaitFifo");
                     ELSE
                         next_link_state <= L1_L_IDLE;
+                        debug ("next_state : L1_L_IDLE");
                     END IF;                    
                 WHEN LR3_L_RcvData =>
+                debug ("state : " & link_state_type'image(link_state));
                     IF PHYRDY = '0' THEN
                         next_link_state <= LS1_L_NoCommErr;
+                        debug ("next_state : LS1_L_NoCommErr");
                     ELSIF HOLDp = '1' THEN                
                         next_link_state <= LR5_L_SendHold;
+                        debug ("next_state : LR5_L_SendHold");
                     ELSIF EOFp = '1' THEN                
                         next_link_state <= LR6_L_RcvEOF;
+                        debug ("next_state : LR6_L_RcvEOF");
                     ELSIF WTRMp = '1' THEN                
                         next_link_state <= LR9_L_BadEnd;
+                        debug ("next_state : LR9_L_BadEnd");
                     ELSIF SYNCp = '1' THEN                
                         next_link_state <= L1_L_IDLE;
+                        debug ("next_state : L1_L_IDLE");
                     ELSIF RX_fifo_full = '1' THEN
                         next_link_state <= LR4_L_Hold;                    
+                        debug ("next_state : LR4_L_Hold");
                     ELSE
                         next_link_state <= LR3_L_RcvData;
                     END IF;                                                    
                 WHEN LR4_L_Hold =>
+                debug ("state : " & link_state_type'image(link_state));
                     IF PHYRDY = '0' THEN
                         next_link_state <= LS1_L_NoCommErr;
+                        debug ("next_state : LS1_L_NoCommErr");
                     ELSIF SYNCp = '1' THEN                
                         next_link_state <= L1_L_IDLE;
+                        debug ("next_state : L1_L_IDLE");
                     ELSIF EOFp = '1' THEN                
                         next_link_state <= LR6_L_RcvEOF;
+                        debug ("next_state : LR6_L_RcvEOF");
                     ELSIF RX_fifo_full = '1' THEN
                         next_link_state <= LR4_L_Hold;                    
+                        debug ("next_state : LR4_L_Hold");
                     ELSIF RX_fifo_full = '0' AND HOLDp = '1' THEN                
                         next_link_state <= LR5_L_SendHold;
+                        debug ("next_state : LR5_L_SendHold");
                     ELSIF RX_fifo_full = '0' THEN                
                         next_link_state <= LR3_L_RcvData;
+                        debug ("next_state : LR3_L_RcvData");
                     END IF;                                                    
                 WHEN LR5_L_SendHold =>
+                debug ("state : " & link_state_type'image(link_state));
                     IF PHYRDY = '0' THEN
                         next_link_state <= LS1_L_NoCommErr;
+                        debug ("next_state : LS1_L_NoCommErr");
                     ELSIF SYNCp = '1' THEN                
                         next_link_state <= L1_L_IDLE;
+                        debug ("next_state : L1_L_IDLE");
                     ELSIF EOFp = '1' THEN                
                         next_link_state <= LR6_L_RcvEOF;
+                        debug ("next_state : LR6_L_RcvEOF");
                     ELSIF HOLDp = '1' THEN                
                         next_link_state <= LR5_L_SendHold;
+                        debug ("next_state : LR5_L_SendHold");
                     ELSE                
                         next_link_state <= LR3_L_RcvData;
+                        debug ("next_state : LR3_L_RcvData");
                     END IF;                                                    
                 WHEN LR6_L_RcvEOF => 
+                debug ("state : " & link_state_type'image(link_state));
                     IF PHYRDY = '0' THEN
                         next_link_state <= LS1_L_NoCommErr;
+                        debug ("next_state : LS1_L_NoCommErr");
                     ELSIF crc_check = '1' THEN                
                         next_link_state <= LR7_L_GoodCRC;
+                        debug ("next_state : LR7_L_GoodCRC");
                     ELSIF crc_check = '0' THEN                
                         next_link_state <= LR9_L_BadEnd;
+                        debug ("next_state : LR9_L_BadEnd");
                     ELSE
                         next_link_state <= LR6_L_RcvEOF;
                     END IF;                                                    
                 WHEN LR7_L_GoodCRC => 
+                debug ("state : " & link_state_type'image(link_state));
                     IF PHYRDY = '0' THEN
                         next_link_state <= LS1_L_NoCommErr;
+                        debug ("next_state : LS1_L_NoCommErr");
                     ELSIF SYNCp = '1' THEN                
                         next_link_state <= L1_L_IDLE;
+                        debug ("next_state : L1_L_IDLE");
                     ELSE
                         CASE TP_result IS
                             WHEN GOOD => next_link_state <= LR8_L_GoodEnd;
+                            debug ("next_state : LR8_L_GoodEnd");
                             WHEN NO_FIS => next_link_state <= LR9_L_BadEnd;
+                            debug ("next_state : LR9_L_BadEnd");
                             WHEN NO_RESP => next_link_state <= LR7_L_GoodCRC; 
+                            debug ("next_state : LR7_L_GoodCRC");
                             WHEN ERR => next_link_state <= LR9_L_BadEnd;
+                            debug ("next_state : LR9_L_BadEnd");
                             WHEN others => next_link_state <= LR9_L_BadEnd;
                         END CASE;
                     END IF;                                                                                    
                 WHEN LR8_L_GoodEnd =>   
+                debug ("state : " & link_state_type'image(link_state));
                     IF PHYRDY = '0' THEN
                         next_link_state <= LS1_L_NoCommErr;
+                        debug ("next_state : LS1_L_NoCommErr");
                     ELSIF SYNCp = '1' THEN                
                         next_link_state <= L1_L_IDLE;
+                        debug ("next_state : L1_L_IDLE");
                     ELSE
                         next_link_state <= LR8_L_GoodEnd;
                     END IF;                                                                    
                 WHEN LR9_L_BadEnd =>
+                debug ("state : " & link_state_type'image(link_state));
                     IF PHYRDY = '0' THEN
                         next_link_state <= LS1_L_NoCommErr;
+                        debug ("next_state : LS1_L_NoCommErr");
                     ELSIF SYNCp = '1' THEN                
                         next_link_state <= L1_L_IDLE;
+                        debug ("next_state : L1_L_IDLE");
                     ELSE
                         next_link_state <= LR9_L_BadEnd;
                     END IF;                                                                    
@@ -1658,6 +1933,10 @@ BEGIN
         VARIABLE TX_rd : std_logic := '0';
         VARIABLE RX_rd : std_logic := '0';
         VARIABLE crc   : std_logic_vector(31 DOWNTO 0);
+                procedure debug (constant s : in string) is
+        begin
+          report debug("") & "LINK_TX_OUT : " & s;
+        end procedure debug;
         BEGIN 
             IF link_state'EVENT THEN
                 cnt := 0;
@@ -1668,8 +1947,10 @@ BEGIN
                 CASE link_state IS
                      WHEN L1_L_IDLE => 
                          transmit_link_data <= '1';
+                         debug ("state : " & link_state_type'image(link_state));
                          CASE cnt IS 
                              WHEN 0 =>  -- SYNCp
+                             debug ("state : " & link_state_type'image(link_state) & " , cnt = 0");
                                  DATAIN(9 DOWNTO 0)   <= cK283(to_nat(TX_rd));
                                  TX_rd := new_rd(TX_rd, cK283(to_nat(TX_rd))); 
                                 encode(TX_rd, D214, DATAIN(19 DOWNTO 10));
@@ -1677,6 +1958,7 @@ BEGIN
                                 encode(TX_rd, D215, DATAIN(39 DOWNTO 30)); 
                                  cnt := cnt + 1 ;
                              WHEN 1 =>  -- SYNCp
+                             debug ("state : " & link_state_type'image(link_state) & " , cnt = 1");
                                  DATAIN(9 DOWNTO 0)   <= cK283(to_nat(TX_rd));
                                  TX_rd := new_rd(TX_rd, cK283(to_nat(TX_rd))); 
                                 encode(TX_rd, D214, DATAIN(19 DOWNTO 10));
@@ -1684,6 +1966,7 @@ BEGIN
                                 encode(TX_rd, D215, DATAIN(39 DOWNTO 30)); 
                                  cnt := cnt + 1 ;
                              WHEN 2 =>  -- CONT
+                             debug ("state : " & link_state_type'image(link_state) & " , cnt = 2");
                                  DATAIN(9 DOWNTO 0)   <= cK283(to_nat(TX_rd));
                                  TX_rd := new_rd(TX_rd, cK283(to_nat(TX_rd))); 
                                 encode(TX_rd, D105, DATAIN(19 DOWNTO 10));
@@ -1691,6 +1974,7 @@ BEGIN
                                 encode(TX_rd, D254, DATAIN(39 DOWNTO 30)); 
                                  cnt := cnt + 1 ;
                              WHEN others => -- random data      
+                             debug ("state : " & link_state_type'image(link_state) & " , cnt = others");
                                  lsfr(lsfr_state_cont, rnd_data);
                                 encode(TX_rd, rnd_data(7 DOWNTO 0)  , DATAIN(9 DOWNTO 0));
                                 encode(TX_rd, rnd_data(15 DOWNTO 8) , DATAIN(19 DOWNTO 10));
@@ -1698,8 +1982,11 @@ BEGIN
                                 encode(TX_rd, rnd_data(31 DOWNTO 24), DATAIN(39 DOWNTO 30)); 
                          END CASE; 
                     WHEN LS1_L_NoCommErr => transmit_link_data <= '0';
+                    debug ("state : " & link_state_type'image(link_state));
                        WHEN LS2_L_NoComm => transmit_link_data <= '0';
+                       debug ("state : " & link_state_type'image(link_state));
                     WHEN LS3_L_SendAlign =>         
+                    debug ("state : " & link_state_type'image(link_state));
                         transmit_link_data <= '1';   
                          DATAIN(9 DOWNTO 0)   <= cK285(to_nat(TX_rd));
                          TX_rd := new_rd(TX_rd, cK285(to_nat(TX_rd))); 
@@ -1707,10 +1994,13 @@ BEGIN
                         encode(TX_rd, D102, DATAIN(29 DOWNTO 20));
                         encode(TX_rd, D273, DATAIN(39 DOWNTO 30));                         
                      WHEN LS4_L_RESET => transmit_link_data <= '0';
+                     debug ("state : " & link_state_type'image(link_state));
                     WHEN LT1_HL_SendChkRdy =>   
+                    debug ("state : " & link_state_type'image(link_state));
                          transmit_link_data <= '1';
                          CASE cnt IS 
                              WHEN 0 =>  -- X_RDYp
+                             debug ("state : " & link_state_type'image(link_state) & " , cnt = 0");
                                  DATAIN(9 DOWNTO 0)   <= cK283(to_nat(TX_rd));
                                  TX_rd := new_rd(TX_rd, cK283(to_nat(TX_rd))); 
                                 encode(TX_rd, D215, DATAIN(19 DOWNTO 10));
@@ -1718,6 +2008,7 @@ BEGIN
                                 encode(TX_rd, D232, DATAIN(39 DOWNTO 30)); 
                                  cnt := cnt + 1 ;
                              WHEN 1 =>  -- X_RDYp
+                             debug ("state : " & link_state_type'image(link_state) & " , cnt = 1");
                                  DATAIN(9 DOWNTO 0)   <= cK283(to_nat(TX_rd));
                                  TX_rd := new_rd(TX_rd, cK283(to_nat(TX_rd))); 
                                 encode(TX_rd, D215, DATAIN(19 DOWNTO 10));
@@ -1725,6 +2016,7 @@ BEGIN
                                 encode(TX_rd, D232, DATAIN(39 DOWNTO 30)); 
                                  cnt := cnt + 1 ;
                              WHEN 2 =>  -- CONT
+                             debug ("state : " & link_state_type'image(link_state) & " , cnt = 2");
                                  DATAIN(9 DOWNTO 0)   <= cK283(to_nat(TX_rd));
                                  TX_rd := new_rd(TX_rd, cK283(to_nat(TX_rd))); 
                                 encode(TX_rd, D105, DATAIN(19 DOWNTO 10));
@@ -1732,6 +2024,7 @@ BEGIN
                                 encode(TX_rd, D254, DATAIN(39 DOWNTO 30)); 
                                  cnt := cnt + 1 ;
                              WHEN others => -- random data      
+                             debug ("state : " & link_state_type'image(link_state) & " , cnt = others");
                                  lsfr(lsfr_state_cont, rnd_data);
                                 encode(TX_rd, rnd_data(7 DOWNTO 0)  , DATAIN(9 DOWNTO 0));
                                 encode(TX_rd, rnd_data(15 DOWNTO 8) , DATAIN(19 DOWNTO 10));
@@ -1739,6 +2032,7 @@ BEGIN
                                 encode(TX_rd, rnd_data(31 DOWNTO 24), DATAIN(39 DOWNTO 30)); 
                          END CASE; 
                     WHEN LT3_L_SendSOF =>   
+                    debug ("state : " & link_state_type'image(link_state));
                          transmit_link_data <= '1';
                         DATAIN(9 DOWNTO 0)   <= cK283(to_nat(TX_rd));
                         TX_rd := new_rd(TX_rd, cK283(to_nat(TX_rd)));  
@@ -1747,6 +2041,7 @@ BEGIN
                         encode(TX_rd, D231, DATAIN(39 DOWNTO 30)); 
                         crc := X"52325032";
                        WHEN LT4_L_SendData =>  
+                       debug ("state : " & link_state_type'image(link_state));
                            transmit_link_data <= '1';                             
                            lsfr(lsfr_state_scramble, rnd_data);
                            FIS_data := TX_fifo(TX_rd_ptr);
@@ -1760,6 +2055,7 @@ BEGIN
                         encode(TX_rd, FIS_data(23 DOWNTO 16), DATAIN(29 DOWNTO 20));
                         encode(TX_rd, FIS_data(31 DOWNTO 24), DATAIN(39 DOWNTO 30));                                         
                       WHEN LT5_L_RcvrHold =>  -- HOLDA
+                      debug ("state : " & link_state_type'image(link_state));
                          transmit_link_data <= '1';
                         DATAIN(9 DOWNTO 0)   <= cK283(to_nat(TX_rd));
                         TX_rd := new_rd(TX_rd, cK283(to_nat(TX_rd)));  
@@ -1767,6 +2063,7 @@ BEGIN
                         encode(TX_rd, D214, DATAIN(29 DOWNTO 20));
                         encode(TX_rd, D214, DATAIN(39 DOWNTO 30)); 
                     WHEN LT6_L_SendHold =>  -- HOLD
+                    debug ("state : " & link_state_type'image(link_state));
                         transmit_link_data <= '1';
                          DATAIN(9 DOWNTO 0)   <= cK283(to_nat(TX_rd));
                          TX_rd := new_rd(TX_rd, cK283(to_nat(TX_rd)));                 
@@ -1774,6 +2071,7 @@ BEGIN
                         encode(TX_rd, D216, DATAIN(29 DOWNTO 20));
                         encode(TX_rd, D216, DATAIN(39 DOWNTO 30)); 
                     WHEN LT7_L_SendCRC =>
+                    debug ("state : " & link_state_type'image(link_state));
                         transmit_link_data <= '1';   
                         lsfr(lsfr_state_scramble, rnd_data);
                          crc := crc XOR rnd_data;
@@ -1782,13 +2080,16 @@ BEGIN
                         encode(TX_rd, crc(23 DOWNTO 16), DATAIN(29 DOWNTO 20));
                         encode(TX_rd, crc(31 DOWNTO 24), DATAIN(39 DOWNTO 30));                                                                
                     WHEN LT8_L_SendEOF =>                           
+                    debug ("state : " & link_state_type'image(link_state));
                         transmit_link_data <= '1';
                          DATAIN(9 DOWNTO 0)   <= cK283(to_nat(TX_rd));
                          TX_rd := new_rd(TX_rd, cK283(to_nat(TX_rd)));  
                         encode(TX_rd, D215, DATAIN(19 DOWNTO 10));
                         encode(TX_rd, D216, DATAIN(29 DOWNTO 20));
                         encode(TX_rd, D216, DATAIN(39 DOWNTO 30));                     
+                        debug ("state : " & link_state_type'image(link_state));
                     WHEN LT9_L_Wait => -- WTRM    
+                    debug ("state : " & link_state_type'image(link_state));
                         transmit_link_data <= '1';
                          DATAIN(9 DOWNTO 0)   <= cK283(to_nat(TX_rd));
                          TX_rd := new_rd(TX_rd, cK283(to_nat(TX_rd)));
@@ -1797,9 +2098,11 @@ BEGIN
                         encode(TX_rd, D242, DATAIN(39 DOWNTO 30)); 
                         TP_transmission_status <= '1';                                            
                     WHEN LR1_L_RcvChkRdy =>
+                    debug ("state : " & link_state_type'image(link_state));
                          transmit_link_data <= '1';
                          CASE cnt IS 
                              WHEN 0 =>  -- R_RDYp
+                             debug ("state : " & link_state_type'image(link_state) & " , cnt = 0");
                                  DATAIN(9 DOWNTO 0)   <= cK283(to_nat(TX_rd));
                                  TX_rd := new_rd(TX_rd, cK283(to_nat(TX_rd))); 
                                 encode(TX_rd, D214, DATAIN(19 DOWNTO 10));
@@ -1807,6 +2110,7 @@ BEGIN
                                 encode(TX_rd, D102, DATAIN(39 DOWNTO 30));                     
                                  cnt := cnt + 1 ;
                              WHEN 1 =>  -- R_RDYp
+                             debug ("state : " & link_state_type'image(link_state) & " , cnt = 1");
                                  DATAIN(9 DOWNTO 0)   <= cK283(to_nat(TX_rd));
                                  TX_rd := new_rd(TX_rd, cK283(to_nat(TX_rd))); 
                                 encode(TX_rd, D214, DATAIN(19 DOWNTO 10));
@@ -1814,6 +2118,7 @@ BEGIN
                                 encode(TX_rd, D102, DATAIN(39 DOWNTO 30));                     
                                  cnt := cnt + 1 ;
                              WHEN 2 =>  -- CONT
+                             debug ("state : " & link_state_type'image(link_state) & " , cnt = 2");
                                  DATAIN(9 DOWNTO 0)   <= cK283(to_nat(TX_rd));
                                  TX_rd := new_rd(TX_rd, cK283(to_nat(TX_rd))); 
                                 encode(TX_rd, D105, DATAIN(19 DOWNTO 10));
@@ -1821,6 +2126,7 @@ BEGIN
                                 encode(TX_rd, D254, DATAIN(39 DOWNTO 30)); 
                                  cnt := cnt + 1 ;
                              WHEN others => -- random data      
+                             debug ("state : " & link_state_type'image(link_state) & " , cnt = others");
                                  lsfr(lsfr_state_cont, rnd_data);
                                 encode(TX_rd, rnd_data(7 DOWNTO 0)  , DATAIN(9 DOWNTO 0));
                                 encode(TX_rd, rnd_data(15 DOWNTO 8) , DATAIN(19 DOWNTO 10));
@@ -1828,9 +2134,11 @@ BEGIN
                                 encode(TX_rd, rnd_data(31 DOWNTO 24), DATAIN(39 DOWNTO 30)); 
                          END CASE;                     
                     WHEN LR2_L_RcvWaitFifo => 
+                    debug ("state : " & link_state_type'image(link_state));
                          transmit_link_data <= '1';
                          CASE cnt IS 
                              WHEN 0 =>  -- SYNCp
+                             debug ("state : " & link_state_type'image(link_state) & " , cnt = 0");
                                  DATAIN(9 DOWNTO 0)   <= cK283(to_nat(TX_rd));
                                  TX_rd := new_rd(TX_rd, cK283(to_nat(TX_rd))); 
                                 encode(TX_rd, D214, DATAIN(19 DOWNTO 10));
@@ -1838,6 +2146,7 @@ BEGIN
                                 encode(TX_rd, D215, DATAIN(39 DOWNTO 30)); 
                                  cnt := cnt + 1 ;
                              WHEN 1 =>  -- SYNCp
+                             debug ("state : " & link_state_type'image(link_state) & " , cnt = 1");
                                  DATAIN(9 DOWNTO 0)   <= cK283(to_nat(TX_rd));
                                  TX_rd := new_rd(TX_rd, cK283(to_nat(TX_rd))); 
                                 encode(TX_rd, D214, DATAIN(19 DOWNTO 10));
@@ -1845,6 +2154,7 @@ BEGIN
                                 encode(TX_rd, D215, DATAIN(39 DOWNTO 30)); 
                                  cnt := cnt + 1 ;
                              WHEN 2 =>  -- CONT
+                             debug ("state : " & link_state_type'image(link_state) & " , cnt = 2");
                                  DATAIN(9 DOWNTO 0)   <= cK283(to_nat(TX_rd));
                                  TX_rd := new_rd(TX_rd, cK283(to_nat(TX_rd))); 
                                 encode(TX_rd, D105, DATAIN(19 DOWNTO 10));
@@ -1852,6 +2162,7 @@ BEGIN
                                 encode(TX_rd, D254, DATAIN(39 DOWNTO 30)); 
                                  cnt := cnt + 1 ;
                              WHEN others => -- random data      
+                             debug ("state : " & link_state_type'image(link_state) & " , cnt = others");
                                  lsfr(lsfr_state_cont, rnd_data);
                                 encode(TX_rd, rnd_data(7 DOWNTO 0)  , DATAIN(9 DOWNTO 0));
                                 encode(TX_rd, rnd_data(15 DOWNTO 8) , DATAIN(19 DOWNTO 10));
@@ -1859,6 +2170,7 @@ BEGIN
                                 encode(TX_rd, rnd_data(31 DOWNTO 24), DATAIN(39 DOWNTO 30)); 
                          END CASE;                     
                     WHEN LR3_L_RcvData => --R_IP
+                    debug ("state : " & link_state_type'image(link_state));
                         transmit_link_data <= '1';
                          DATAIN(9 DOWNTO 0)   <= cK283(to_nat(TX_rd));
                          TX_rd := new_rd(TX_rd, cK283(to_nat(TX_rd))); 
@@ -1866,6 +2178,7 @@ BEGIN
                         encode(TX_rd, D212, DATAIN(29 DOWNTO 20));
                         encode(TX_rd, D212, DATAIN(39 DOWNTO 30)); 
                     WHEN LR4_L_Hold => --HOLD
+                    debug ("state : " & link_state_type'image(link_state));
                         transmit_link_data <= '1';
                          DATAIN(9 DOWNTO 0)   <= cK283(to_nat(TX_rd));
                          TX_rd := new_rd(TX_rd, cK283(to_nat(TX_rd))); 
@@ -1873,6 +2186,7 @@ BEGIN
                         encode(TX_rd, D216, DATAIN(29 DOWNTO 20));
                         encode(TX_rd, D216, DATAIN(39 DOWNTO 30)); 
                     WHEN LR5_L_SendHold => --HOLDA   
+                    debug ("state : " & link_state_type'image(link_state));
                         transmit_link_data <= '1';
                          DATAIN(9 DOWNTO 0)   <= cK283(to_nat(TX_rd));
                          TX_rd := new_rd(TX_rd, cK283(to_nat(TX_rd))); 
@@ -1880,6 +2194,7 @@ BEGIN
                         encode(TX_rd, D214, DATAIN(29 DOWNTO 20));
                         encode(TX_rd, D214, DATAIN(39 DOWNTO 30)); 
                     WHEN LR6_L_RcvEOF => --R_IP
+                    debug ("state : " & link_state_type'image(link_state));
                         transmit_link_data <= '1';
                          DATAIN(9 DOWNTO 0)   <= cK283(to_nat(TX_rd));
                          TX_rd := new_rd(TX_rd, cK283(to_nat(TX_rd))); 
@@ -1887,6 +2202,7 @@ BEGIN
                         encode(TX_rd, D212, DATAIN(29 DOWNTO 20));
                         encode(TX_rd, D212, DATAIN(39 DOWNTO 30)); 
                     WHEN LR7_L_GoodCRC => --R_IP
+                    debug ("state : " & link_state_type'image(link_state));
                         transmit_link_data <= '1';
                          DATAIN(9 DOWNTO 0)   <= cK283(to_nat(TX_rd));
                          TX_rd := new_rd(TX_rd, cK283(to_nat(TX_rd))); 
@@ -1894,6 +2210,7 @@ BEGIN
                         encode(TX_rd, D212, DATAIN(29 DOWNTO 20));
                         encode(TX_rd, D212, DATAIN(39 DOWNTO 30)); 
                     WHEN LR8_L_GoodEnd => --R_OK
+                    debug ("state : " & link_state_type'image(link_state));
                         transmit_link_data <= '1';
                          DATAIN(9 DOWNTO 0)   <= cK283(to_nat(TX_rd));
                          TX_rd := new_rd(TX_rd, cK283(to_nat(TX_rd))); 
@@ -1901,6 +2218,7 @@ BEGIN
                         encode(TX_rd, D211, DATAIN(29 DOWNTO 20));
                         encode(TX_rd, D211, DATAIN(39 DOWNTO 30)); 
                     WHEN LR9_L_BadEnd => --R_ERR                    
+                    debug ("state : " & link_state_type'image(link_state));
                         transmit_link_data <= '1';
                          DATAIN(9 DOWNTO 0)   <= cK283(to_nat(TX_rd));
                          TX_rd := new_rd(TX_rd, cK283(to_nat(TX_rd))); 
@@ -1916,6 +2234,10 @@ BEGIN
         LINK_RX_DEC : PROCESS(RXCLOCK)
         VARIABLE RX_rd : std_logic := '0';
         VARIABLE temp  : std_logic_vector(9 DOWNTO 0);
+        procedure debug (constant s : in string) is
+        begin
+          report debug("") & "LINK_RX_DEC : " & s;
+        end procedure debug;
         BEGIN                   
             IF rising_edge(RXCLOCK) THEN
                     temp := decode(RX_rd, DATAOUT(9 DOWNTO 0));  
@@ -1923,24 +2245,28 @@ BEGIN
                 link_err(0) <= temp(8);
                 link_ctrl(0) <= temp(9);
                 link_data(7 DOWNTO 0) <= temp(7 DOWNTO 0);
-            
+                debug ("link(0) , data 7-0");
+                
                     temp := decode(RX_rd, DATAOUT(19 DOWNTO 10));
                     RX_rd := new_rd(RX_rd, DATAOUT(19 DOWNTO 10));
                     link_err(1) <= temp(8);
                 link_ctrl(1) <= temp(9);
                 link_data(15 DOWNTO 8) <= temp(7 DOWNTO 0);
-
+                debug ("link(1) , data 15-8");
+                
                     temp := decode(RX_rd, DATAOUT(29 DOWNTO 20));
                     RX_rd := new_rd(RX_rd, DATAOUT(29 DOWNTO 20));
                     link_err(2) <= temp(8);
                 link_ctrl(2) <= temp(9);
                 link_data(23 DOWNTO 16) <= temp(7 DOWNTO 0);
-
+                debug ("link(2) , data 23-16");
+                
                     temp := decode(RX_rd, DATAOUT(39 DOWNTO 30));
                     RX_rd := new_rd(RX_rd, DATAOUT(39 DOWNTO 30));
                     link_err(3) <= temp(8);
                 link_ctrl(3) <= temp(9);
                 link_data(31 DOWNTO 24) <= temp(7 DOWNTO 0);
+                debug ("link(3) , data 31-24");
                                   
             END IF;
 
@@ -1950,9 +2276,14 @@ BEGIN
             
         PRIM_DEC : PROCESS (link_data, link_ctrl, link_err)
         VARIABLE cont : std_logic := '0';                         
+        procedure debug (constant s : in string) is
+        begin
+          report debug("") & "PRIM_DEC : " & s;
+        end procedure debug;
         BEGIN    
             IF link_ctrl = "0001" AND link_err = "0000" THEN          
                 IF link_data = (D215 & D215 & D214 & K283) THEN  -- SYNC                  
+                debug ("link_data = SYNC");
                     SYNCp <= '1';  
                     CONTp <= '0';
                     R_OKp <= '0';
@@ -1960,54 +2291,65 @@ BEGIN
                     WTRMp <= '0';                        
                     cont := '0';
                 ELSIF link_data = (D232 & D232 & D215 & K283) THEN   -- X_RDY
+                debug ("link_data = X_RDY");
                     X_RDYp <= '1';
                     CONTp <= '0';
                     SYNCp <= '0';                    
                     cont := '0';
                 ELSIF link_data = (D102 & D102 & D214 & K283) THEN   -- R_RDY
+                debug ("link_data = R_RDY");
                     R_RDYp <= '1';
                     CONTp <= '0';    
                     SYNCp <= '0';                                            
                     cont := '0';
                 ELSIF link_data = (D231 & D231 & D215 & K283) THEN    -- SOF  
+                debug ("link_data = SOF");
                     SOFp <= '1';
                     CONTp <= '0'; 
                     X_RDYp <= '0';                        
                     cont := '0';
                 ELSIF link_data = (D216 & D216 & D215 & K283) THEN     -- EOF
+                debug ("link_data = EOF");
                     EOFp <= '1';
                     CONTp <= '0';                        
                     cont := '0';             
                 ELSIF link_data = (D242 & D242 & D215 & K283) THEN     -- WTRM     
+                debug ("link_data = WTRM");
                     EOFp <= '0';
                     WTRMp <= '1';
                     CONTp <= '0';                        
                     cont := '0';              
                 ELSIF link_data = (D212 & D212 & D215 & K283) THEN       -- R_IP   
+                debug ("link_data = R_IP");
                     R_IPp <= '1'; 
                     R_RDYp <= '0';  
                     HOLDp      <= '0';        
                     CONTp <= '0';    
                     cont := '0'; 
                 ELSIF link_data = (D211 & D211 & D215 & K283) THEN        -- R_OK
+                debug ("link_data = R_OK");
                     R_OKp <= '1';    
                     R_IPp <= '0';
                     CONTp <= '0';    
                     cont := '0';             
                 ELSIF link_data = (D216 & D216 & D105 & K283) THEN        -- HOLD
+                debug ("link_data = HOLD");
                     HOLDp <= '1';    
                     R_IPp <= '0';
                     CONTp <= '0';    
                     cont := '0';             
                 ELSIF link_data = (D214 & D214 & D105 & K283) THEN        -- HOLDA
+                debug ("link_data = HOLDA");
                     HOLDAp <= '1';    
                     CONTp <= '0';    
                     cont := '0';             
                 ELSIF link_data = (D254 & D254 & D105 & K283) THEN         -- CONT  
+                debug ("link_data = CONT");
                     CONTp <= '1';    
                     cont := '1';
                 ELSE           
                     IF cont = '0' THEN
+                        debug ("link_data = others , cont = 0");
                         CONTp     <= '0';    
                         DMATp      <= '0';
                         EOFp      <= '0';    
@@ -2029,6 +2371,7 @@ BEGIN
                 END IF;     
             ELSE                        -- non primitive word
                 IF cont = '0' THEN
+                debug ("link_data = X , cont = 0");
                     CONTp     <= '0';    
                     DMATp      <= '0';
                     EOFp      <= '0';    
@@ -2057,6 +2400,10 @@ BEGIN
         VARIABLE rnd_data : std_logic_vector(31 DOWNTO 0);
         VARIABLE tmp : std_logic_vector(31 DOWNTO 0); 
         VARIABLE FIS_ERROR : BOOLEAN;
+        procedure debug (constant s : in string) is
+        begin
+          report debug("") & "DESCRAMBLE : " & s;
+        end procedure debug;
         BEGIN                  
             IF rising_edge(SYSTEMCLOCK) THEN
                 IF SOFp = '1' THEN
@@ -2064,6 +2411,7 @@ BEGIN
 --                    rcv_fifo_write <= '1', '0' AFTER 1 ps;
                     link_FIS_state <= FIS_SOF;
                     FIS_ERROR := FALSE;
+                    debug ("link_FIS_state = FIS_SOF");
                 END IF;
                 IF (link_state = LR3_L_RcvData AND next_link_state = LR3_L_RcvData AND HOLDAp = '0') OR
                     (link_state = LR3_L_RcvData AND next_link_state = LR4_L_Hold) OR 
@@ -2074,6 +2422,7 @@ BEGIN
                        link_FIS_data <= tmp;  
                        link_crc <= crc;                    
                     link_FIS_state <= FIS_PAYLOAD;      
+                    debug ("link_FIS_state = FIS_PAYLOAD");
                     IF link_err /= "0000" THEN
                         FIS_ERROR := TRUE;
                     END IF;
@@ -2081,14 +2430,17 @@ BEGIN
                 END IF;                         
                 IF link_state = LR6_L_RcvEOF THEN     
                         link_FIS_state <= FIS_EOF;
+                        debug ("link_FIS_state = FIS_EOF");
                     link_FIS_data <= crc;
                     link_crc <= crc;
 --                    rcv_fifo_write <= '1', '0' AFTER 1 ps;  
                     TP_FIS_end <= '1', '0' AFTER 1 ps;
                     IF FIS_ERROR OR crc_check = '0' THEN
                         TP_FIS_OK <= '0';
+                        debug ("TP_FIS_OK = 0");
                     ELSE
                         TP_FIS_OK <= '1';
+                        debug ("TP_FIS_OK = 1");
                     END IF;
                 END IF;
             END IF;
@@ -2141,6 +2493,10 @@ BEGIN
 
         TRX_FIFO : PROCESS(tr_fifo_read, tr_fifo_write, RESET)
         VARIABLE dist : INTEGER := 0;
+        procedure debug (constant s : in string) is
+        begin
+          report debug("") & "TRX_FIFO : " & s;
+        end procedure debug;
         BEGIN                                                          
             IF rising_edge(RESET) THEN
                 TX_rd_ptr <= 0;
@@ -2158,6 +2514,7 @@ BEGIN
                 dist := dist - 1;
                 IF dist = 0 THEN
                     TX_fifo_empty <= '1'; 
+                    debug ("TX_fifo_empty = 1");
                     TP_frame_end <= '1', '0' AFTER 40 * TXPERIOD;
                 END IF;
                 TX_fifo_full <= '0';                
@@ -2171,6 +2528,7 @@ BEGIN
                 dist := dist + 1;
                 IF dist = (FIFO_SIZE - 1) THEN
                     TX_fifo_full <= '1';
+                    debug ("TX_fifo_full = 1");
                 END IF;
                 TX_fifo_empty <= '0';     
                 TX_fifo(TX_wr_ptr) <= TP_dataout;                        
@@ -2196,55 +2554,77 @@ BEGIN
 
         TP_NXT_STATE : PROCESS(TP_state, SOFp, EOFp, TP_cmd_req, TX_fifo_empty,
                             TP_transmission_status, R_OKp, R_ERRp) 
+        procedure debug (constant s : in string) is
+        begin
+          report debug("") & "TP_NXT_STATE : " & s;
+        end procedure debug;
         BEGIN                    
             CASE TP_state IS
                 WHEN HT_HostIdle =>
+                debug ("state : " & TP_state_type'image(TP_state));
                     IF SOFp = '1' THEN                                 
                         next_TP_state <= TP_SOF;                       
+                        debug ("next_state : TP_SOF");
                     ELSIF TP_cmd_req = '1' THEN  
                         next_TP_state <= HT_CmdFIS;                  
+                        debug ("next_state : HT_CmdFIS");
                     ELSE    
                         next_TP_state <= HT_HostIdle;
                     END IF;
                 -- decompose states
                 WHEN TP_SOF =>
                        next_TP_state <= HT_ChkTyp;                           
+                       debug ("state : " & TP_state_type'image(TP_state));
                 WHEN HT_ChkTyp =>
+                debug ("state : " & TP_state_type'image(TP_state));
                     CASE link_FIS_data(7 DOWNTO 0) IS 
                         WHEN FISt_reg_d2h     =>
                             ASSERT FALSE REPORT "HOST: Register FIS - Device to Host" SEVERITY NOTE;
                             next_TP_state <= HT_RegFIS;
+                            debug ("next_state : HT_RegFIS");
                         WHEN FISt_pio_setup     =>
                             ASSERT FALSE REPORT "HOST: PIO Setup - Device to Host" SEVERITY NOTE;
                             next_TP_state <= HT_PS_FIS;
+                            debug ("next_state : HT_PS_FIS");
                         WHEN others =>
                             ASSERT FALSE REPORT "HOST: ERROR !!!!!! Unexpected FIS type" SEVERITY NOTE;                        
                             next_TP_state <= HT_HostIdle;
+                            debug ("next_state : HT_HostIdle");
                     END CASE;
                 WHEN HT_RegFIS =>
+                debug ("state : " & TP_state_type'image(TP_state));
                     IF EOFp = '1' THEN
                         next_TP_state <= HT_HostIdle;
+                        debug ("next_state : HT_HostIdle");
                     ELSE
                         next_TP_state <= HT_RegFIS;
                     END IF;          
                 WHEN HT_PS_FIS =>
+                debug ("state : " & TP_state_type'image(TP_state));
                     IF EOFp = '1' THEN
                         next_TP_state <= HT_HostIdle;
+                        debug ("next_state : HT_HostIdle");
                     ELSE
                         next_TP_state <= HT_RegFIS;
+                        debug ("next_state : HT_RegFIS");
                     END IF;                                                          
                 -- transmit states
                 WHEN HT_CmdFIS =>
+                debug ("state : " & TP_state_type'image(TP_state));
                     IF TX_fifo_empty = '1' THEN
                         next_TP_state <= HT_CmdFIS_TransStatus;
+                        debug ("next_state : HT_CmdFIS_TransStatus");
                     ELSE
                         next_TP_state <= HT_CmdFIS;
                     END IF;                            
                 WHEN HT_CmdFIS_TransStatus =>
+                debug ("state : " & TP_state_type'image(TP_state));
                     IF TP_transmission_status = '1' AND R_OKp = '1' THEN
                         next_TP_state <= HT_HostIdle;
+                        debug ("next_state : HT_HostIdle");
                     ELSIF TP_transmission_status = '1' AND R_ERRp = '1' THEN
                         next_TP_state <= HT_CmdFIS;                      
+                        debug ("next_state : HT_CmdFIS");
                     ELSE 
                         next_TP_state <= HT_CmdFIS_TransStatus;                        
                     END IF;                                                
@@ -2256,6 +2636,10 @@ BEGIN
         TP_CTRL_GEN : PROCESS (TP_state, SYSTEMCLOCK)
         VARIABLE cnt : INTEGER := 0;
         VARIABLE rcv_err : BOOLEAN;
+        procedure debug (constant s : in string) is
+        begin
+          report debug("") & "TP_CTRL_GEN : " & s;
+        end procedure debug;
         BEGIN                   
             IF TP_state'EVENT THEN
                 cnt := 0; 
@@ -2263,81 +2647,99 @@ BEGIN
             IF TP_state'EVENT OR (rising_edge(SYSTEMCLOCK)) THEN -- AND next_TP_state = TP_state) THEN
                 CASE TP_state IS
                     WHEN HT_HostIdle =>
+                    debug ("state : " & TP_state_type'image(TP_state));
                     WHEN TP_SOF =>
+                    debug ("state : " & TP_state_type'image(TP_state));
                         TP_result <= GOOD;
                         rcv_err := FALSE;
                     WHEN HT_ChkTyp =>
+                    debug ("state : " & TP_state_type'image(TP_state));
                         IF link_err /= "0000" THEN
                             rcv_err := TRUE;
                         END IF;     
                         IF link_FIS_data(7 DOWNTO 0) = FISt_reg_d2h  THEN
+                        debug ("link_FIS_data = FISt_reg_d2h");
                             CommandReg := link_FIS_data(23 DOWNTO 16);
                             FeaturesReg(7 DOWNTO 0) := link_FIS_data(31 DOWNTO 24);
                             Ibit <= link_FIS_data(14);
                         END IF; 
                         
                     WHEN HT_RegFIS =>
+                    debug ("state : " & TP_state_type'image(TP_state));
                         IF link_err /= "0000" THEN
                             rcv_err := TRUE;
                         ELSE
                             CASE cnt IS 
                                 WHEN 0 =>
+                                debug ("state : " & TP_state_type'image(TP_state) & " , cnt = 0 , SNR7-0 , CLR7-0 , CHR7-0 , DHR 7-0");
                                     SectorNumberReg(7 DOWNTO 0) := link_FIS_data(7 DOWNTO 0);
                                     CylinderLowReg(7 DOWNTO 0) := link_FIS_data(15 DOWNTO 8);
                                     CylinderHighReg(7 DOWNTO 0) := link_FIS_data(23 DOWNTO 16);
                                     DeviceHeadReg(7 DOWNTO 0) := link_FIS_data(31 DOWNTO 24);    
                                     cnt := cnt + 1;
                                 WHEN 1 =>
+                                debug ("state : " & TP_state_type'image(TP_state) & " , cnt = 1 , SNR15-8 , CLR15-8 , CHR15-8 , FR 15-8");
                                     SectorNumberReg(15 DOWNTO 8) := link_FIS_data(7 DOWNTO 0);
                                     CylinderLowReg(15 DOWNTO 8) := link_FIS_data(15 DOWNTO 8);
                                     CylinderHighReg(15 DOWNTO 8) := link_FIS_data(23 DOWNTO 16);
                                     FeaturesReg(15 DOWNTO 8) := link_FIS_data(31 DOWNTO 24);
                                     cnt := cnt + 1;
                                 WHEN 2 =>
+                                debug ("state : " & TP_state_type'image(TP_state) & " , cnt = 2 , SCR7-0 , SCR15-8 , DCR");
                                     SectorCountReg(7 DOWNTO 0) := link_FIS_data(7 DOWNTO 0);
                                     SectorCountReg(15 DOWNTO 8) := link_FIS_data(15 DOWNTO 8);
                                     DeviceControlReg := link_FIS_data(31 DOWNTO 24);
                                     cnt := cnt + 1;
                                 WHEN 3 =>
                                     cnt := cnt + 1;
+                                    debug ("state : " & TP_state_type'image(TP_state) & " , cnt = 3");
                                 WHEN 4 =>
                                     IF rcv_err THEN     
                                         TP_result <= ERR;
+                                        debug ("state : " & TP_state_type'image(TP_state) & " , cnt = 4 , TP_result = ERR");
                                     ELSE
                                         TP_result <= GOOD;
+                                        debug ("state : " & TP_state_type'image(TP_state) & " , cnt = 4 , TP_result = GOOD");
                                     END IF;
                                 WHEN others =>                                                                
                             END CASE;                        
                         END IF;
                     -- transmit states                                                    
                     WHEN HT_CmdFIS =>
+                    debug ("state : " & TP_state_type'image(TP_state));
                         CASE cnt IS
                             WHEN 0 =>
                                 TP_dataout <= FeaturesReg(7 DOWNTO 0) & CommandReg & Cbit & "0000000" & FISt_reg_h2d; 
                                 tr_fifo_write <= '1', '0' AFTER 1 ps;
                                 cnt := cnt + 1;
+                                debug ("state : " & TP_state_type'image(TP_state) & " , cnt = 0 , transmit FeaturesReg7-0,CommandReg,Cbit,0000000,FISt_reg_h2d");
                             WHEN 1 =>
                                    TP_dataout <= DeviceHeadReg & CylinderHighReg(7 DOWNTO 0) 
                                             & CylinderLowReg(7 DOWNTO 0) & SectorNumberReg(7 DOWNTO 0); 
                                 tr_fifo_write <= '1', '0' AFTER 1 ps;
                                 cnt := cnt + 1;
+                                debug ("state : " & TP_state_type'image(TP_state) & " , cnt = 0 , transmit DeviceHeadReg,CylinderHighReg7-0,CylinderLowReg7-0,SectorNumberReg7-0");
                             WHEN 2 =>    
                                 TP_dataout <= X"00" & CylinderHighReg(15 DOWNTO 8) 
                                             & CylinderLowReg(15 DOWNTO 8) & SectorNumberReg(15 DOWNTO 8); 
                                 tr_fifo_write <= '1', '0' AFTER 1 ps;
                                 cnt := cnt + 1;
+                                debug ("state : " & TP_state_type'image(TP_state) & " , cnt = 0 , transmit 00,CylinderHighReg15-8,CylinderLowReg15-8,SectorNumberReg15-8");
                             WHEN 3 =>    
                                 TP_dataout <= X"00" & X"00" 
                                             & SectorCountReg(15 DOWNTO 8) & SectorCountReg(7 DOWNTO 0); 
                                 tr_fifo_write <= '1', '0' AFTER 1 ps;
                                 cnt := cnt + 1;
+                                debug ("state : " & TP_state_type'image(TP_state) & " , cnt = 0 , transmit 00,00,SectorCountReg15-8,SectorCountReg7-0");
                             WHEN 4 =>    
                                 TP_dataout <= X"00" & X"00" & X"00" & X"00";
                                 tr_fifo_write <= '1', '0' AFTER 1 ps;
                                 cnt := cnt + 1;
+                                debug ("state : " & TP_state_type'image(TP_state) & " , cnt = 0 , transmit 00,00,00,00");
                             WHEN others =>
                         END CASE;
                     WHEN HT_CmdFIS_TransStatus =>
+                    debug ("state : " & TP_state_type'image(TP_state));
                      WHEN others =>
                  END CASE;    
              END IF;    
@@ -2349,7 +2751,8 @@ BEGIN
         VARIABLE write_arg : write_arg_type;
         VARIABLE buf       : LINE;
         VARIABLE ind       : NATURAL := 0;    
-   
+        VARIABLE comment   : STRING (1 to 80);
+        
           FILE command_file  : TEXT IS command_file_name; -- VHDL-93    
 
         BEGIN   
@@ -2357,20 +2760,23 @@ BEGIN
                 ind := 0;   
                 WHILE (not ENDFILE (command_file)) LOOP
                     READLINE (command_file, buf);
-                    IF buf(1) = '#' OR buf(1) = ' ' THEN
+                    READ (buf, comment(1 to buf'length));
+                    IF (comment(1) = '#' AND comment(2) = ' ') OR comment(1) = ' ' THEN
+                        report "OMIT COMMENT - [ " & comment (1 to comment'length) & " ]";
+                        comment := (others => ' ');
                         NEXT;
                     END IF; 
-                    write_arg.op        := buf(1 to 5);
+                    write_arg.op        := comment(1 to 5);
                     CASE write_arg.op IS
                         WHEN "REM  " =>
                             report "REM";
                             write_arg.Data0 := 0;
                             write_arg.Data1 := 0;
                             write_arg.Data2 := 0;                                                    
-                            write_arg.Remark := buf(5 to 44);
+                            write_arg.Remark := comment(5 to 44);
                         WHEN "WAIT " =>
                             report "WAIT";
-                            write_arg.Data0 := h(buf(7 to 10));
+                            write_arg.Data0 := h(comment(7 to 10));
                             write_arg.Data1 := 0;
                             write_arg.Data2 := 0;                                                    
                             write_arg.Remark(1 TO 4) := "WAIT"; 
@@ -2383,15 +2789,15 @@ BEGIN
                             write_arg.Remark(1 TO 5) := "RGFIS";
                         WHEN "READ " =>
                             report "READ";
-                            write_arg.Data0 := h(buf(7 to 7));
-                            write_arg.Data1 := h(buf(9 to 9));
-                            write_arg.Data2 := h(buf(11 to 14));                                                    
+                            write_arg.Data0 := h(comment(7 to 7));
+                            write_arg.Data1 := h(comment(9 to 9));
+                            write_arg.Data2 := h(comment(11 to 14));                                                    
                             write_arg.Remark(1 TO 4) := "READ";
                         WHEN "WRITE" =>
                             report "WRITE";
-                            write_arg.Data0 := h(buf(7 to 7));  
-                            write_arg.Data1 := h(buf(9 to 9));  
-                            write_arg.Data2 := h(buf(11 to 14));                                                    
+                            write_arg.Data0 := h(comment(7 to 7));  
+                            write_arg.Data1 := h(comment(9 to 9));  
+                            write_arg.Data2 := h(comment(11 to 14));                                                    
                             write_arg.Remark(1 TO 5) := "WRITE";
                         WHEN others =>
                             ASSERT FALSE REPORT "Unknown instruction in command file";
@@ -2423,42 +2829,54 @@ BEGIN
                 write_arg := inst(exe_ind);
                 CASE write_arg.op IS
                     WHEN "REM  " =>
-                        ASSERT FALSE REPORT write_arg.Remark SEVERITY NOTE;                    
+                        ASSERT FALSE REPORT "REM " & write_arg.Remark SEVERITY NOTE;                    
                     WHEN "WAIT " =>
+                        report "WAIT FOR " & integer'image (write_arg.Data0) & " ITERATIONS / 1ns step";
                         FOR i IN 1 TO write_arg.Data0 LOOP
                             WAIT FOR 1 ns;
                         END LOOP;
                     WHEN "RGFIS" =>                  
+                        report "RGFIS";
                         TP_cmd_req <= '1', '0' AFTER 80 * TXPERIOD;
+                        report "TP_cmd_req = 1";
                         WAIT UNTIL TX_fifo_empty = '1';                
+                        report "TX_fifo_empty = 0";
                     WHEN "READ " =>                  
                         CS := write_arg.Data0;
                         ADDR := write_arg.Data1;
                         DATA := write_arg.Data2;
                         ASSERT FALSE REPORT "CMD_EXE: READ " & 
-                                            "CS: " & to_hex_str(CS) &
-                                            "Addr: " & to_hex_str(ADDR) & 
-                                            "Data: " & to_hex_str(DATA) SEVERITY NOTE;
-                        IF CS = 0 THEN               
+                                            "   CS: " & to_hex_str(CS) &
+                                            " , Addr: " & to_hex_str(ADDR) & 
+                                            " , Data: " & to_hex_str(DATA) SEVERITY NOTE;
+                        IF CS = 0 THEN
                             CASE ADDR IS
                                 WHEN 0 =>
                                     temp := to_nat(RdDataPortReg);    
+                                    report "RdDataPortReg " & to_hex_str(temp);
                                 WHEN 1 =>                      
                                     temp := to_nat(ErrorReg); 
+                                    report "ErrorReg " & to_hex_str(temp);
                                 WHEN 2 =>
                                     temp := to_nat(SectorCountReg); 
+                                    report "SectorCountReg " & to_hex_str(temp);
                                 WHEN 3 =>
                                     temp := to_nat(SectorNumberReg); 
+                                    report "SectorNumberReg " & to_hex_str(temp);
                                 WHEN 4 =>
                                     temp := to_nat(CylinderLowReg); 
+                                    report "CylinderLowReg " & to_hex_str(temp);
                                 WHEN 5 =>
                                     temp := to_nat(CylinderHighReg); 
+                                    report "CylinderHighReg " & to_hex_str(temp);
                                 WHEN 6 =>
                                     temp := to_nat(DeviceHeadReg); 
+                                    report "DeviceHeadReg " & to_hex_str(temp);
                                 WHEN 7 =>
                                     temp := to_nat(StatusReg); 
+                                    report "StatusReg " & to_hex_str(temp);
                                 WHEN others =>
-                                    ASSERT FALSE REPORT "CMD_EXE: WRITE, wrong address";                            
+                                    ASSERT FALSE REPORT "CMD_EXE: READ, wrong address - " & natural'image (ADDR);                            
                             END CASE;           
                             ASSERT temp = DATA REPORT "Read: " & to_hex_str(temp) &
                                                       "Expected: " & to_hex_str(DATA);
@@ -2466,15 +2884,16 @@ BEGIN
                             CASE ADDR IS
                                 WHEN 6 =>
                                     temp := to_nat(AlternateStatusReg);    
+                                    report "AlternateStatusReg " & to_hex_str(temp);
                                     ASSERT temp = DATA REPORT "Read: " & to_hex_str(temp) &
                                                               "Expected: " & to_hex_str(DATA);
                                 WHEN 0 | 1 | 2 | 3 | 4 | 5 | 7  =>                      
-                                    ASSERT FALSE REPORT "CMD_EXE: WRITE, address not used" SEVERITY NOTE;                                                            
+                                    ASSERT FALSE REPORT "CMD_EXE: READ, address not used - " & natural'image (ADDR) SEVERITY NOTE;                                                            
                                 WHEN others =>
-                                    ASSERT FALSE REPORT "CMD_EXE: WRITE, wrong address";                                                            
+                                    ASSERT FALSE REPORT "CMD_EXE: READ, wrong address";                                                            
                             END CASE;
                         ELSE   
-                            ASSERT FALSE REPORT "CMD_EXE: WRITE, wrong chip select";                            
+                            ASSERT FALSE REPORT "CMD_EXE: READ, wrong chip select";                            
                         END IF;
                         
                     WHEN "WRITE" =>                                                         
@@ -2482,37 +2901,55 @@ BEGIN
                         ADDR := write_arg.Data1;
                         DATA := write_arg.Data2;
                         ASSERT FALSE REPORT "CMD_EXE: WRITE " & 
-                                            "CS: " & to_hex_str(CS) &
-                                            "Addr: " & to_hex_str(ADDR) & 
-                                            "Write Data: " & to_hex_str(DATA) SEVERITY NOTE;
+                                            "   CS: " & to_hex_str(CS) &
+                                            " , Addr: " & to_hex_str(ADDR) & 
+                                            " , Write Data: " & to_hex_str(DATA) SEVERITY NOTE;
                         IF CS = 0 THEN               
                             CASE ADDR IS
                                 WHEN 0 =>
                                     WrDataPortReg := to_slv(DATA,16);    
+                                    report "WrDataPortReg " & to_hex_str(WrDataPortReg);
                                     Cbit <= '0';
+                                    report "Cbit = 0";
                                 WHEN 1 =>                      
                                     FeaturesReg := to_slv(DATA,16); 
+                                    report "FeaturesReg " & to_hex_str(FeaturesReg);
                                     Cbit <= '0';
+                                    report "Cbit = 0";
                                 WHEN 2 =>
                                     SectorCountReg := to_slv(DATA,16); 
+                                    report "SectorCountReg " & to_hex_str(SectorCountReg);
                                     Cbit <= '0';
+                                    report "Cbit = 0";
                                 WHEN 3 =>
                                     SectorNumberReg := to_slv(DATA,16); 
+                                    report "SectorNumberReg " & to_hex_str(SectorNumberReg);
                                     Cbit <= '0';
+                                    report "Cbit = 0";
                                 WHEN 4 =>
                                     CylinderLowReg := to_slv(DATA,16); 
+                                    report "CylinderLowReg " & to_hex_str(CylinderLowReg);
                                     Cbit <= '0';
+                                    report "Cbit = 0";
                                 WHEN 5 =>
                                     CylinderHighReg := to_slv(DATA,16); 
+                                    report "CylinderHighReg " & to_hex_str(CylinderHighReg);
                                     Cbit <= '0';
+                                    report "Cbit = 0";
                                 WHEN 6 =>
                                     DeviceHeadReg := to_slv(DATA,8); 
+                                    report "DeviceHeadReg " & to_hex_str(DeviceHeadReg);
                                     Cbit <= '0';
+                                    report "Cbit = 0";
                                 WHEN 7 =>
                                     CommandReg := to_slv(DATA,8); 
+                                    report "CommandReg " & to_hex_str(CommandReg);
                                     Cbit <= '1';
+                                    report "Cbit = 1";
                                     TP_cmd_req <= '1', '0' AFTER 80 * TXPERIOD;
-                                    WAIT UNTIL TX_fifo_empty = '1';                
+                                    report "TP_cmd_req = 1";
+                                    WAIT UNTIL TX_fifo_empty = '1';        
+                                    report "TX_fifo_empty = 0";
                                 WHEN others =>
                                     ASSERT FALSE REPORT "CMD_EXE: WRITE, wrong address";                            
                             END CASE;
@@ -2520,11 +2957,14 @@ BEGIN
                             CASE ADDR IS
                                 WHEN 6 =>
                                     DeviceControlReg := to_slv(DATA,16);    
+                                    report "DeviceControlReg " & to_hex_str(DeviceControlReg);
                                     Cbit <= '0';
                                     TP_cmd_req <= '1', '0' AFTER 80 * TXPERIOD;
+                                    report "TP_cmd_req = 1";
                                     WAIT UNTIL TX_fifo_empty = '1';                
+                                    report "TX_fifo_empty = 0";
                                 WHEN 0 | 1 | 2 | 3 | 4 | 5 | 7  =>                      
-                                    ASSERT FALSE REPORT "CMD_EXE: WRITE, address not used" SEVERITY NOTE;                                                            
+                                    ASSERT FALSE REPORT "CMD_EXE: WRITE, address not used - " & natural'image (ADDR) SEVERITY NOTE;                                                            
                                 WHEN others =>
                                     ASSERT FALSE REPORT "CMD_EXE: WRITE, wrong address";                                                            
                             END CASE;

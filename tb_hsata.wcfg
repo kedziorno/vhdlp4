@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="/home/user/_WORKSPACE_/kedziorno/raid/tb_Hsata_isim_beh.wdb" id="1" type="auto">
+         <top_modules>
+            <top_module name="conversions" />
+            <top_module name="gen_utils" />
+            <top_module name="numeric_std" />
+            <top_module name="std_logic_1164" />
+            <top_module name="std_logic_arith" />
+            <top_module name="std_logic_unsigned" />
+            <top_module name="tb_hsata" />
+            <top_module name="textio" />
+            <top_module name="vital_primitives" />
+            <top_module name="vital_timing" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <WVObjectSize size="11" />
+   <wvobject fp_name="/tb_hsata/txpd" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">txpd</obj_property>
+      <obj_property name="ObjectShortName">txpd</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#00ffff</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_hsata/txnd" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">txnd</obj_property>
+      <obj_property name="ObjectShortName">txnd</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#00ffff</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_hsata/rxph" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">rxph</obj_property>
+      <obj_property name="ObjectShortName">rxph</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#ffff00</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_hsata/rxnh" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">rxnh</obj_property>
+      <obj_property name="ObjectShortName">rxnh</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#ffff00</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_hsata/txph" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">txph</obj_property>
+      <obj_property name="ObjectShortName">txph</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#ffa500</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_hsata/txnh" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">txnh</obj_property>
+      <obj_property name="ObjectShortName">txnh</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#ffa500</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_hsata/rxpd" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">rxpd</obj_property>
+      <obj_property name="ObjectShortName">rxpd</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#ff00ff</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_hsata/rxnd" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">rxnd</obj_property>
+      <obj_property name="ObjectShortName">rxnd</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#ff00ff</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_hsata/reset" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_hsata/clock" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">clock</obj_property>
+      <obj_property name="ObjectShortName">clock</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_hsata/clock_period" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">clock_period</obj_property>
+      <obj_property name="ObjectShortName">clock_period</obj_property>
+   </wvobject>
+</wave_config>
