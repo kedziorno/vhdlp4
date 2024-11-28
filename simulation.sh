@@ -6,6 +6,7 @@ fuse -v -intstyle ise -incremental -lib vital -lib fmf -lib unisims_ver -lib uni
 -prj tb_${PROJECT}_beh.prj \
 work.tb_${PROJECT}
 if [ $? = 0 ]; then
+rm -rf output_results.txt
 ./tb_${PROJECT}_isim_beh.exe -intstyle ise -tclbatch isim_gui.cmd \
 -view tb_${PROJECT}.wcfg \
 -wdb tb_${PROJECT}_isim_beh.wdb \

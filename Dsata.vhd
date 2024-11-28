@@ -251,11 +251,16 @@ BEGIN
                           SIGNAL ld       : OUT std_logic;
                           SIGNAL reg      : OUT std_logic_vector(9 DOWNTO 0))
     IS
-      procedure debug (constant s : in string) is
-      begin
-        report debug("") & "SendALIGN : " & s;
-      end procedure debug;
-
+    procedure debug (constant s : in string) is
+      variable v_OLINE : line;
+      file file_RESULTS : text;
+      constant cs : string := time'image(now) & " : " & debug("") & "SendALIGN : " & s;
+    begin
+      file_open(file_RESULTS, "output_results.txt", append_mode);
+      write(v_OLINE, cs, left);
+      writeline(file_RESULTS, v_OLINE);
+      file_close(file_RESULTS);
+    end procedure debug;
     BEGIN                      
         debug ("[SendALIGN]");
         debug ("tx_empty = 0");
@@ -302,8 +307,14 @@ BEGIN
     VARIABLE x,y    : INTEGER;    
     VARIABLE rd6    : std_logic;    
     procedure debug (constant s : in string) is
+      variable v_OLINE : line;
+      file file_RESULTS : text;
+      constant cs : string := time'image(now) & " : " & debug("") & "encode : " & s;
     begin
-      report debug ("") & "encode : " & s;
+      file_open(file_RESULTS, "output_results.txt", append_mode);
+      write(v_OLINE, cs, left);
+      writeline(file_RESULTS, v_OLINE);
+      file_close(file_RESULTS);
     end procedure debug;
     BEGIN      
         x := to_nat(byte(4 DOWNTO 0));
@@ -442,8 +453,14 @@ BEGIN
     VARIABLE err    : std_logic;               
     VARIABLE ctrl   : std_logic;               
     procedure debug (constant s : in string) is
+      variable v_OLINE : line;
+      file file_RESULTS : text;
+      constant cs : string := time'image(now) & " : " & debug("") & "decode : " & s;
     begin
-      report debug ("") & "decode : " & s;
+      file_open(file_RESULTS, "output_results.txt", append_mode);
+      write(v_OLINE, cs, left);
+      writeline(file_RESULTS, v_OLINE);
+      file_close(file_RESULTS);
     end procedure debug;
     BEGIN         
         err := '0';      
@@ -578,8 +595,14 @@ BEGIN
     VARIABLE n_ones   : INTEGER;
     VARIABLE rd6, rd4 : std_logic;
     procedure debug (constant s : in string) is
+      variable v_OLINE : line;
+      file file_RESULTS : text;
+      constant cs : string := time'image(now) & " : " & debug("") & "new_rd : " & s;
     begin
-      report debug ("") & "new_rd : " & s;
+      file_open(file_RESULTS, "output_results.txt", append_mode);
+      write(v_OLINE, cs, left);
+      writeline(file_RESULTS, v_OLINE);
+      file_close(file_RESULTS);
     end procedure debug;
     BEGIN      
     -- NOTICE rd = 0 is negative running disparity
@@ -629,8 +652,14 @@ BEGIN
     VARIABLE lsfr_reg  : std_logic_vector(15 DOWNTO 0); 
     VARIABLE temp : std_logic_vector(31 DOWNTO 0);
     procedure debug (constant s : in string) is
+      variable v_OLINE : line;
+      file file_RESULTS : text;
+      constant cs : string := time'image(now) & " : " & debug("") & "lsfr : " & s;
     begin
-      report debug ("") & "lsfr : " & s;
+      file_open(file_RESULTS, "output_results.txt", append_mode);
+      write(v_OLINE, cs, left);
+      writeline(file_RESULTS, v_OLINE);
+      file_close(file_RESULTS);
     end procedure debug;
     BEGIN   
         lsfr_reg := state;
@@ -652,8 +681,14 @@ BEGIN
                        VARIABLE code      : IN std_logic_vector(31 DOWNTO 0)) IS
     VARIABLE i           : INTEGER;
     procedure debug (constant s : in string) is
+      variable v_OLINE : line;
+      file file_RESULTS : text;
+      constant cs : string := time'image(now) & " : " & debug("") & "get_crc : " & s;
     begin
-      report debug ("") & "get_crc : " & s;
+      file_open(file_RESULTS, "output_results.txt", append_mode);
+      write(v_OLINE, cs, left);
+      writeline(file_RESULTS, v_OLINE);
+      file_close(file_RESULTS);
     end procedure debug;
     BEGIN      
         debug ("[get_crc]");
@@ -839,10 +874,15 @@ BEGIN
     CRC_INIT : PROCESS    
     VARIABLE crc_accum : std_logic_vector(31 DOWNTO 0);
     procedure debug (constant s : in string) is
+      variable v_OLINE : line;
+      file file_RESULTS : text;
+      constant cs : string := time'image(now) & " : " & debug("") & "CRC_INIT : " & s;
     begin
-      report debug ("") & "CRC_INIT : " & s;
+      file_open(file_RESULTS, "output_results.txt", append_mode);
+      write(v_OLINE, cs, left);
+      writeline(file_RESULTS, v_OLINE);
+      file_close(file_RESULTS);
     end procedure debug;
-
     BEGIN        
         debug ("[CRC_INIT]");
         FOR i IN 0 TO 255 LOOP
@@ -921,8 +961,14 @@ BEGIN
     VARIABLE space_start         : Time := 0 ps;
     VARIABLE tmp_time            : Time := 0 ps;
     procedure debug (constant s : in string) is
+      variable v_OLINE : line;
+      file file_RESULTS : text;
+      constant cs : string := time'image(now) & " : " & debug("") & "SPACE_CHECK : " & s;
     begin
-      report debug ("") & "SPACE_CHECK : " & s;
+      file_open(file_RESULTS, "output_results.txt", append_mode);
+      write(v_OLINE, cs, left);
+      writeline(file_RESULTS, v_OLINE);
+      file_close(file_RESULTS);
     end procedure debug;
     BEGIN         
         IF falling_edge(rx_idle) THEN
@@ -953,8 +999,14 @@ BEGIN
     VARIABLE cnt : INTEGER := 0;
     VARIABLE align_cnt : INTEGER := 0;
     procedure debug (constant s : in string) is
+      variable v_OLINE : line;
+      file file_RESULTS : text;
+      constant cs : string := time'image(now) & " : " & debug("") & "OOB_INIT : " & s;
     begin
-      report debug("") & "OOB_INIT : " & s;
+      file_open(file_RESULTS, "output_results.txt", append_mode);
+      write(v_OLINE, cs, left);
+      writeline(file_RESULTS, v_OLINE);
+      file_close(file_RESULTS);
     end procedure debug;
     BEGIN                       
         IF cnt > 7 THEN
@@ -997,8 +1049,14 @@ BEGIN
     VARIABLE cnt : INTEGER := 0;
     VARIABLE align_cnt : INTEGER := 0;
     procedure debug (constant s : in string) is
+      variable v_OLINE : line;
+      file file_RESULTS : text;
+      constant cs : string := time'image(now) & " : " & debug("") & "OOB_WAKE : " & s;
     begin
-      report debug("") & "OOB_WAKE : " & s;
+      file_open(file_RESULTS, "output_results.txt", append_mode);
+      write(v_OLINE, cs, left);
+      writeline(file_RESULTS, v_OLINE);
+      file_close(file_RESULTS);
     end procedure debug;
     BEGIN                       
         IF cnt > 7 THEN
@@ -1047,8 +1105,14 @@ BEGIN
     VARIABLE RX_buffer : rx_buffer_type; 
     VARIABLE RX_shift_reg : std_logic_vector(9 DOWNTO 0) := "0000000000";
     procedure debug (constant s : in string) is
+      variable v_OLINE : line;
+      file file_RESULTS : text;
+      constant cs : string := time'image(now) & " : " & debug("") & "RX_SHIFT : " & s;
     begin
-      report debug("") & "RX_SHIFT : " & s;
+      file_open(file_RESULTS, "output_results.txt", append_mode);
+      write(v_OLINE, cs, left);
+      writeline(file_RESULTS, v_OLINE);
+      file_close(file_RESULTS);
     end procedure debug;
     BEGIN                
         IF falling_edge(RXclk) THEN    
@@ -1124,8 +1188,14 @@ BEGIN
     TX_SHIFT : PROCESS(TXclk, PHYRESET, COMRESET)   
     VARIABLE tx_cnt : INTEGER := 0;     
     procedure debug (constant s : in string) is
+      variable v_OLINE : line;
+      file file_RESULTS : text;
+      constant cs : string := time'image(now) & " : " & debug("") & "TX_SHIFT : " & s;
     begin
-      report debug("") & "TX_SHIFT : " & s;
+      file_open(file_RESULTS, "output_results.txt", append_mode);
+      write(v_OLINE, cs, left);
+      writeline(file_RESULTS, v_OLINE);
+      file_close(file_RESULTS);
     end procedure debug;
     BEGIN                  
         IF rising_edge(PHYRESET) OR rising_edge(COMRESET) THEN
@@ -1170,8 +1240,14 @@ BEGIN
 
     DATA_TRANS : PROCESS
     procedure debug (constant s : in string) is
+      variable v_OLINE : line;
+      file file_RESULTS : text;
+      constant cs : string := time'image(now) & " : " & debug("") & "DATA_TRANS : " & s;
     begin
-      report debug("") & "DATA_TRANS : " & s;
+      file_open(file_RESULTS, "output_results.txt", append_mode);
+      write(v_OLINE, cs, left);
+      writeline(file_RESULTS, v_OLINE);
+      file_close(file_RESULTS);
     end procedure debug;
     BEGIN                                                   
         WAIT ON TXclk;--transmit_cominit, transmit_comwake, transmit_align, transmit_link_data;
@@ -1344,8 +1420,14 @@ BEGIN
 --    PHY_CONTROL : PROCESS(TXclk, PHYRESET, COMRESET)   
     PHY_CONTROL : PROCESS(SYSTEMCLOCK, PHYRESET, COMRESET)   
     procedure debug (constant s : in string) is
+      variable v_OLINE : line;
+      file file_RESULTS : text;
+      constant cs : string := time'image(now) & " : " & debug("") & "PHY_CONTROL : " & s;
     begin
-      report debug("") & "PHY_CONTROL : " & s;
+      file_open(file_RESULTS, "output_results.txt", append_mode);
+      write(v_OLINE, cs, left);
+      writeline(file_RESULTS, v_OLINE);
+      file_close(file_RESULTS);
     end procedure debug;
     BEGIN           
         IF PHYRESET = '1' OR COMRESET = '1' THEN       
@@ -1481,10 +1563,16 @@ BEGIN
            END PROCESS PHY_CONTROL;
 
         CONTROL_OUT : PROCESS(init_state)--, send_align_cnt)
-        procedure debug (constant s : in string) is
-        begin
-          report debug("") & "CONTROL_OUT : " & s;
-        end procedure debug;
+    procedure debug (constant s : in string) is
+      variable v_OLINE : line;
+      file file_RESULTS : text;
+      constant cs : string := time'image(now) & " : " & debug("") & "CONTROL_OUT : " & s;
+    begin
+      file_open(file_RESULTS, "output_results.txt", append_mode);
+      write(v_OLINE, cs, left);
+      writeline(file_RESULTS, v_OLINE);
+      file_close(file_RESULTS);
+    end procedure debug;
         BEGIN                      
             PHYRDY <= '0';         
             transmit_cominit <= '0';
@@ -1521,10 +1609,16 @@ BEGIN
         END PROCESS CONTROL_OUT;
 
         ALIGN_CNT : PROCESS(reset_align_cnt, transmit_align_end)
-        procedure debug (constant s : in string) is
-        begin
-          report debug("") & "ALIGN_CNT : " & s;
-        end procedure debug;
+    procedure debug (constant s : in string) is
+      variable v_OLINE : line;
+      file file_RESULTS : text;
+      constant cs : string := time'image(now) & " : " & debug("") & "ALIGN_CNT : " & s;
+    begin
+      file_open(file_RESULTS, "output_results.txt", append_mode);
+      write(v_OLINE, cs, left);
+      writeline(file_RESULTS, v_OLINE);
+      file_close(file_RESULTS);
+    end procedure debug;
         BEGIN                 
             IF rising_edge(reset_align_cnt) THEN
                 send_align_cnt <= 2048;
@@ -1562,10 +1656,16 @@ BEGIN
                                 crc_check,
                                 SYNCp, R_RDYp, X_RDYp, SOFp, EOFp, WTRMp, HOLDp, HOLDAp,
                                 R_IPp, R_OKp, R_ERRp) is
-        procedure debug (constant s : in string) is
-        begin
-          report debug("") & "LINK_TX_NXT : " & s;
-        end procedure debug;
+    procedure debug (constant s : in string) is
+      variable v_OLINE : line;
+      file file_RESULTS : text;
+      constant cs : string := time'image(now) & " : " & debug("") & "LINK_TX_NXT : " & s;
+    begin
+      file_open(file_RESULTS, "output_results.txt", append_mode);
+      write(v_OLINE, cs, left);
+      writeline(file_RESULTS, v_OLINE);
+      file_close(file_RESULTS);
+    end procedure debug;
         BEGIN                   
             CASE link_state IS
                 WHEN L1_L_IDLE => 
@@ -1869,10 +1969,16 @@ BEGIN
         VARIABLE TX_rd : std_logic := '0';
         VARIABLE RX_rd : std_logic := '0';     
         VARIABLE crc   : std_logic_vector(31 DOWNTO 0);        
-        procedure debug (constant s : in string) is
-        begin
-          report debug("") & "LINK_TX_OUT : " & s;
-        end procedure debug;
+    procedure debug (constant s : in string) is
+      variable v_OLINE : line;
+      file file_RESULTS : text;
+      constant cs : string := time'image(now) & " : " & debug("") & "LINK_TX_OUT : " & s;
+    begin
+      file_open(file_RESULTS, "output_results.txt", append_mode);
+      write(v_OLINE, cs, left);
+      writeline(file_RESULTS, v_OLINE);
+      file_close(file_RESULTS);
+    end procedure debug;
         BEGIN 
             IF link_state'EVENT THEN
                 cnt := 0; 
@@ -2168,10 +2274,16 @@ BEGIN
         LINK_RX_DEC : PROCESS(RXCLOCK)
         VARIABLE RX_rd : std_logic := '0';
         VARIABLE temp  : std_logic_vector(9 DOWNTO 0);
-        procedure debug (constant s : in string) is
-        begin
-          report debug("") & "LINK_RX_DEC : " & s;
-        end procedure debug;
+    procedure debug (constant s : in string) is
+      variable v_OLINE : line;
+      file file_RESULTS : text;
+      constant cs : string := time'image(now) & " : " & debug("") & "LINK_RX_DEC : " & s;
+    begin
+      file_open(file_RESULTS, "output_results.txt", append_mode);
+      write(v_OLINE, cs, left);
+      writeline(file_RESULTS, v_OLINE);
+      file_close(file_RESULTS);
+    end procedure debug;
         BEGIN                   
             IF rising_edge(RXCLOCK) THEN
                     temp := decode(RX_rd, DATAOUT(9 DOWNTO 0));  
@@ -2207,10 +2319,16 @@ BEGIN
 
         PRIM_DEC : PROCESS (link_data, link_ctrl, link_err)
         VARIABLE cont : std_logic := '0';                         
-        procedure debug (constant s : in string) is
-        begin
-          report debug("") & "PRIM_DEC : " & s;
-        end procedure debug;
+    procedure debug (constant s : in string) is
+      variable v_OLINE : line;
+      file file_RESULTS : text;
+      constant cs : string := time'image(now) & " : " & debug("") & "PRIM_DEC : " & s;
+    begin
+      file_open(file_RESULTS, "output_results.txt", append_mode);
+      write(v_OLINE, cs, left);
+      writeline(file_RESULTS, v_OLINE);
+      file_close(file_RESULTS);
+    end procedure debug;
         BEGIN    
             IF link_ctrl = "0001" AND link_err = "0000" THEN          
                 IF link_data = (D215 & D215 & D214 & K283) THEN  -- SYNC                  
@@ -2329,10 +2447,16 @@ BEGIN
         VARIABLE rnd_data : std_logic_vector(31 DOWNTO 0);
         VARIABLE tmp : std_logic_vector(31 DOWNTO 0); 
         VARIABLE FIS_ERROR : BOOLEAN;
-        procedure debug (constant s : in string) is
-        begin
-          report debug("") & "DESCRAMBLE : " & s;
-        end procedure debug;
+    procedure debug (constant s : in string) is
+      variable v_OLINE : line;
+      file file_RESULTS : text;
+      constant cs : string := time'image(now) & " : " & debug("") & "DESCRAMBLE : " & s;
+    begin
+      file_open(file_RESULTS, "output_results.txt", append_mode);
+      write(v_OLINE, cs, left);
+      writeline(file_RESULTS, v_OLINE);
+      file_close(file_RESULTS);
+    end procedure debug;
         BEGIN                  
             IF rising_edge(SYSTEMCLOCK) THEN
                 IF SOFp = '1' THEN
@@ -2423,10 +2547,16 @@ BEGIN
 
         TRX_FIFO : PROCESS(tr_fifo_read, tr_fifo_write, RESET, COMRESET)
         VARIABLE dist : INTEGER := 0;
-        procedure debug (constant s : in string) is
-        begin
-          report debug("") & "TRX_FIFO : " & s;
-        end procedure debug;
+    procedure debug (constant s : in string) is
+      variable v_OLINE : line;
+      file file_RESULTS : text;
+      constant cs : string := time'image(now) & " : " & debug("") & "TRX_FIFO : " & s;
+    begin
+      file_open(file_RESULTS, "output_results.txt", append_mode);
+      write(v_OLINE, cs, left);
+      writeline(file_RESULTS, v_OLINE);
+      file_close(file_RESULTS);
+    end procedure debug;
         BEGIN                                                          
             IF rising_edge(RESET) OR rising_edge(COMRESET) THEN
                 TX_rd_ptr <= 0;
@@ -2481,10 +2611,16 @@ BEGIN
 
         TP_NXT_STATE : PROCESS(TP_state, SOFp, EOFp, TP_RDH_req, TP_PIOSetup_req, TP_TXData_req, TX_fifo_empty,
                             TP_transmission_status, R_OKp, R_ERRp) 
-        procedure debug (constant s : in string) is
-        begin
-          report debug("") & "TP_NXT_STATE : " & s;
-        end procedure debug;
+    procedure debug (constant s : in string) is
+      variable v_OLINE : line;
+      file file_RESULTS : text;
+      constant cs : string := time'image(now) & " : " & debug("") & "TP_NXT_STATE : " & s;
+    begin
+      file_open(file_RESULTS, "output_results.txt", append_mode);
+      write(v_OLINE, cs, left);
+      writeline(file_RESULTS, v_OLINE);
+      file_close(file_RESULTS);
+    end procedure debug;
         BEGIN                    
             CASE TP_state IS
                 WHEN DT_DeviceIdle =>
@@ -2580,10 +2716,16 @@ BEGIN
         TP_CTRL_GEN : PROCESS (TP_state, SYSTEMCLOCK)
         VARIABLE cnt : INTEGER := 0;
         VARIABLE rcv_err : BOOLEAN;
-        procedure debug (constant s : in string) is
-        begin
-          report debug("") & "TP_CTRL_GEN : " & s;
-        end procedure debug;
+    procedure debug (constant s : in string) is
+      variable v_OLINE : line;
+      file file_RESULTS : text;
+      constant cs : string := time'image(now) & " : " & debug("") & "TP_CTRL_GEN : " & s;
+    begin
+      file_open(file_RESULTS, "output_results.txt", append_mode);
+      write(v_OLINE, cs, left);
+      writeline(file_RESULTS, v_OLINE);
+      file_close(file_RESULTS);
+    end procedure debug;
         BEGIN                   
             IF TP_state'EVENT THEN
                 cnt := 0; 
@@ -2737,8 +2879,14 @@ BEGIN
     CMD_HARD_RESET : PROCESS (RESET, COMRESET)                                      
     VARIABLE diag_ok : BOOLEAN := TRUE;
     procedure debug (constant s : in string) is
+      variable v_OLINE : line;
+      file file_RESULTS : text;
+      constant cs : string := time'image(now) & " : " & debug("") & "CMD_HARD_RESET : " & s;
     begin
-      report debug("") & "CMD_HARD_RESET : " & s;
+      file_open(file_RESULTS, "output_results.txt", append_mode);
+      write(v_OLINE, cs, left);
+      writeline(file_RESULTS, v_OLINE);
+      file_close(file_RESULTS);
     end procedure debug;
     BEGIN       
         IF falling_edge(RESET) OR falling_edge(COMRESET) THEN
@@ -2767,8 +2915,14 @@ BEGIN
                 
     CMD_DECODE : PROCESS(CMD_rcvd)
     procedure debug (constant s : in string) is
+      variable v_OLINE : line;
+      file file_RESULTS : text;
+      constant cs : string := time'image(now) & " : " & debug("") & "CMD_DECODE : " & s;
     begin
-      report debug("") & "CMD_DECODE : " & s;
+      file_open(file_RESULTS, "output_results.txt", append_mode);
+      write(v_OLINE, cs, left);
+      writeline(file_RESULTS, v_OLINE);
+      file_close(file_RESULTS);
     end procedure debug;
     BEGIN
         IF rising_edge(CMD_rcvd) THEN
