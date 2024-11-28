@@ -4,13 +4,13 @@
 --
 -- Create Date:   17:57:45 06/24/2023
 -- Design Name:   
--- Module Name:   /home/user/workspace/raid/spraid/tb_Hsata.vhd
+-- Module Name:   /home/user/workspace/raid/spraid/tb_sata_communication.vhd
 -- Project Name:  spraid
 -- Target Device:  
 -- Tool versions:  
 -- Description:   
 -- 
--- VHDL Test Bench Created by ISE for module: Hsata
+-- VHDL Test Bench Created by ISE for module: Hsata Dsata
 -- 
 -- Dependencies:
 -- 
@@ -30,10 +30,10 @@ USE ieee.std_logic_1164.ALL;
 USE ieee.std_logic_unsigned.all;
 USE ieee.numeric_std.ALL;
 
-ENTITY tb_Hsata IS
-END tb_Hsata;
+ENTITY tb_sata_communication IS
+END tb_sata_communication;
 
-ARCHITECTURE behavior OF tb_Hsata IS
+ARCHITECTURE behavior OF tb_sata_communication IS
 
 -- Component Declaration for the Unit Under Test (UUT)
 COMPONENT Hsata
