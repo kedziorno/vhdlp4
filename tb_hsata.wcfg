@@ -3,7 +3,7 @@
    <wave_state>
    </wave_state>
    <db_ref_list>
-      <db_ref path="/home/user/_WORKSPACE_/kedziorno/raid/tb_Hsata_isim_beh.wdb" id="1" type="auto">
+      <db_ref path="/home/user/_WORKSPACE_/kedziorno/raid/tb_sata_communication_isim_beh.wdb" id="1" type="auto">
          <top_modules>
             <top_module name="conversions" />
             <top_module name="gen_utils" />
@@ -11,72 +11,1471 @@
             <top_module name="std_logic_1164" />
             <top_module name="std_logic_arith" />
             <top_module name="std_logic_unsigned" />
-            <top_module name="tb_hsata" />
+            <top_module name="tb_sata_communication" />
             <top_module name="textio" />
             <top_module name="vital_primitives" />
             <top_module name="vital_timing" />
          </top_modules>
       </db_ref>
    </db_ref_list>
-   <WVObjectSize size="11" />
-   <wvobject fp_name="/tb_hsata/txpd" type="logic" db_ref_id="1">
-      <obj_property name="ElementShortName">txpd</obj_property>
-      <obj_property name="ObjectShortName">txpd</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-      <obj_property name="CustomSignalColor">#00ffff</obj_property>
+   <WVObjectSize size="3" />
+   <wvobject fp_name="group38" type="group">
+      <obj_property name="label">tb</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <wvobject fp_name="/tb_sata_communication/txph" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">txph</obj_property>
+         <obj_property name="ObjectShortName">txph</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#ffa500</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/txnh" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">txnh</obj_property>
+         <obj_property name="ObjectShortName">txnh</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#ffa500</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/txpd" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">txpd</obj_property>
+         <obj_property name="ObjectShortName">txpd</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#ffff00</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/txnd" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">txnd</obj_property>
+         <obj_property name="ObjectShortName">txnd</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#ffff00</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/rxpd" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">rxpd</obj_property>
+         <obj_property name="ObjectShortName">rxpd</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#ff00ff</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/rxnd" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">rxnd</obj_property>
+         <obj_property name="ObjectShortName">rxnd</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#ff00ff</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/rxph" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">rxph</obj_property>
+         <obj_property name="ObjectShortName">rxph</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00ffff</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/rxnh" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">rxnh</obj_property>
+         <obj_property name="ObjectShortName">rxnh</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00ffff</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/clock" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">clock</obj_property>
+         <obj_property name="ObjectShortName">clock</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/clock_period" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">clock_period</obj_property>
+         <obj_property name="ObjectShortName">clock_period</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/reset" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">reset</obj_property>
+         <obj_property name="ObjectShortName">reset</obj_property>
+      </wvobject>
    </wvobject>
-   <wvobject fp_name="/tb_hsata/txnd" type="logic" db_ref_id="1">
-      <obj_property name="ElementShortName">txnd</obj_property>
-      <obj_property name="ObjectShortName">txnd</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-      <obj_property name="CustomSignalColor">#00ffff</obj_property>
+   <wvobject fp_name="group231" type="group">
+      <obj_property name="label">host</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/reset" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">reset</obj_property>
+         <obj_property name="ObjectShortName">reset</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/rxp" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">rxp</obj_property>
+         <obj_property name="ObjectShortName">rxp</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/rxn" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">rxn</obj_property>
+         <obj_property name="ObjectShortName">rxn</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/txp" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">txp</obj_property>
+         <obj_property name="ObjectShortName">txp</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/txn" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">txn</obj_property>
+         <obj_property name="ObjectShortName">txn</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/crc_table" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">crc_table[0:255]</obj_property>
+         <obj_property name="ObjectShortName">crc_table[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/datain" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">datain[39:0]</obj_property>
+         <obj_property name="ObjectShortName">datain[39:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/slumber" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">slumber</obj_property>
+         <obj_property name="ObjectShortName">slumber</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/partial" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">partial</obj_property>
+         <obj_property name="ObjectShortName">partial</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/nearafelb" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">nearafelb</obj_property>
+         <obj_property name="ObjectShortName">nearafelb</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/farafelb" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">farafelb</obj_property>
+         <obj_property name="ObjectShortName">farafelb</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/spdsel" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">spdsel</obj_property>
+         <obj_property name="ObjectShortName">spdsel</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/systemclock" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">systemclock</obj_property>
+         <obj_property name="ObjectShortName">systemclock</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/comma" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">comma</obj_property>
+         <obj_property name="ObjectShortName">comma</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/dataout" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">dataout[39:0]</obj_property>
+         <obj_property name="ObjectShortName">dataout[39:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/rxclock" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">rxclock</obj_property>
+         <obj_property name="ObjectShortName">rxclock</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/cominit" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">cominit</obj_property>
+         <obj_property name="ObjectShortName">cominit</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/comwake" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">comwake</obj_property>
+         <obj_property name="ObjectShortName">comwake</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/phyrdy" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">phyrdy</obj_property>
+         <obj_property name="ObjectShortName">phyrdy</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/phyreset" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">phyreset</obj_property>
+         <obj_property name="ObjectShortName">phyreset</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/tx_int" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">tx_int</obj_property>
+         <obj_property name="ObjectShortName">tx_int</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/tx_shift_reg" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">tx_shift_reg[9:0]</obj_property>
+         <obj_property name="ObjectShortName">tx_shift_reg[9:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/tx_reg" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">tx_reg[9:0]</obj_property>
+         <obj_property name="ObjectShortName">tx_reg[9:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/tx_shift_rdy" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">tx_shift_rdy</obj_property>
+         <obj_property name="ObjectShortName">tx_shift_rdy</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/tx_shift_reg_empty" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">tx_shift_reg_empty</obj_property>
+         <obj_property name="ObjectShortName">tx_shift_reg_empty</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/tx_ld" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">tx_ld</obj_property>
+         <obj_property name="ObjectShortName">tx_ld</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/rx_int" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">rx_int</obj_property>
+         <obj_property name="ObjectShortName">rx_int</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/rx_idle" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">rx_idle</obj_property>
+         <obj_property name="ObjectShortName">rx_idle</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/rx_data_rdy" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">rx_data_rdy</obj_property>
+         <obj_property name="ObjectShortName">rx_data_rdy</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/cominit_space_ok" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">cominit_space_ok</obj_property>
+         <obj_property name="ObjectShortName">cominit_space_ok</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/comwake_space_ok" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">comwake_space_ok</obj_property>
+         <obj_property name="ObjectShortName">comwake_space_ok</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/align" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">align</obj_property>
+         <obj_property name="ObjectShortName">align</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/align_ctrl" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">align_ctrl</obj_property>
+         <obj_property name="ObjectShortName">align_ctrl</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/nonalign" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">nonalign</obj_property>
+         <obj_property name="ObjectShortName">nonalign</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/non_align_cnt" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">non_align_cnt</obj_property>
+         <obj_property name="ObjectShortName">non_align_cnt</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/rxclk_timeout" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">rxclk_timeout</obj_property>
+         <obj_property name="ObjectShortName">rxclk_timeout</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/rxclk" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">rxclk</obj_property>
+         <obj_property name="ObjectShortName">rxclk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/rxclk_edge" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">rxclk_edge</obj_property>
+         <obj_property name="ObjectShortName">rxclk_edge</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/txclk" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">txclk</obj_property>
+         <obj_property name="ObjectShortName">txclk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/init_state" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">init_state</obj_property>
+         <obj_property name="ObjectShortName">init_state</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/resume" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">resume</obj_property>
+         <obj_property name="ObjectShortName">resume</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/speed" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">speed</obj_property>
+         <obj_property name="ObjectShortName">speed</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/transmit_comwake" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">transmit_comwake</obj_property>
+         <obj_property name="ObjectShortName">transmit_comwake</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/transmit_comreset" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">transmit_comreset</obj_property>
+         <obj_property name="ObjectShortName">transmit_comreset</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/transmit_align" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">transmit_align</obj_property>
+         <obj_property name="ObjectShortName">transmit_align</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/transmit_comwake_end" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">transmit_comwake_end</obj_property>
+         <obj_property name="ObjectShortName">transmit_comwake_end</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/transmit_comreset_end" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">transmit_comreset_end</obj_property>
+         <obj_property name="ObjectShortName">transmit_comreset_end</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/transmit_d102" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">transmit_d102</obj_property>
+         <obj_property name="ObjectShortName">transmit_d102</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/transmit_d102_end" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">transmit_d102_end</obj_property>
+         <obj_property name="ObjectShortName">transmit_d102_end</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/transmit_align_end" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">transmit_align_end</obj_property>
+         <obj_property name="ObjectShortName">transmit_align_end</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/transmit_link_data" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">transmit_link_data</obj_property>
+         <obj_property name="ObjectShortName">transmit_link_data</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/calibration_end" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">calibration_end</obj_property>
+         <obj_property name="ObjectShortName">calibration_end</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/power_on" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">power_on</obj_property>
+         <obj_property name="ObjectShortName">power_on</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/await_align_timeout" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">await_align_timeout</obj_property>
+         <obj_property name="ObjectShortName">await_align_timeout</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/link_state" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">link_state</obj_property>
+         <obj_property name="ObjectShortName">link_state</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/next_link_state" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">next_link_state</obj_property>
+         <obj_property name="ObjectShortName">next_link_state</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/contp" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">contp</obj_property>
+         <obj_property name="ObjectShortName">contp</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/dmatp" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">dmatp</obj_property>
+         <obj_property name="ObjectShortName">dmatp</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/eofp" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">eofp</obj_property>
+         <obj_property name="ObjectShortName">eofp</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/holdp" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">holdp</obj_property>
+         <obj_property name="ObjectShortName">holdp</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/holdap" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">holdap</obj_property>
+         <obj_property name="ObjectShortName">holdap</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/pmackp" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">pmackp</obj_property>
+         <obj_property name="ObjectShortName">pmackp</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/pmnakp" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">pmnakp</obj_property>
+         <obj_property name="ObjectShortName">pmnakp</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/pmreq_pp" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">pmreq_pp</obj_property>
+         <obj_property name="ObjectShortName">pmreq_pp</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/pmreq_sp" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">pmreq_sp</obj_property>
+         <obj_property name="ObjectShortName">pmreq_sp</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/r_errp" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">r_errp</obj_property>
+         <obj_property name="ObjectShortName">r_errp</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/r_ipp" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">r_ipp</obj_property>
+         <obj_property name="ObjectShortName">r_ipp</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/r_okp" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">r_okp</obj_property>
+         <obj_property name="ObjectShortName">r_okp</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/r_rdyp" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">r_rdyp</obj_property>
+         <obj_property name="ObjectShortName">r_rdyp</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/sofp" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">sofp</obj_property>
+         <obj_property name="ObjectShortName">sofp</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/syncp" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">syncp</obj_property>
+         <obj_property name="ObjectShortName">syncp</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/wtrmp" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">wtrmp</obj_property>
+         <obj_property name="ObjectShortName">wtrmp</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/x_rdyp" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">x_rdyp</obj_property>
+         <obj_property name="ObjectShortName">x_rdyp</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/lsfr_state_scramble" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">lsfr_state_scramble[15:0]</obj_property>
+         <obj_property name="ObjectShortName">lsfr_state_scramble[15:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/lsfr_state_descramble" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">lsfr_state_descramble[15:0]</obj_property>
+         <obj_property name="ObjectShortName">lsfr_state_descramble[15:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/lsfr_state_cont" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">lsfr_state_cont[15:0]</obj_property>
+         <obj_property name="ObjectShortName">lsfr_state_cont[15:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/crc_check" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">crc_check</obj_property>
+         <obj_property name="ObjectShortName">crc_check</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/link_data" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">link_data[31:0]</obj_property>
+         <obj_property name="ObjectShortName">link_data[31:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/link_err" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">link_err[3:0]</obj_property>
+         <obj_property name="ObjectShortName">link_err[3:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/link_ctrl" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">link_ctrl[3:0]</obj_property>
+         <obj_property name="ObjectShortName">link_ctrl[3:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/link_crc" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">link_crc[31:0]</obj_property>
+         <obj_property name="ObjectShortName">link_crc[31:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/link_fis_data" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">link_fis_data[31:0]</obj_property>
+         <obj_property name="ObjectShortName">link_fis_data[31:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/link_fis_state" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">link_fis_state[1:0]</obj_property>
+         <obj_property name="ObjectShortName">link_fis_state[1:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/rcv_fifo_read" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">rcv_fifo_read</obj_property>
+         <obj_property name="ObjectShortName">rcv_fifo_read</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/rcv_fifo_write" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">rcv_fifo_write</obj_property>
+         <obj_property name="ObjectShortName">rcv_fifo_write</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/tr_fifo_read" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">tr_fifo_read</obj_property>
+         <obj_property name="ObjectShortName">tr_fifo_read</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/tr_fifo_write" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">tr_fifo_write</obj_property>
+         <obj_property name="ObjectShortName">tr_fifo_write</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/rx_fifo_empty" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">rx_fifo_empty</obj_property>
+         <obj_property name="ObjectShortName">rx_fifo_empty</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/rx_fifo_full" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">rx_fifo_full</obj_property>
+         <obj_property name="ObjectShortName">rx_fifo_full</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/tx_fifo_empty" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">tx_fifo_empty</obj_property>
+         <obj_property name="ObjectShortName">tx_fifo_empty</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/tx_fifo_full" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">tx_fifo_full</obj_property>
+         <obj_property name="ObjectShortName">tx_fifo_full</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/rx_rd_ptr" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">rx_rd_ptr</obj_property>
+         <obj_property name="ObjectShortName">rx_rd_ptr</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/rx_wr_ptr" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">rx_wr_ptr</obj_property>
+         <obj_property name="ObjectShortName">rx_wr_ptr</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/tx_rd_ptr" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">tx_rd_ptr</obj_property>
+         <obj_property name="ObjectShortName">tx_rd_ptr</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/tx_wr_ptr" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">tx_wr_ptr</obj_property>
+         <obj_property name="ObjectShortName">tx_wr_ptr</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/rx_fifo" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">rx_fifo[0:15]</obj_property>
+         <obj_property name="ObjectShortName">rx_fifo[0:15]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/tx_fifo" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">tx_fifo[0:15]</obj_property>
+         <obj_property name="ObjectShortName">tx_fifo[0:15]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/tp_state" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">tp_state</obj_property>
+         <obj_property name="ObjectShortName">tp_state</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/next_tp_state" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">next_tp_state</obj_property>
+         <obj_property name="ObjectShortName">next_tp_state</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/tp_transmission_status" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">tp_transmission_status</obj_property>
+         <obj_property name="ObjectShortName">tp_transmission_status</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/tp_frame_end" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">tp_frame_end</obj_property>
+         <obj_property name="ObjectShortName">tp_frame_end</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/tp_frame_rdy" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">tp_frame_rdy</obj_property>
+         <obj_property name="ObjectShortName">tp_frame_rdy</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/tp_no_data" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">tp_no_data</obj_property>
+         <obj_property name="ObjectShortName">tp_no_data</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/tp_fifo_space_avail" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">tp_fifo_space_avail</obj_property>
+         <obj_property name="ObjectShortName">tp_fifo_space_avail</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/tp_result" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">tp_result</obj_property>
+         <obj_property name="ObjectShortName">tp_result</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/tp_dataout" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">tp_dataout[31:0]</obj_property>
+         <obj_property name="ObjectShortName">tp_dataout[31:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/tp_datain" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">tp_datain[37:0]</obj_property>
+         <obj_property name="ObjectShortName">tp_datain[37:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/tp_fis_end" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">tp_fis_end</obj_property>
+         <obj_property name="ObjectShortName">tp_fis_end</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/tp_fis_ok" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">tp_fis_ok</obj_property>
+         <obj_property name="ObjectShortName">tp_fis_ok</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/tp_cmd_req" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">tp_cmd_req</obj_property>
+         <obj_property name="ObjectShortName">tp_cmd_req</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/ibit" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">ibit</obj_property>
+         <obj_property name="ObjectShortName">ibit</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/cbit" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">cbit</obj_property>
+         <obj_property name="ObjectShortName">cbit</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/instr_cnt" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">instr_cnt</obj_property>
+         <obj_property name="ObjectShortName">instr_cnt</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/fifo_size" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">fifo_size</obj_property>
+         <obj_property name="ObjectShortName">fifo_size</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/k283" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">k283[7:0]</obj_property>
+         <obj_property name="ObjectShortName">k283[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/k285" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">k285[7:0]</obj_property>
+         <obj_property name="ObjectShortName">k285[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/d102" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">d102[7:0]</obj_property>
+         <obj_property name="ObjectShortName">d102[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/d105" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">d105[7:0]</obj_property>
+         <obj_property name="ObjectShortName">d105[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/d211" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">d211[7:0]</obj_property>
+         <obj_property name="ObjectShortName">d211[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/d212" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">d212[7:0]</obj_property>
+         <obj_property name="ObjectShortName">d212[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/d213" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">d213[7:0]</obj_property>
+         <obj_property name="ObjectShortName">d213[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/d214" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">d214[7:0]</obj_property>
+         <obj_property name="ObjectShortName">d214[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/d215" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">d215[7:0]</obj_property>
+         <obj_property name="ObjectShortName">d215[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/d216" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">d216[7:0]</obj_property>
+         <obj_property name="ObjectShortName">d216[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/d217" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">d217[7:0]</obj_property>
+         <obj_property name="ObjectShortName">d217[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/d221" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">d221[7:0]</obj_property>
+         <obj_property name="ObjectShortName">d221[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/d222" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">d222[7:0]</obj_property>
+         <obj_property name="ObjectShortName">d222[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/d230" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">d230[7:0]</obj_property>
+         <obj_property name="ObjectShortName">d230[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/d231" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">d231[7:0]</obj_property>
+         <obj_property name="ObjectShortName">d231[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/d232" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">d232[7:0]</obj_property>
+         <obj_property name="ObjectShortName">d232[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/d242" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">d242[7:0]</obj_property>
+         <obj_property name="ObjectShortName">d242[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/d254" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">d254[7:0]</obj_property>
+         <obj_property name="ObjectShortName">d254[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/d273" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">d273[7:0]</obj_property>
+         <obj_property name="ObjectShortName">d273[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/align_rdpos" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">align_rdpos[39:0]</obj_property>
+         <obj_property name="ObjectShortName">align_rdpos[39:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/align_rdneg" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">align_rdneg[39:0]</obj_property>
+         <obj_property name="ObjectShortName">align_rdneg[39:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/rxperiod" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">rxperiod</obj_property>
+         <obj_property name="ObjectShortName">rxperiod</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/txperiod" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">txperiod</obj_property>
+         <obj_property name="ObjectShortName">txperiod</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/min_comreset_space" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">min_comreset_space</obj_property>
+         <obj_property name="ObjectShortName">min_comreset_space</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/max_comreset_space" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">max_comreset_space</obj_property>
+         <obj_property name="ObjectShortName">max_comreset_space</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/min_cominit_space" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">min_cominit_space</obj_property>
+         <obj_property name="ObjectShortName">min_cominit_space</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/max_cominit_space" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">max_cominit_space</obj_property>
+         <obj_property name="ObjectShortName">max_cominit_space</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/min_comwake_space" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">min_comwake_space</obj_property>
+         <obj_property name="ObjectShortName">min_comwake_space</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/max_comwake_space" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">max_comwake_space</obj_property>
+         <obj_property name="ObjectShortName">max_comwake_space</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/fist_reg_h2d" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">fist_reg_h2d[7:0]</obj_property>
+         <obj_property name="ObjectShortName">fist_reg_h2d[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/fist_reg_d2h" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">fist_reg_d2h[7:0]</obj_property>
+         <obj_property name="ObjectShortName">fist_reg_d2h[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/fist_set_dev_bit" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">fist_set_dev_bit[7:0]</obj_property>
+         <obj_property name="ObjectShortName">fist_set_dev_bit[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/fist_dma_activ" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">fist_dma_activ[7:0]</obj_property>
+         <obj_property name="ObjectShortName">fist_dma_activ[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/fist_dma_setup" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">fist_dma_setup[7:0]</obj_property>
+         <obj_property name="ObjectShortName">fist_dma_setup[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/fist_bist_activ" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">fist_bist_activ[7:0]</obj_property>
+         <obj_property name="ObjectShortName">fist_bist_activ[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/fist_pio_setup" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">fist_pio_setup[7:0]</obj_property>
+         <obj_property name="ObjectShortName">fist_pio_setup[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/fist_data" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">fist_data[7:0]</obj_property>
+         <obj_property name="ObjectShortName">fist_data[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/fis_sof" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">fis_sof[1:0]</obj_property>
+         <obj_property name="ObjectShortName">fis_sof[1:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/fis_eof" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">fis_eof[1:0]</obj_property>
+         <obj_property name="ObjectShortName">fis_eof[1:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/fis_payload" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">fis_payload[1:0]</obj_property>
+         <obj_property name="ObjectShortName">fis_payload[1:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/polynomial" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">polynomial[31:0]</obj_property>
+         <obj_property name="ObjectShortName">polynomial[31:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/phydatawidth" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">phydatawidth</obj_property>
+         <obj_property name="ObjectShortName">phydatawidth</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
    </wvobject>
-   <wvobject fp_name="/tb_hsata/rxph" type="logic" db_ref_id="1">
-      <obj_property name="ElementShortName">rxph</obj_property>
-      <obj_property name="ObjectShortName">rxph</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-      <obj_property name="CustomSignalColor">#ffff00</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_hsata/rxnh" type="logic" db_ref_id="1">
-      <obj_property name="ElementShortName">rxnh</obj_property>
-      <obj_property name="ObjectShortName">rxnh</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-      <obj_property name="CustomSignalColor">#ffff00</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_hsata/txph" type="logic" db_ref_id="1">
-      <obj_property name="ElementShortName">txph</obj_property>
-      <obj_property name="ObjectShortName">txph</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-      <obj_property name="CustomSignalColor">#ffa500</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_hsata/txnh" type="logic" db_ref_id="1">
-      <obj_property name="ElementShortName">txnh</obj_property>
-      <obj_property name="ObjectShortName">txnh</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-      <obj_property name="CustomSignalColor">#ffa500</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_hsata/rxpd" type="logic" db_ref_id="1">
-      <obj_property name="ElementShortName">rxpd</obj_property>
-      <obj_property name="ObjectShortName">rxpd</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-      <obj_property name="CustomSignalColor">#ff00ff</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_hsata/rxnd" type="logic" db_ref_id="1">
-      <obj_property name="ElementShortName">rxnd</obj_property>
-      <obj_property name="ObjectShortName">rxnd</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-      <obj_property name="CustomSignalColor">#ff00ff</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_hsata/reset" type="logic" db_ref_id="1">
-      <obj_property name="ElementShortName">reset</obj_property>
-      <obj_property name="ObjectShortName">reset</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_hsata/clock" type="logic" db_ref_id="1">
-      <obj_property name="ElementShortName">clock</obj_property>
-      <obj_property name="ObjectShortName">clock</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_hsata/clock_period" type="other" db_ref_id="1">
-      <obj_property name="ElementShortName">clock_period</obj_property>
-      <obj_property name="ObjectShortName">clock_period</obj_property>
+   <wvobject fp_name="group386" type="group">
+      <obj_property name="label">device</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/reset" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">reset</obj_property>
+         <obj_property name="ObjectShortName">reset</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/rxp" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">rxp</obj_property>
+         <obj_property name="ObjectShortName">rxp</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/rxn" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">rxn</obj_property>
+         <obj_property name="ObjectShortName">rxn</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/txp" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">txp</obj_property>
+         <obj_property name="ObjectShortName">txp</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/txn" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">txn</obj_property>
+         <obj_property name="ObjectShortName">txn</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/crc_table" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">crc_table[0:255]</obj_property>
+         <obj_property name="ObjectShortName">crc_table[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/datain" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">datain[39:0]</obj_property>
+         <obj_property name="ObjectShortName">datain[39:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/slumber" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">slumber</obj_property>
+         <obj_property name="ObjectShortName">slumber</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/partial" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">partial</obj_property>
+         <obj_property name="ObjectShortName">partial</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/nearafelb" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">nearafelb</obj_property>
+         <obj_property name="ObjectShortName">nearafelb</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/farafelb" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">farafelb</obj_property>
+         <obj_property name="ObjectShortName">farafelb</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/spdsel" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">spdsel</obj_property>
+         <obj_property name="ObjectShortName">spdsel</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/systemclock" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">systemclock</obj_property>
+         <obj_property name="ObjectShortName">systemclock</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/comma" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">comma</obj_property>
+         <obj_property name="ObjectShortName">comma</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/dataout" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">dataout[39:0]</obj_property>
+         <obj_property name="ObjectShortName">dataout[39:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/rxclock" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">rxclock</obj_property>
+         <obj_property name="ObjectShortName">rxclock</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/comreset" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">comreset</obj_property>
+         <obj_property name="ObjectShortName">comreset</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/comwake" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">comwake</obj_property>
+         <obj_property name="ObjectShortName">comwake</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/phyrdy" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">phyrdy</obj_property>
+         <obj_property name="ObjectShortName">phyrdy</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/phyreset" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">phyreset</obj_property>
+         <obj_property name="ObjectShortName">phyreset</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/tx_int" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">tx_int</obj_property>
+         <obj_property name="ObjectShortName">tx_int</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/tx_shift_reg" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">tx_shift_reg[9:0]</obj_property>
+         <obj_property name="ObjectShortName">tx_shift_reg[9:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/tx_reg" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">tx_reg[9:0]</obj_property>
+         <obj_property name="ObjectShortName">tx_reg[9:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/tx_shift_rdy" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">tx_shift_rdy</obj_property>
+         <obj_property name="ObjectShortName">tx_shift_rdy</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/tx_shift_reg_empty" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">tx_shift_reg_empty</obj_property>
+         <obj_property name="ObjectShortName">tx_shift_reg_empty</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/tx_ld" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">tx_ld</obj_property>
+         <obj_property name="ObjectShortName">tx_ld</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/rx_int" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">rx_int</obj_property>
+         <obj_property name="ObjectShortName">rx_int</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/rx_idle" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">rx_idle</obj_property>
+         <obj_property name="ObjectShortName">rx_idle</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/rx_data_rdy" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">rx_data_rdy</obj_property>
+         <obj_property name="ObjectShortName">rx_data_rdy</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/cominit_space_ok" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">cominit_space_ok</obj_property>
+         <obj_property name="ObjectShortName">cominit_space_ok</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/comwake_space_ok" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">comwake_space_ok</obj_property>
+         <obj_property name="ObjectShortName">comwake_space_ok</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/align" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">align</obj_property>
+         <obj_property name="ObjectShortName">align</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/align_ctrl" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">align_ctrl</obj_property>
+         <obj_property name="ObjectShortName">align_ctrl</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/rxclk_timeout" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">rxclk_timeout</obj_property>
+         <obj_property name="ObjectShortName">rxclk_timeout</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/rxclk" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">rxclk</obj_property>
+         <obj_property name="ObjectShortName">rxclk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/rxclk_edge" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">rxclk_edge</obj_property>
+         <obj_property name="ObjectShortName">rxclk_edge</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/txclk" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">txclk</obj_property>
+         <obj_property name="ObjectShortName">txclk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/init_state" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">init_state</obj_property>
+         <obj_property name="ObjectShortName">init_state</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/resume" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">resume</obj_property>
+         <obj_property name="ObjectShortName">resume</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/speed" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">speed</obj_property>
+         <obj_property name="ObjectShortName">speed</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/transmit_comwake" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">transmit_comwake</obj_property>
+         <obj_property name="ObjectShortName">transmit_comwake</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/transmit_cominit" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">transmit_cominit</obj_property>
+         <obj_property name="ObjectShortName">transmit_cominit</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/transmit_align" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">transmit_align</obj_property>
+         <obj_property name="ObjectShortName">transmit_align</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/transmit_comwake_end" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">transmit_comwake_end</obj_property>
+         <obj_property name="ObjectShortName">transmit_comwake_end</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/transmit_cominit_end" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">transmit_cominit_end</obj_property>
+         <obj_property name="ObjectShortName">transmit_cominit_end</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/transmit_align_end" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">transmit_align_end</obj_property>
+         <obj_property name="ObjectShortName">transmit_align_end</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/calibration_end" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">calibration_end</obj_property>
+         <obj_property name="ObjectShortName">calibration_end</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/power_on" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">power_on</obj_property>
+         <obj_property name="ObjectShortName">power_on</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/send_align_cnt" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">send_align_cnt</obj_property>
+         <obj_property name="ObjectShortName">send_align_cnt</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/reset_align_cnt" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">reset_align_cnt</obj_property>
+         <obj_property name="ObjectShortName">reset_align_cnt</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/transmit_link_data" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">transmit_link_data</obj_property>
+         <obj_property name="ObjectShortName">transmit_link_data</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/link_state" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">link_state</obj_property>
+         <obj_property name="ObjectShortName">link_state</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/next_link_state" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">next_link_state</obj_property>
+         <obj_property name="ObjectShortName">next_link_state</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/contp" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">contp</obj_property>
+         <obj_property name="ObjectShortName">contp</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/dmatp" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">dmatp</obj_property>
+         <obj_property name="ObjectShortName">dmatp</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/eofp" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">eofp</obj_property>
+         <obj_property name="ObjectShortName">eofp</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/holdp" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">holdp</obj_property>
+         <obj_property name="ObjectShortName">holdp</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/holdap" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">holdap</obj_property>
+         <obj_property name="ObjectShortName">holdap</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/pmackp" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">pmackp</obj_property>
+         <obj_property name="ObjectShortName">pmackp</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/pmnakp" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">pmnakp</obj_property>
+         <obj_property name="ObjectShortName">pmnakp</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/pmreq_pp" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">pmreq_pp</obj_property>
+         <obj_property name="ObjectShortName">pmreq_pp</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/pmreq_sp" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">pmreq_sp</obj_property>
+         <obj_property name="ObjectShortName">pmreq_sp</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/r_errp" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">r_errp</obj_property>
+         <obj_property name="ObjectShortName">r_errp</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/r_ipp" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">r_ipp</obj_property>
+         <obj_property name="ObjectShortName">r_ipp</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/r_okp" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">r_okp</obj_property>
+         <obj_property name="ObjectShortName">r_okp</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/r_rdyp" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">r_rdyp</obj_property>
+         <obj_property name="ObjectShortName">r_rdyp</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/sofp" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">sofp</obj_property>
+         <obj_property name="ObjectShortName">sofp</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/syncp" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">syncp</obj_property>
+         <obj_property name="ObjectShortName">syncp</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/wtrmp" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">wtrmp</obj_property>
+         <obj_property name="ObjectShortName">wtrmp</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/x_rdyp" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">x_rdyp</obj_property>
+         <obj_property name="ObjectShortName">x_rdyp</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/lsfr_state_scramble" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">lsfr_state_scramble[15:0]</obj_property>
+         <obj_property name="ObjectShortName">lsfr_state_scramble[15:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/lsfr_state_descramble" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">lsfr_state_descramble[15:0]</obj_property>
+         <obj_property name="ObjectShortName">lsfr_state_descramble[15:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/lsfr_state_cont" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">lsfr_state_cont[15:0]</obj_property>
+         <obj_property name="ObjectShortName">lsfr_state_cont[15:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/crc_check" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">crc_check</obj_property>
+         <obj_property name="ObjectShortName">crc_check</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/link_data" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">link_data[31:0]</obj_property>
+         <obj_property name="ObjectShortName">link_data[31:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/link_err" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">link_err[3:0]</obj_property>
+         <obj_property name="ObjectShortName">link_err[3:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/link_ctrl" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">link_ctrl[3:0]</obj_property>
+         <obj_property name="ObjectShortName">link_ctrl[3:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/link_crc" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">link_crc[31:0]</obj_property>
+         <obj_property name="ObjectShortName">link_crc[31:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/link_fis_data" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">link_fis_data[31:0]</obj_property>
+         <obj_property name="ObjectShortName">link_fis_data[31:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/link_fis_state" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">link_fis_state[1:0]</obj_property>
+         <obj_property name="ObjectShortName">link_fis_state[1:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/rcv_fifo_read" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">rcv_fifo_read</obj_property>
+         <obj_property name="ObjectShortName">rcv_fifo_read</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/rcv_fifo_write" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">rcv_fifo_write</obj_property>
+         <obj_property name="ObjectShortName">rcv_fifo_write</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/tr_fifo_read" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">tr_fifo_read</obj_property>
+         <obj_property name="ObjectShortName">tr_fifo_read</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/tr_fifo_write" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">tr_fifo_write</obj_property>
+         <obj_property name="ObjectShortName">tr_fifo_write</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/rx_fifo_empty" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">rx_fifo_empty</obj_property>
+         <obj_property name="ObjectShortName">rx_fifo_empty</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/rx_fifo_full" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">rx_fifo_full</obj_property>
+         <obj_property name="ObjectShortName">rx_fifo_full</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/tx_fifo_empty" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">tx_fifo_empty</obj_property>
+         <obj_property name="ObjectShortName">tx_fifo_empty</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/tx_fifo_full" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">tx_fifo_full</obj_property>
+         <obj_property name="ObjectShortName">tx_fifo_full</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/rx_rd_ptr" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">rx_rd_ptr</obj_property>
+         <obj_property name="ObjectShortName">rx_rd_ptr</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/rx_wr_ptr" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">rx_wr_ptr</obj_property>
+         <obj_property name="ObjectShortName">rx_wr_ptr</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/tx_rd_ptr" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">tx_rd_ptr</obj_property>
+         <obj_property name="ObjectShortName">tx_rd_ptr</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/tx_wr_ptr" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">tx_wr_ptr</obj_property>
+         <obj_property name="ObjectShortName">tx_wr_ptr</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/rx_fifo" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">rx_fifo[0:63]</obj_property>
+         <obj_property name="ObjectShortName">rx_fifo[0:63]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/tx_fifo" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">tx_fifo[0:63]</obj_property>
+         <obj_property name="ObjectShortName">tx_fifo[0:63]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/tp_state" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">tp_state</obj_property>
+         <obj_property name="ObjectShortName">tp_state</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/next_tp_state" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">next_tp_state</obj_property>
+         <obj_property name="ObjectShortName">next_tp_state</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/tp_transmission_status" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">tp_transmission_status</obj_property>
+         <obj_property name="ObjectShortName">tp_transmission_status</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/tp_frame_rdy" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">tp_frame_rdy</obj_property>
+         <obj_property name="ObjectShortName">tp_frame_rdy</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/tp_no_data" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">tp_no_data</obj_property>
+         <obj_property name="ObjectShortName">tp_no_data</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/tp_fifo_space_avail" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">tp_fifo_space_avail</obj_property>
+         <obj_property name="ObjectShortName">tp_fifo_space_avail</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/tp_result" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">tp_result</obj_property>
+         <obj_property name="ObjectShortName">tp_result</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/tp_dataout" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">tp_dataout[31:0]</obj_property>
+         <obj_property name="ObjectShortName">tp_dataout[31:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/tp_datain" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">tp_datain[37:0]</obj_property>
+         <obj_property name="ObjectShortName">tp_datain[37:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/tp_fis_end" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">tp_fis_end</obj_property>
+         <obj_property name="ObjectShortName">tp_fis_end</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/tp_fis_ok" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">tp_fis_ok</obj_property>
+         <obj_property name="ObjectShortName">tp_fis_ok</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/tp_rdh_req" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">tp_rdh_req</obj_property>
+         <obj_property name="ObjectShortName">tp_rdh_req</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/tp_rdh_end" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">tp_rdh_end</obj_property>
+         <obj_property name="ObjectShortName">tp_rdh_end</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/tp_piosetup_req" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">tp_piosetup_req</obj_property>
+         <obj_property name="ObjectShortName">tp_piosetup_req</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/tp_piosetup_end" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">tp_piosetup_end</obj_property>
+         <obj_property name="ObjectShortName">tp_piosetup_end</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/tp_txdata_req" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">tp_txdata_req</obj_property>
+         <obj_property name="ObjectShortName">tp_txdata_req</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/ibit" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">ibit</obj_property>
+         <obj_property name="ObjectShortName">ibit</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/cbit" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">cbit</obj_property>
+         <obj_property name="ObjectShortName">cbit</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/cmd_rcvd" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">cmd_rcvd</obj_property>
+         <obj_property name="ObjectShortName">cmd_rcvd</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/fifo_size" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">fifo_size</obj_property>
+         <obj_property name="ObjectShortName">fifo_size</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/k283" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">k283[7:0]</obj_property>
+         <obj_property name="ObjectShortName">k283[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/k285" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">k285[7:0]</obj_property>
+         <obj_property name="ObjectShortName">k285[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/d102" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">d102[7:0]</obj_property>
+         <obj_property name="ObjectShortName">d102[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/d105" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">d105[7:0]</obj_property>
+         <obj_property name="ObjectShortName">d105[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/d211" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">d211[7:0]</obj_property>
+         <obj_property name="ObjectShortName">d211[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/d212" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">d212[7:0]</obj_property>
+         <obj_property name="ObjectShortName">d212[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/d213" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">d213[7:0]</obj_property>
+         <obj_property name="ObjectShortName">d213[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/d214" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">d214[7:0]</obj_property>
+         <obj_property name="ObjectShortName">d214[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/d215" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">d215[7:0]</obj_property>
+         <obj_property name="ObjectShortName">d215[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/d216" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">d216[7:0]</obj_property>
+         <obj_property name="ObjectShortName">d216[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/d217" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">d217[7:0]</obj_property>
+         <obj_property name="ObjectShortName">d217[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/d221" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">d221[7:0]</obj_property>
+         <obj_property name="ObjectShortName">d221[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/d222" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">d222[7:0]</obj_property>
+         <obj_property name="ObjectShortName">d222[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/d230" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">d230[7:0]</obj_property>
+         <obj_property name="ObjectShortName">d230[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/d231" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">d231[7:0]</obj_property>
+         <obj_property name="ObjectShortName">d231[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/d232" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">d232[7:0]</obj_property>
+         <obj_property name="ObjectShortName">d232[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/d242" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">d242[7:0]</obj_property>
+         <obj_property name="ObjectShortName">d242[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/d254" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">d254[7:0]</obj_property>
+         <obj_property name="ObjectShortName">d254[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/d273" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">d273[7:0]</obj_property>
+         <obj_property name="ObjectShortName">d273[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/align_rdpos" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">align_rdpos[39:0]</obj_property>
+         <obj_property name="ObjectShortName">align_rdpos[39:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/align_rdneg" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">align_rdneg[39:0]</obj_property>
+         <obj_property name="ObjectShortName">align_rdneg[39:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/rxperiod" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">rxperiod</obj_property>
+         <obj_property name="ObjectShortName">rxperiod</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/txperiod" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">txperiod</obj_property>
+         <obj_property name="ObjectShortName">txperiod</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/min_cominit_space" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">min_cominit_space</obj_property>
+         <obj_property name="ObjectShortName">min_cominit_space</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/max_cominit_space" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">max_cominit_space</obj_property>
+         <obj_property name="ObjectShortName">max_cominit_space</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/min_comwake_space" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">min_comwake_space</obj_property>
+         <obj_property name="ObjectShortName">min_comwake_space</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/max_comwake_space" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">max_comwake_space</obj_property>
+         <obj_property name="ObjectShortName">max_comwake_space</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/fist_reg_h2d" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">fist_reg_h2d[7:0]</obj_property>
+         <obj_property name="ObjectShortName">fist_reg_h2d[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/fist_reg_d2h" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">fist_reg_d2h[7:0]</obj_property>
+         <obj_property name="ObjectShortName">fist_reg_d2h[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/fist_set_dev_bit" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">fist_set_dev_bit[7:0]</obj_property>
+         <obj_property name="ObjectShortName">fist_set_dev_bit[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/fist_dma_activ" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">fist_dma_activ[7:0]</obj_property>
+         <obj_property name="ObjectShortName">fist_dma_activ[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/fist_dma_setup" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">fist_dma_setup[7:0]</obj_property>
+         <obj_property name="ObjectShortName">fist_dma_setup[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/fist_bist_activ" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">fist_bist_activ[7:0]</obj_property>
+         <obj_property name="ObjectShortName">fist_bist_activ[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/fist_pio_setup" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">fist_pio_setup[7:0]</obj_property>
+         <obj_property name="ObjectShortName">fist_pio_setup[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/fist_data" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">fist_data[7:0]</obj_property>
+         <obj_property name="ObjectShortName">fist_data[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/fis_sof" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">fis_sof[1:0]</obj_property>
+         <obj_property name="ObjectShortName">fis_sof[1:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/fis_eof" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">fis_eof[1:0]</obj_property>
+         <obj_property name="ObjectShortName">fis_eof[1:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/fis_payload" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">fis_payload[1:0]</obj_property>
+         <obj_property name="ObjectShortName">fis_payload[1:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/polynomial" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">polynomial[31:0]</obj_property>
+         <obj_property name="ObjectShortName">polynomial[31:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/phydatawidth" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">phydatawidth</obj_property>
+         <obj_property name="ObjectShortName">phydatawidth</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
    </wvobject>
 </wave_config>

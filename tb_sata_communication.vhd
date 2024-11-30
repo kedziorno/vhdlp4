@@ -29,6 +29,8 @@ LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
 USE ieee.std_logic_unsigned.all;
 USE ieee.numeric_std.ALL;
+use STD.textio.all;
+use ieee.std_logic_textio.all;
 
 ENTITY tb_sata_communication IS
 END tb_sata_communication;
@@ -107,14 +109,25 @@ end process;
 
 -- Stimulus process
 stim_proc: process
+variable v_OLINE : line;
+file file_RESULTS : text;
+constant cs : string := "";
 begin
+file_open(file_RESULTS, "output_results_host.txt", write_mode);
+write(v_OLINE, cs, left);
+writeline(file_RESULTS, v_OLINE);
+file_close(file_RESULTS);
+file_open(file_RESULTS, "output_results_device.txt", write_mode);
+write(v_OLINE, cs, left);
+writeline(file_RESULTS, v_OLINE);
+file_close(file_RESULTS);
 reset <= '1';
-wait for 100 ns;	
+wait for 10000 ns;	
 reset <= '0';
 wait for clock_period*10;
 
 -- insert stimulus here 
-wait for 100 us;
+wait for 1000 us;
 report "tb done" severity failure;
 wait;
 end process;

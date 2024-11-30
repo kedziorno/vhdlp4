@@ -281,7 +281,7 @@ BEGIN
       file file_RESULTS : text;
       constant cs : string := time'image(now) & " : " & debug("") & "SendALIGN : " & s;
     begin
-      file_open(file_RESULTS, "output_results.txt", append_mode);
+      file_open(file_RESULTS, "output_results_host.txt", append_mode);
       write(v_OLINE, cs, left);
       writeline(file_RESULTS, v_OLINE);
       file_close(file_RESULTS);
@@ -334,7 +334,7 @@ BEGIN
       file file_RESULTS : text;
       constant cs : string := time'image(now) & " : " & debug("") & "encode : " & s;
     begin
-      file_open(file_RESULTS, "output_results.txt", append_mode);
+      file_open(file_RESULTS, "output_results_host.txt", append_mode);
       write(v_OLINE, cs, left);
       writeline(file_RESULTS, v_OLINE);
       file_close(file_RESULTS);
@@ -481,7 +481,7 @@ BEGIN
       file file_RESULTS : text;
       constant cs : string := time'image(now) & " : " & debug("") & "docode : " & s;
     begin
-      file_open(file_RESULTS, "output_results.txt", append_mode);
+      file_open(file_RESULTS, "output_results_host.txt", append_mode);
       write(v_OLINE, cs, left);
       writeline(file_RESULTS, v_OLINE);
       file_close(file_RESULTS);
@@ -623,7 +623,7 @@ BEGIN
       file file_RESULTS : text;
       constant cs : string := time'image(now) & " : " & debug("") & "new_rd : " & s;
     begin
-      file_open(file_RESULTS, "output_results.txt", append_mode);
+      file_open(file_RESULTS, "output_results_host.txt", append_mode);
       write(v_OLINE, cs, left);
       writeline(file_RESULTS, v_OLINE);
       file_close(file_RESULTS);
@@ -680,7 +680,7 @@ BEGIN
       file file_RESULTS : text;
       constant cs : string := time'image(now) & " : " & debug("") & "lsfr : " & s;
     begin
-      file_open(file_RESULTS, "output_results.txt", append_mode);
+      file_open(file_RESULTS, "output_results_host.txt", append_mode);
       write(v_OLINE, cs, left);
       writeline(file_RESULTS, v_OLINE);
       file_close(file_RESULTS);
@@ -709,7 +709,7 @@ BEGIN
       file file_RESULTS : text;
       constant cs : string := time'image(now) & " : " & debug("") & "get_crc : " & s;
     begin
-      file_open(file_RESULTS, "output_results.txt", append_mode);
+      file_open(file_RESULTS, "output_results_host.txt", append_mode);
       write(v_OLINE, cs, left);
       writeline(file_RESULTS, v_OLINE);
       file_close(file_RESULTS);
@@ -905,7 +905,7 @@ BEGIN
       file file_RESULTS : text;
       constant cs : string := time'image(now) & " : " & debug("") & "CRC_INIT : " & s;
     begin
-      file_open(file_RESULTS, "output_results.txt", append_mode);
+      file_open(file_RESULTS, "output_results_host.txt", append_mode);
       write(v_OLINE, cs, left);
       writeline(file_RESULTS, v_OLINE);
       file_close(file_RESULTS);
@@ -968,7 +968,7 @@ BEGIN
       file file_RESULTS : text;
       constant cs : string := time'image(now) & " : " & debug("") & "RX_CLK : " & s;
     begin
-      file_open(file_RESULTS, "output_results.txt", append_mode);
+      file_open(file_RESULTS, "output_results_host.txt", append_mode);
       write(v_OLINE, cs, left);
       writeline(file_RESULTS, v_OLINE);
       file_close(file_RESULTS);
@@ -997,7 +997,7 @@ BEGIN
       file file_RESULTS : text;
       constant cs : string := time'image(now) & " : " & debug("") & "SPACE_CHECK : " & s;
     begin
-      file_open(file_RESULTS, "output_results.txt", append_mode);
+      file_open(file_RESULTS, "output_results_host.txt", append_mode);
       write(v_OLINE, cs, left);
       writeline(file_RESULTS, v_OLINE);
       file_close(file_RESULTS);
@@ -1035,7 +1035,7 @@ BEGIN
       file file_RESULTS : text;
       constant cs : string := time'image(now) & " : " & debug("") & "OOB_INIT : " & s;
     begin
-      file_open(file_RESULTS, "output_results.txt", append_mode);
+      file_open(file_RESULTS, "output_results_host.txt", append_mode);
       write(v_OLINE, cs, left);
       writeline(file_RESULTS, v_OLINE);
       file_close(file_RESULTS);
@@ -1084,7 +1084,7 @@ BEGIN
       file file_RESULTS : text;
       constant cs : string := time'image(now) & " : " & debug("") & "OOB_WAKE : " & s;
     begin
-      file_open(file_RESULTS, "output_results.txt", append_mode);
+      file_open(file_RESULTS, "output_results_host.txt", append_mode);
       write(v_OLINE, cs, left);
       writeline(file_RESULTS, v_OLINE);
       file_close(file_RESULTS);
@@ -1143,7 +1143,7 @@ BEGIN
       file file_RESULTS : text;
       constant cs : string := time'image(now) & " : " & debug("") & "RX_SHIFT : " & s;
     begin
-      file_open(file_RESULTS, "output_results.txt", append_mode);
+      file_open(file_RESULTS, "output_results_host.txt", append_mode);
       write(v_OLINE, cs, left);
       writeline(file_RESULTS, v_OLINE);
       file_close(file_RESULTS);
@@ -1237,7 +1237,7 @@ BEGIN
       file file_RESULTS : text;
       constant cs : string := time'image(now) & " : " & debug("") & "TX_SHIFT : " & s;
     begin
-      file_open(file_RESULTS, "output_results.txt", append_mode);
+      file_open(file_RESULTS, "output_results_host.txt", append_mode);
       write(v_OLINE, cs, left);
       writeline(file_RESULTS, v_OLINE);
       file_close(file_RESULTS);
@@ -1307,7 +1307,7 @@ BEGIN
       file file_RESULTS : text;
       constant cs : string := time'image(now) & " : " & debug("") & "DATA_TRANS : " & s;
     begin
-      file_open(file_RESULTS, "output_results.txt", append_mode);
+      file_open(file_RESULTS, "output_results_host.txt", append_mode);
       write(v_OLINE, cs, left);
       writeline(file_RESULTS, v_OLINE);
       file_close(file_RESULTS);
@@ -1481,7 +1481,7 @@ BEGIN
       file file_RESULTS : text;
       constant cs : string := time'image(now) & " : " & debug("") & "PHY_CONTROL : " & s;
     begin
-      file_open(file_RESULTS, "output_results.txt", append_mode);
+      file_open(file_RESULTS, "output_results_host.txt", append_mode);
       write(v_OLINE, cs, left);
       writeline(file_RESULTS, v_OLINE);
       file_close(file_RESULTS);
@@ -1650,7 +1650,7 @@ BEGIN
       file file_RESULTS : text;
       constant cs : string := time'image(now) & " : " & debug("") & "CONTROL_OUT : " & s;
     begin
-      file_open(file_RESULTS, "output_results.txt", append_mode);
+      file_open(file_RESULTS, "output_results_host.txt", append_mode);
       write(v_OLINE, cs, left);
       writeline(file_RESULTS, v_OLINE);
       file_close(file_RESULTS);
@@ -1724,7 +1724,7 @@ BEGIN
       file file_RESULTS : text;
       constant cs : string := time'image(now) & " : " & debug("") & "LINK_TX_NXT : " & s;
     begin
-      file_open(file_RESULTS, "output_results.txt", append_mode);
+      file_open(file_RESULTS, "output_results_host.txt", append_mode);
       write(v_OLINE, cs, left);
       writeline(file_RESULTS, v_OLINE);
       file_close(file_RESULTS);
@@ -2040,7 +2040,7 @@ BEGIN
       file file_RESULTS : text;
       constant cs : string := time'image(now) & " : " & debug("") & "LINK_TX_OUT : " & s;
     begin
-      file_open(file_RESULTS, "output_results.txt", append_mode);
+      file_open(file_RESULTS, "output_results_host.txt", append_mode);
       write(v_OLINE, cs, left);
       writeline(file_RESULTS, v_OLINE);
       file_close(file_RESULTS);
@@ -2347,7 +2347,7 @@ BEGIN
       file file_RESULTS : text;
       constant cs : string := time'image(now) & " : " & debug("") & "LINK_RX_DEC : " & s;
     begin
-      file_open(file_RESULTS, "output_results.txt", append_mode);
+      file_open(file_RESULTS, "output_results_host.txt", append_mode);
       write(v_OLINE, cs, left);
       writeline(file_RESULTS, v_OLINE);
       file_close(file_RESULTS);
@@ -2395,7 +2395,7 @@ BEGIN
       file file_RESULTS : text;
       constant cs : string := time'image(now) & " : " & debug("") & "PRIM_DEC : " & s;
     begin
-      file_open(file_RESULTS, "output_results.txt", append_mode);
+      file_open(file_RESULTS, "output_results_host.txt", append_mode);
       write(v_OLINE, cs, left);
       writeline(file_RESULTS, v_OLINE);
       file_close(file_RESULTS);
@@ -2525,7 +2525,7 @@ BEGIN
       file file_RESULTS : text;
       constant cs : string := time'image(now) & " : " & debug("") & "DESCRAMBLE : " & s;
     begin
-      file_open(file_RESULTS, "output_results.txt", append_mode);
+      file_open(file_RESULTS, "output_results_host.txt", append_mode);
       write(v_OLINE, cs, left);
       writeline(file_RESULTS, v_OLINE);
       file_close(file_RESULTS);
@@ -2624,7 +2624,7 @@ BEGIN
       file file_RESULTS : text;
       constant cs : string := time'image(now) & " : " & debug("") & "TRX_FIFO : " & s;
     begin
-      file_open(file_RESULTS, "output_results.txt", append_mode);
+      file_open(file_RESULTS, "output_results_host.txt", append_mode);
       write(v_OLINE, cs, left);
       writeline(file_RESULTS, v_OLINE);
       file_close(file_RESULTS);
@@ -2691,7 +2691,7 @@ BEGIN
       file file_RESULTS : text;
       constant cs : string := time'image(now) & " : " & debug("") & "TP_NXT_STATE : " & s;
     begin
-      file_open(file_RESULTS, "output_results.txt", append_mode);
+      file_open(file_RESULTS, "output_results_host.txt", append_mode);
       write(v_OLINE, cs, left);
       writeline(file_RESULTS, v_OLINE);
       file_close(file_RESULTS);
@@ -2779,7 +2779,7 @@ BEGIN
       file file_RESULTS : text;
       constant cs : string := time'image(now) & " : " & debug("") & "TP_CTRL_GEN : " & s;
     begin
-      file_open(file_RESULTS, "output_results.txt", append_mode);
+      file_open(file_RESULTS, "output_results_host.txt", append_mode);
       write(v_OLINE, cs, left);
       writeline(file_RESULTS, v_OLINE);
       file_close(file_RESULTS);
