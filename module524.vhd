@@ -65,7 +65,7 @@ ha0,
 ha01,ha02,ha03,ha04,ha05,ha06,ha07,ha08,ha09,ha10,
 ha1,
 ha11,ha12,ha13,ha14,ha15,ha16,ha17,ha18,ha19,ha110,
-ha2,
+ha2
 );
 signal ha_state : ha_states;
 
@@ -112,6 +112,7 @@ begin
             IPF <= '0';
             TL_ContrlFIS <= '1';
             ha_state <= ha0;
+          end if;
         when ha05 =>
           BSY <= '1';
           IPF <= '0';
@@ -199,7 +200,7 @@ begin
           end if;
         when ha22 =>
           if (SRST = '0') then
-            TL_ContrlFIS <= '1;
+            TL_ContrlFIS <= '1';
             ha_state <= ha2;
           end if;
         when ha23 =>
@@ -224,11 +225,11 @@ begin
             ha_state <= ha0;
           end if;
         when ha26 =>
-          if (DEV = '0' and (nIEN = '1' or IPF = '0') then
+          if (DEV = '0' and (nIEN = '1' or IPF = '0')) then
             ha_state <= ha0;
           end if;
         when ha27 =>
-          if (DEV = '0' and (nIEN = '0' or IPF = '1') then
+          if (DEV = '0' and (nIEN = '0' or IPF = '1')) then
             ha_state <= ha1;
           end if;
         when ha28 =>

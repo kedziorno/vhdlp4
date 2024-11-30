@@ -67,11 +67,67 @@ dr_slumber,
 dr_reductespeed,
 dr_error
 );
+
 signal state_dr : states_dr;
+
+constant C_COMRESET_idle_counter : integer := HOST_COMRESET_IDLE/GEN1_1_DWORD;
+signal COMRESET_idle_counter : integer range 0 to C_COMRESET_idle_counter - 1;
+signal COMRESET_idle_enable : std_logic;
+type COMRESET_idle_states is (COMRESET_idle_state_a,COMRESET_idle_state_b);
+signal COMRESET_idle_state : COMRESET_idle_states;
+
+constant C_COMRESET_burst_counter : integer := HOST_COMRESET_BURST/GEN1_1_DWORD;
+signal COMRESET_burst_counter : integer range 0 to C_COMRESET_burst_counter - 1;
+constant C_COMRESET_idle_counter : integer := HOST_COMRESET_IDLE/GEN1_1_DWORD;
+signal COMRESET_idle_counter : integer range 0 to C_COMRESET_idle_counter - 1;
+type power_on_states is (CR1,CRw1,CR2,CRw2,CR3,CRw3,CR4,CRw4,CR5,CRw5,CR6,CRw6);
+signal power_on_state : power_on_states;
+--signal power_on_counter : integer;
+
+constant C_COMINIT_burst_counter : integer := HOST_COMINIT_BURST/GEN1_1_DWORD;
+signal COMINIT_burst_counter : integer range 0 to C_COMINIT_burst_counter - 1;
+constant C_COMINIT_idle_counter : integer := HOST_COMINIT_IDLE/GEN1_1_DWORD;
+signal COMINIT_idle_counter : integer range 0 to C_COMINIT_idle_counter - 1;
+type power_on_states is (CI1,CIw1,CR2,CRw2,CR3,CRw3,CR4,CRw4,CR5,CRw5,CR6,CRw6);
+signal power_on_state_COMINIT : power_on_states;
+
+--constant C_COMRESET_burst_counter : integer := HOST_COMRESET_BURST/GEN1_1_DWORD;
+--signal COMRESET_burst_counter : integer range 0 to C_COMRESET_burst_counter - 1;
+--signal COMRESET_burst_enable : std_logic;
+--type COMRESET_burst_states is (COMRESET_burst_state_a,COMRESET_burst_state_b);
+--signal COMRESET_burst_state : COMRESET_burst_states;
+
+constant C_COMWAKE_burst_counter : integer := HOST_COMWAKE_BURST/GEN1_1_DWORD;
+signal COMWAKE_burst_counter : integer range 0 to C_COMWAKE_burst_counter - 1;
+constant C_COMWAKE_idle_counter : integer := HOST_COMWAKE_IDLE/GEN1_1_DWORD;
+signal COMWAKE_idle_counter : integer range 0 to C_COMWAKE_idle_counter - 1;
+type power_on_states_COMWAKE is (CI1,CIw1,CI2,CIw2,CI3,CIw3,CI4,CIw4,CI5,CIw5,CI6,CIw6);
+signal power_on_state_COMWAKE : power_on_states_COMWAKE;
+
+constant C_CLOCK_M1 : integer := 1;
+constant C_CLOCK_M2 : integer := 2;
+constant C_CLOCK_M3 : integer := 3;
+constant C_CLOCK_M4 : integer := 4;
+constant C_CLOCK_MAX : integer := C_CLOCK_M4;
+constant C_CLOCK_MAX1 : integer := 16;
+signal clock_counter_1 : integer range 0 to C_CLOCK_MAX - 1;
+signal clock_counter_2 : integer range 0 to C_CLOCK_MAX1 - 1;
+signal clock_counter_3 : integer range 0 to C_CLOCK_MAX - 1;
+signal clock_mux1 : std_logic;
+
+constant C_PMACK_burst_counter : integer := HOST_COMWAKE_BURST/GEN1_1_DWORD;
+signal PMACK_burst_counter : integer range 0 to C_PMACK_burst_counter - 1;
+type partial_slumber_PMACK_states is (idle, CI1, CI2, CI3, CI4, CI5);
+signal partial_slumber_PMACK_state : partial_slumber_PMACK_states;
+
+constant C_PMREQ_burst_counter : integer := HOST_COMWAKE_BURST/GEN1_1_DWORD;
+signal PMREQ_burst_counter : integer range 0 to C_PMREQ_burst_counter - 1;
+type partial_slumber_PMREQ_states is (CI1, CI2, CI3, CI4, CI5, CI6, CI7);
+signal partial_slumber_PMREQ_state : partial_slumber_PMREQ_states;
 
 begin
 
-process_6.8.1.1.1 : process (i_clock) is
+process_6_8_1_1_1 : process (i_clock) is
 begin
   if (rising_edge (i_clock)) then
     if (power_on_reset = '1' or i_reset = '1') then -- xxx must be asynch
@@ -181,9 +237,9 @@ begin
       end case;
     end if;
   end if;
-end process process_6.8.1.1.1;
+end process process_6_8_1_1_1;
 
-process_6.8.1.1.2 : process (i_clock) is
+process_6_8_1_1_2 : process (i_clock) is
 begin
   if (rising_edge (i_clock)) then
     if (i_reset = '1' or power_on_reset = '1') then -- xxx must be asynch
@@ -211,7 +267,7 @@ begin
           if (COMWAKE_detected = '0' and power_on_reset = '1') then
             state <= dr_calibrate;
           end if;
-          if (COMWAKE_detected = '0' and (PARTIAL_signal = '1' or SLUMBER_signal = '1') then
+          if (COMWAKE_detected = '0' and (PARTIAL_signal = '1' or SLUMBER_signal = '1')) then
             state <= dr_comwake;
           end if;
           if (COMWAKE_detected = '1') then
@@ -287,13 +343,8 @@ begin
       end case;
     end if;
   end if;
-end process process_6.8.1.1.2;
+end process process_6_8_1_1_2;
 
---constant C_COMRESET_burst_counter : integer := HOST_COMRESET_BURST/GEN1_1_DWORD;
---signal COMRESET_burst_counter : integer range 0 to C_COMRESET_burst_counter - 1;
---signal COMRESET_burst_enable : std_logic;
---type COMRESET_burst_states is (COMRESET_burst_state_a,COMRESET_burst_state_b);
---signal COMRESET_burst_state : COMRESET_burst_states;
 --process_COMRESET_burst_counter : process (i_clock) is
 --begin
 --  if (rising_edge (i_clock)) then
@@ -320,11 +371,6 @@ end process process_6.8.1.1.2;
 --  end if;
 --end process process_COMRESET_burst_counter;
 
-constant C_COMRESET_idle_counter : integer := HOST_COMRESET_IDLE/GEN1_1_DWORD;
-signal COMRESET_idle_counter : integer range 0 to C_COMRESET_idle_counter - 1;
-signal COMRESET_idle_enable : std_logic;
-type COMRESET_idle_states is (COMRESET_idle_state_a,COMRESET_idle_state_b);
-signal COMRESET_idle_state : COMRESET_idle_states;
 process_COMRESET_idle_counter : process (i_clock) is
 begin
   if (rising_edge (i_clock)) then
@@ -352,15 +398,8 @@ begin
 end process process_COMRESET_idle_counter;
 
 -- 6.8.1.2 Power-on sequence timing diagram p. 125
-constant C_COMRESET_burst_counter : integer := HOST_COMRESET_BURST/GEN1_1_DWORD;
-signal COMRESET_burst_counter : integer range 0 to C_COMRESET_burst_counter - 1;
-constant C_COMRESET_idle_counter : integer := HOST_COMRESET_IDLE/GEN1_1_DWORD;
-signal COMRESET_idle_counter : integer range 0 to C_COMRESET_idle_counter - 1;
-type power_on_states is (CR1,CRw1,CR2,CRw2,CR3,CRw3,CR4,CRw4,CR5,CRw5,CR6,CRw6);
-signal power_on_state : power_on_states;
---signal power_on_counter : integer;
 
-process_6.8.1.2_COMRESET : process (i_clock) is
+process_6_8_1_2_COMRESET : process (i_clock) is
 begin
   if (rising_edge (i_clock)) then
     if (i_reset = '1') then
@@ -480,16 +519,9 @@ begin
       end case;
     end if;
   end if;
-end process process_6.8.1.2_COMRESET;
+end process process_6_8_1_2_COMRESET;
 
-constant C_COMINIT_burst_counter : integer := HOST_COMINIT_BURST/GEN1_1_DWORD;
-signal COMINIT_burst_counter : integer range 0 to C_COMINIT_burst_counter - 1;
-constant C_COMINIT_idle_counter : integer := HOST_COMINIT_IDLE/GEN1_1_DWORD;
-signal COMINIT_idle_counter : integer range 0 to C_COMINIT_idle_counter - 1;
-type power_on_states is (CI1,CIw1,CR2,CRw2,CR3,CRw3,CR4,CRw4,CR5,CRw5,CR6,CRw6);
-signal power_on_state_COMINIT : power_on_states;
-
-process_6.8.1.2_COMINIT : process (i_clock) is
+process_6_8_1_2_COMINIT : process (i_clock) is
 begin
   if (rising_edge (i_clock)) then
     if (i_reset = '1') then
@@ -609,16 +641,9 @@ begin
       end case;
     end if;
   end if;
-end process process_6.8.1.2_COMINIT;
+end process process_6_8_1_2_COMINIT;
 
-constant C_COMWAKE_burst_counter : integer := HOST_COMWAKE_BURST/GEN1_1_DWORD;
-signal COMWAKE_burst_counter : integer range 0 to C_COMWAKE_burst_counter - 1;
-constant C_COMWAKE_idle_counter : integer := HOST_COMWAKE_IDLE/GEN1_1_DWORD;
-signal COMWAKE_idle_counter : integer range 0 to C_COMWAKE_idle_counter - 1;
-type power_on_states_COMWAKE is (CI1,CIw1,CI2,CIw2,CI3,CIw3,CI4,CIw4,CI5,CIw5,CI6,CIw6);
-signal power_on_state_COMWAKE : power_on_states_COMWAKE;
-
-process_6.8.1.2_COMWAKE : process (i_clock) is
+process_6_8_1_2_COMWAKE : process (i_clock) is
 begin
   if (rising_edge (i_clock)) then
     if (i_reset = '1') then
@@ -738,14 +763,9 @@ begin
       end case;
     end if;
   end if;
-end process process_6.8.1.2_COMWAKE;
+end process process_6_8_1_2_COMWAKE;
 
-constant C_PMREQ_burst_counter : integer := HOST_COMWAKE_BURST/GEN1_1_DWORD;
-signal PMREQ_burst_counter : integer range 0 to C_PMREQ_burst_counter - 1;
-type partial_slumber_PMREQ_states is (CI1, CI2, CI3, CI4, CI5, CI6, CI7);
-signal partial_slumber_PMREQ_state : partial_slumber_PMREQ_states;
-
-process_6.8.1.4.1_PMREQ_HOST : process (i_clock) is
+process_6_8_1_4_1_PMREQ_HOST : process (i_clock) is
 begin
   if (rising_edge (i_clock)) then
     if (i_reset = '1') then
@@ -805,14 +825,9 @@ begin
       end case;
     end if;
   end if;
-end process process_6.8.1.4.1_PMREQ_HOST;
+end process process_6_8_1_4_1_PMREQ_HOST;
 
-constant C_PMACK_burst_counter : integer := HOST_COMWAKE_BURST/GEN1_1_DWORD;
-signal PMACK_burst_counter : integer range 0 to C_PMACK_burst_counter - 1;
-type partial_slumber_PMACK_states is (idle, CI1, CI2, CI3, CI4, CI5);
-signal partial_slumber_PMACK_state : partial_slumber_PMACK_states;
-
-process_6.8.1.4.2_PMACK_HOST : process (i_clock) is
+process_6_8_1_4_2_PMACK_HOST : process (i_clock) is
 begin
   if (rising_edge (i_clock)) then
     if (i_reset = '1') then
@@ -827,7 +842,7 @@ begin
           else
             partial_slumber_PMACK_state <= idle;
           end if;
-        when CI1
+        when CI1 =>
           TX_PMACK <= '1';
           if (PMREQ_burst_counter = C_PMREQ_burst_counter - 1) then
             partial_slumber_PMREQ_state <= CI2;
@@ -869,19 +884,9 @@ begin
       end case;
     end if;
   end if;
-end process process_6.8.1.4.2_PMACK_HOST;
+end process process_6_8_1_4_2_PMACK_HOST;
 
-constant C_CLOCK_M1 : integer := 1;
-constant C_CLOCK_M2 : integer := 2;
-constant C_CLOCK_M3 : integer := 3;
-constant C_CLOCK_M4 : integer := 4;
-constant C_CLOCK_MAX : integer := C_CLOCK_M4;
-constant C_CLOCK_MAX1 : integer := 16;
-signal clock_counter_1 : integer range 0 to C_CLOCK_MAX - 1;
-signal clock_counter_2 : integer range 0 to C_CLOCK_MAX1 - 1;
-signal clock_counter_3 : integer range 0 to C_CLOCK_MAX - 1;
-signal clock_mux1 : std_logic;
-process process_clock_MUX1 : process (i_clock) is
+process_clock_MUX1 : process (i_clock) is
 begin
   if (rising_edge (i_clock)) then
     if (i_reset = '1') then
@@ -893,27 +898,25 @@ begin
       else
         clock_mux1 <= clock_mux1;
         clock_counter_3 <= clock_counter_3 + 1;
+      end if;
     end if;
   end if;
 end process process_clock_MUX1;
 
-process process_clock_MUX2 : process (clock_counter_2) is
+process_clock_MUX2 : process (clock_counter_2) is
 begin
-    case (clock_counter_2) is
-      when C_CLOCK_M1 =>
-        clock_counter_1 <= C_CLOCK_M1;
-      when C_CLOCK_M2 =>
-        clock_counter_1 <= C_CLOCK_M2;
-      when C_CLOCK_M3 =>
-        clock_counter_1 <= C_CLOCK_M3;
-      when C_CLOCK_M4 =>
-        clock_counter_1 <= C_CLOCK_M4;
-      when others =>
-        clock_counter_1 <= 0;
-    end case;
-  end if;
+  case (clock_counter_2) is
+    when C_CLOCK_M1 =>
+      clock_counter_1 <= C_CLOCK_M1;
+    when C_CLOCK_M2 =>
+      clock_counter_1 <= C_CLOCK_M2;
+    when C_CLOCK_M3 =>
+      clock_counter_1 <= C_CLOCK_M3;
+    when C_CLOCK_M4 =>
+      clock_counter_1 <= C_CLOCK_M4;
+    when others =>
+      clock_counter_1 <= 0;
+  end case;
 end process process_clock_MUX2;
 
-
 end Behavioral;
-
