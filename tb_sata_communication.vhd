@@ -122,7 +122,7 @@ write(v_OLINE, cs, left);
 writeline(file_RESULTS, v_OLINE);
 file_close(file_RESULTS);
 reset <= '1';
-wait for 10000 ns;	
+wait for 1 us;	
 reset <= '0';
 wait for clock_period*10;
 

@@ -2717,15 +2717,15 @@ BEGIN
                 debug ("state : " & TP_state_type'image(TP_state));
                     CASE link_FIS_data(7 DOWNTO 0) IS 
                         WHEN FISt_reg_d2h     =>
-                            ASSERT FALSE REPORT "HOST: Register FIS - Device to Host" SEVERITY NOTE;
+                            debug ("state : " & TP_state_type'image(TP_state) & " HOST: Register FIS - Device to Host");
                             next_TP_state <= HT_RegFIS;
                             debug ("next_state : HT_RegFIS");
                         WHEN FISt_pio_setup     =>
-                            ASSERT FALSE REPORT "HOST: PIO Setup - Device to Host" SEVERITY NOTE;
+                            debug ("state : " & TP_state_type'image(TP_state) & " HOST: PIO Setup - Device to Host");
                             next_TP_state <= HT_PS_FIS;
                             debug ("next_state : HT_PS_FIS");
                         WHEN others =>
-                            ASSERT FALSE REPORT "HOST: ERROR !!!!!! Unexpected FIS type" SEVERITY NOTE;                        
+                            debug ("state : " & TP_state_type'image(TP_state) & " HOST: ERROR !!!!!! Unexpected FIS type");                        
                             next_TP_state <= HT_HostIdle;
                             debug ("next_state : HT_HostIdle");
                     END CASE;
