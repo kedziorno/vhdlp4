@@ -740,6 +740,7 @@ BEGIN
     SIGNAL FARAFELB           : std_logic:= '0';
     SIGNAL SPDSEL             : std_logic:= '0';
     SIGNAL SYSTEMCLOCK        : std_logic:= '1';  
+    CONSTANT SYSTEMCLOCK_WAIT : time := 1 ps;  
     SIGNAL COMMA              : std_logic:= '0';  
     SIGNAL DATAOUT            : std_logic_vector(PHYDATAWIDTH-1 DOWNTO 0);
     SIGNAL RXCLOCK            : std_logic:= '0';  
@@ -1700,7 +1701,8 @@ BEGIN
     ----------------------------------------------------------------------------
     -- SYSTEM CLOCK                                                           --
     ----------------------------------------------------------------------------                   
-    SYSTEMCLOCK <= NOT(SYSTEMCLOCK) AFTER (40*TXPERIOD)/2;
+    -- 7.4.1.2 Primitive handshakes - "...different clock domains between to two ends of the cable, the number..."
+    SYSTEMCLOCK <= '1' after (40*TXPERIOD)/2 - SYSTEMCLOCK_WAIT, NOT(SYSTEMCLOCK) AFTER (40*TXPERIOD)/2;
 
     ----------------------------------------------------------------------------
     -- Transmit control                                                           --

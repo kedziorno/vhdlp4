@@ -10,6 +10,7 @@
             <top_module name="numeric_std" />
             <top_module name="std_logic_1164" />
             <top_module name="std_logic_arith" />
+            <top_module name="std_logic_textio" />
             <top_module name="std_logic_unsigned" />
             <top_module name="tb_sata_communication" />
             <top_module name="textio" />
@@ -18,7 +19,71 @@
          </top_modules>
       </db_ref>
    </db_ref_list>
-   <WVObjectSize size="3" />
+   <WVObjectSize size="4" />
+   <wave_markers>
+      <marker time="8619372000" label="" />
+      <marker time="9003982000" label="" />
+   </wave_markers>
+   <wvobject fp_name="group361" type="group">
+      <obj_property name="label">clock</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/rxclk" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">rxclk</obj_property>
+         <obj_property name="ObjectShortName">rxclk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/txclk" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">txclk</obj_property>
+         <obj_property name="ObjectShortName">txclk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/rxclk" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">rxclk</obj_property>
+         <obj_property name="ObjectShortName">rxclk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/txclk" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">txclk</obj_property>
+         <obj_property name="ObjectShortName">txclk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/systemclock" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">systemclock</obj_property>
+         <obj_property name="ObjectShortName">systemclock</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/rxclock" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">rxclock</obj_property>
+         <obj_property name="ObjectShortName">rxclock</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/systemclock" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">systemclock</obj_property>
+         <obj_property name="ObjectShortName">systemclock</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/rxclock" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">rxclock</obj_property>
+         <obj_property name="ObjectShortName">rxclock</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/rx_idle" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">rx_idle</obj_property>
+         <obj_property name="ObjectShortName">rx_idle</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/rx_idle" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">rx_idle</obj_property>
+         <obj_property name="ObjectShortName">rx_idle</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/rx_int" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">rx_int</obj_property>
+         <obj_property name="ObjectShortName">rx_int</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/rx_int" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">rx_int</obj_property>
+         <obj_property name="ObjectShortName">rx_int</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/host/behavior/rxclk_timeout" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">rxclk_timeout</obj_property>
+         <obj_property name="ObjectShortName">rxclk_timeout</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/rxclk_timeout" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">rxclk_timeout</obj_property>
+         <obj_property name="ObjectShortName">rxclk_timeout</obj_property>
+      </wvobject>
+   </wvobject>
    <wvobject fp_name="group38" type="group">
       <obj_property name="label">tb</obj_property>
       <obj_property name="DisplayName">label</obj_property>
@@ -856,6 +921,10 @@
       <wvobject fp_name="/tb_sata_communication/device/behavior/rxclock" type="logic" db_ref_id="1">
          <obj_property name="ElementShortName">rxclock</obj_property>
          <obj_property name="ObjectShortName">rxclock</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_sata_communication/device/behavior/systemclock" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">systemclock</obj_property>
+         <obj_property name="ObjectShortName">systemclock</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_sata_communication/device/behavior/comreset" type="logic" db_ref_id="1">
          <obj_property name="ElementShortName">comreset</obj_property>
