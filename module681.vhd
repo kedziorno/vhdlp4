@@ -127,7 +127,7 @@ signal partial_slumber_PMREQ_state : partial_slumber_PMREQ_states;
 
 begin
 
-process_6_8_1_1_1 : process (i_clock) is
+process_6_8_1_1_1 : process (i_clock) is -- p. 119
 begin
   if (rising_edge (i_clock)) then
     if (power_on_reset = '1' or i_reset = '1') then -- xxx must be asynch
@@ -239,7 +239,7 @@ begin
   end if;
 end process process_6_8_1_1_1;
 
-process_6_8_1_1_2 : process (i_clock) is
+process_6_8_1_1_2 : process (i_clock) is -- p. 123
 begin
   if (rising_edge (i_clock)) then
     if (i_reset = '1' or power_on_reset = '1') then -- xxx must be asynch
@@ -398,7 +398,6 @@ begin
 end process process_COMRESET_idle_counter;
 
 -- 6.8.1.2 Power-on sequence timing diagram p. 125
-
 process_6_8_1_2_COMRESET : process (i_clock) is
 begin
   if (rising_edge (i_clock)) then
