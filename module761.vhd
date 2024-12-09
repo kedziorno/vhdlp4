@@ -242,4 +242,260 @@ begin
   end if;
 end process process_7_6_1_3;
 
+-- 7.6.1.4 Link receive state diagram
+process_7_6_1_4 : process (i_clock) is -- p. 173
+begin
+  if (rising_edge (i_clock)) then
+    if (i_reset = '1') then -- xxx must be asynch
+      state <= l_rcvchkrdy;
+    else
+      case (state) is
+        when l_rcvchkrdy => -- LR1 , Transmit R_RDY
+          if (X_RDY = '1') then
+            state <= l_rcvchkrdy;
+          end if;
+          if (SOF = '1') then
+            state <= l_rcvdata;
+          end if;
+          if (AnyDword = '1') then
+            state <= l_idle;
+          end if;
+          if (physical_layer_not_ready = '1') then
+            state <= l_nocommerr;
+          end if;
+        when l_rcvwaitfifo => -- LR2 , Transmit SYNC
+          if (X_RDY = '1'and fifo_space = '1') then
+            state <= l_rcvchkrdy;
+          end if;
+          if (X_RDY = '1'and fifo_space = '0') then
+            state <= l_rcvwaitfifo;
+          end if;
+          if (AnyDword = '1') then
+            state <= l_idle;
+          end if;
+          if (physical_layer_not_ready = '1') then
+            state <= l_nocommerr;
+          end if;
+        when l_rcvdata => -- LR3 , Transmit R_IP (or DMAT when TL wish terminate transfer)
+          if ((DataDword = '1' and fifo_space = '1') or HOLDA = '1') then
+            state <= l_rcvdata;
+          end if;
+          if (DataDword = '1' and fifo_space = '0') then
+            state <= l_hold;
+          end if;
+          if (HOLD = '1') then
+            state <= l_sendhold;
+          end if;
+          if (EOF = '1') then
+            state <= l_rcveof;
+          end if;
+          if (WTRM = '1') then
+            state <= l_badend;
+          end if;
+          if (SYNC = '1') then
+            state <= l_idle;
+          end if;
+          if (AnyDword = '1') then
+            state <= l_rcvdata;
+          end if;
+          if (physical_layer_not_ready = '1') then
+            state <= l_nocommerr;
+          end if;
+          if (TL_Control_Register_frame = '1') then -- XXX nothing about priority
+            l_state <= l_idle;
+          end if;
+        when l_hold => -- LR4 , Transmit HOLD
+          if ((fifo_space = '1' and AnyDword = '1') or EOF = '1') then
+            state <= l_rcvdata;
+          end if;
+          if (fifo_space = '1' and HOLD = '1') then
+            state <= l_sendhold;
+          end if;
+          if (EOF = '1') then
+            state <= l_rcveof;
+          end if;
+          if (fifo_space = '0' and EOF = '0' and SYNC = '0' and physical_layer_ready = '1') then
+            state <= l_hold;
+          end if;
+          if (physical_layer_not_ready = '1') then
+            state <= l_nocommerr;
+          end if;
+          if (SYNC = '1') then
+            state <= l_idle;
+          end if;
+          if (TL_Control_Register_frame = '1') then -- XXX nothing about priority
+            l_state <= l_idle;
+          end if;
+        when l_sendhold => -- LR5 , Transmit HOLDA (or DMAT when TL wish terminate transfer)
+          if (AnyDword = '1') then
+            state <= l_rcvdata;
+          end if;
+          if (HOLD = '1') then
+            state <= l_sendhold;
+          end if;
+          if (EOF = '1') then
+            state <= l_rcveof;
+          end if;
+          if (SYNC = '1') then
+            state <= l_idle;
+          end if;
+          if (physical_layer_not_ready = '1') then
+            state <= l_nocommerr;
+          end if;
+          if (TL_Control_Register_frame = '1') then -- XXX nothing about priority
+            l_state <= l_idle;
+          end if;
+        when l_rcveof => -- LR6 , Transmit R_IP , check calculated CRC
+          if (crc_check = '0') then
+            state <= l_rcveof;
+          end if;
+          if (crc_check = '1' and crc_good = '1') then
+            state <= l_goodcrc;
+          end if;
+          if (crc_check = '1' and crc_bad = '1') then
+            state <= l_badend;
+          end if;
+          if (physical_layer_not_ready = '1') then
+            state <= l_nocommerr;
+          end if;
+        when l_goodcrc => -- LR7 , Transmit R_IP , for first time LL notify TL about good CRC for frame
+          if (TL_good_result = '1') then
+            state <= l_goodend;
+          end if;
+          if (TL_unrecognized_FIS = '1') then
+            state <= l_badend;
+          end if;
+          if (TL_wait_transfer = '1') then
+            state <= l_goodcrc;
+          end if;
+          if (physical_layer_not_ready = '1') then
+            state <= l_nocommerr;
+          end if;
+          if (TL_Error = '1' or LL_Error = '1') then
+            state <= l_badend;
+          end if;
+          if (SYNC = '1') then
+            state <= l_idle;
+          end if;
+        when l_goodend => -- LR8 , Transmit R_OK
+          if (SYNC = '1') then
+            state <= l_idle;
+          end if;
+          if (AnyDword = '1') then
+            state <= l_goodend;
+          end if;
+          if (physical_layer_not_ready = '1') then
+            state <= l_nocommerr;
+          end if;
+        when l_badend => -- LR9 , Transmit R_ERR
+          if (SYNC = '1') then
+            state <= l_idle;
+          end if;
+          if (AnyDword = '1') then
+            state <= l_badend;
+          end if;
+          if (physical_layer_not_ready = '1') then
+            state <= l_nocommerr;
+          end if;
+      end case;
+    end if;
+  end if;
+end process process_7_6_1_4;
+
+-- 7.6.1.5 Link power mode state diagram
+process_7_6_1_5 : process (i_clock) is -- p. 181
+begin
+  if (rising_edge (i_clock)) then
+    if (i_reset = '1') then -- xxx must be asynch
+      state <= l_tpmpartial;
+    else
+      case (state) is
+        when l_tpmpartial => -- LPM1 , Transmit PMREQ_P
+          if (PMACK = '1') then
+            state <= l_chkphyrdy;
+          end if;
+          if (X_RDY = '1') then -- abort req from TL to enter PM
+            state <= l_rcvwaitfifo;
+          end if;
+          if (SYNC = '1' or R_OK = '1') then -- opposite side not yet processed the PMREQ_S
+            state <= l_tpmpartial;
+          end if;
+          if (AnyDword = '1') then -- host to l_idle , dev to l_tpmpartial , abort req from TL to enter PM , Note Transition LPM1:4
+            state <= l_idle;
+          end if;
+          if (PMREQ_P = '1' or PMREQ_S = '1') then -- abort req from TL to enter PM , Note Transition LPM1:5
+            state <= l_tpmpartial;
+          end if;
+          if (physical_layer_not_ready = '1') then -- constitutes error , unexpected transition
+            state <= l_nocommerr;
+          end if;
+        when l_tpmslumber => -- LPM2 , Transmit PMREQ_S
+          if (PMACK = '1') then
+            state <= l_chkphyrdy;
+          end if;
+          if (X_RDY = '1') then -- abort req from TL to enter PM
+            state <= l_rcvwaitfifo;
+          end if;
+          if (SYNC = '1' or R_OK = '1') then -- opposite side not yet processed the PMREQ_S
+            state <= l_tpmslumber;
+          end if;
+          if (AnyDword = '1') then -- host to l_idle , dev to l_tpmslumber , abort req from TL to enter PM
+            state <= l_idle;
+          end if;
+          if (PMREQ_P = '1' or PMREQ_S = '1') then -- abort req from TL to enter PM , Note Transition LPM2:5
+            state <= l_tpmslumber;
+          end if;
+          if (physical_layer_not_ready = '1') then -- constitutes error , unexpected transition
+            state <= l_nocommerr;
+          end if;
+        when l_pmoff => -- LPM3 , Transmit PMACK
+          if (PMACK_4 = '1') then -- 4
+            state <= l_chkphyrdy;
+          end if;
+          if (PMACK_4 = '0') then -- < 4
+            state <= l_pmoff;
+          end if;
+        when l_pmdeny => -- LPM4 , Transmit PMNACK
+          if (PMREQ_P = '1' or PMREQ_S = '1') then
+            state <= l_pmdeny;
+          end if;
+          if (AnyDword = '1') then
+            state <= l_idle;
+          end if;
+          if (physical_layer_not_ready = '1') then
+            state <= l_nocommerr;
+          end if;
+        when l_chkphyrdy => -- LPM5 , Assert Partial/Slumber to Phy (as appropriate)
+          if (physical_layer_ready = '1') then
+            state <= l_chkphyrdy;
+          end if;
+          if (physical_layer_not_ready = '1') then
+            state <= l_nocommpower;
+          end if;
+        when l_nocommpower => -- LPM6 , Maintain Partial/Slumber assertion (as appropriate)
+          if (TL_request = '1' or COMWAKE = '1') then
+            state <= l_wakeup1;
+          end if;
+          if (TL_request = '0' and COMWAKE = '0') then
+            state <= l_nocommpower;
+          end if;
+        when l_wakeup1 => -- LPM7 , Deassert both Partial and Slumber
+          if (physical_layer_ready = '1') then
+            state <= l_wakeup2;
+          end if;
+          if (physical_layer_not_ready = '1') then
+            state <= l_wakeup1;
+          end if;
+        when l_wakeup2 => -- LPM8 , Transmit ALIGN
+          if (physical_layer_ready = '1') then
+            state <= l_idle;
+          end if;
+          if (physical_layer_not_ready = '1') then
+            state <= l_nocommerr;
+          end if;
+      end case;
+    end if;
+  end if;
+end process process_7_6_1_5;
+
 end architecture behavioral;
