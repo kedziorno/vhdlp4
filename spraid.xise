@@ -494,6 +494,10 @@
       <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="127"/>
       <association xil_pn:name="Implementation" xil_pn:seqID="127"/>
     </file>
+    <file xil_pn:name="module86.vhd" xil_pn:type="FILE_VHDL">
+      <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="128"/>
+      <association xil_pn:name="Implementation" xil_pn:seqID="128"/>
+    </file>
   </files>
 
   <properties>
