@@ -1,0 +1,1010 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="/home/user/_WORKSPACE_/kedziorno/raid/tb_crccalc_isim_beh.wdb" id="1" type="auto">
+         <top_modules>
+            <top_module name="std_logic_1164" />
+            <top_module name="std_logic_arith" />
+            <top_module name="std_logic_unsigned" />
+            <top_module name="tb_crccalc" />
+            <top_module name="textio" />
+            <top_module name="vcomponents" />
+            <top_module name="vital_primitives" />
+            <top_module name="vital_timing" />
+            <top_module name="vpkg" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <WVObjectSize size="7" />
+   <wave_markers>
+      <marker time="2035000000" label="" />
+      <marker time="125100000" label="" />
+   </wave_markers>
+   <wvobject fp_name="/tb_crccalc/clk" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_crccalc/reset" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_crccalc/crccalc_output" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">crccalc_output[31:0]</obj_property>
+      <obj_property name="ObjectShortName">crccalc_output[31:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_crccalc/clk_period" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">clk_period</obj_property>
+      <obj_property name="ObjectShortName">clk_period</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="group356" type="group">
+      <obj_property name="label">uut</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <wvobject fp_name="/tb_crccalc/uut/crccalc_output" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">crccalc_output[31:0]</obj_property>
+         <obj_property name="ObjectShortName">crccalc_output[31:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/clk" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">clk</obj_property>
+         <obj_property name="ObjectShortName">clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/address" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">address[9:0]</obj_property>
+         <obj_property name="ObjectShortName">address[9:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/instruction" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">instruction[17:0]</obj_property>
+         <obj_property name="ObjectShortName">instruction[17:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/port_id" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">port_id[7:0]</obj_property>
+         <obj_property name="ObjectShortName">port_id[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/out_port" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">out_port[7:0]</obj_property>
+         <obj_property name="ObjectShortName">out_port[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/in_port" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">in_port[7:0]</obj_property>
+         <obj_property name="ObjectShortName">in_port[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/write_strobe" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">write_strobe</obj_property>
+         <obj_property name="ObjectShortName">write_strobe</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/read_strobe" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">read_strobe</obj_property>
+         <obj_property name="ObjectShortName">read_strobe</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/interrupt" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">interrupt</obj_property>
+         <obj_property name="ObjectShortName">interrupt</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/interrupt_ack" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">interrupt_ack</obj_property>
+         <obj_property name="ObjectShortName">interrupt_ack</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/reset" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">reset</obj_property>
+         <obj_property name="ObjectShortName">reset</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group465" type="group">
+      <obj_property name="label">cpu</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <wvobject fp_name="/tb_crccalc/uut/processor/address" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">address[9:0]</obj_property>
+         <obj_property name="ObjectShortName">address[9:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/instruction" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">instruction[17:0]</obj_property>
+         <obj_property name="ObjectShortName">instruction[17:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/port_id" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">port_id[7:0]</obj_property>
+         <obj_property name="ObjectShortName">port_id[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/write_strobe" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">write_strobe</obj_property>
+         <obj_property name="ObjectShortName">write_strobe</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/out_port" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">out_port[7:0]</obj_property>
+         <obj_property name="ObjectShortName">out_port[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/read_strobe" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">read_strobe</obj_property>
+         <obj_property name="ObjectShortName">read_strobe</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/in_port" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">in_port[7:0]</obj_property>
+         <obj_property name="ObjectShortName">in_port[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/interrupt" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">interrupt</obj_property>
+         <obj_property name="ObjectShortName">interrupt</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/interrupt_ack" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">interrupt_ack</obj_property>
+         <obj_property name="ObjectShortName">interrupt_ack</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/reset" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">reset</obj_property>
+         <obj_property name="ObjectShortName">reset</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/clk" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">clk</obj_property>
+         <obj_property name="ObjectShortName">clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/t_state" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">t_state</obj_property>
+         <obj_property name="ObjectShortName">t_state</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/not_t_state" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">not_t_state</obj_property>
+         <obj_property name="ObjectShortName">not_t_state</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/internal_reset" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">internal_reset</obj_property>
+         <obj_property name="ObjectShortName">internal_reset</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/reset_delay" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">reset_delay</obj_property>
+         <obj_property name="ObjectShortName">reset_delay</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/move_group" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">move_group</obj_property>
+         <obj_property name="ObjectShortName">move_group</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/condition_met" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">condition_met</obj_property>
+         <obj_property name="ObjectShortName">condition_met</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/normal_count" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">normal_count</obj_property>
+         <obj_property name="ObjectShortName">normal_count</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/call_type" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">call_type</obj_property>
+         <obj_property name="ObjectShortName">call_type</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/push_or_pop_type" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">push_or_pop_type</obj_property>
+         <obj_property name="ObjectShortName">push_or_pop_type</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/valid_to_move" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">valid_to_move</obj_property>
+         <obj_property name="ObjectShortName">valid_to_move</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/flag_type" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">flag_type</obj_property>
+         <obj_property name="ObjectShortName">flag_type</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/flag_write" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">flag_write</obj_property>
+         <obj_property name="ObjectShortName">flag_write</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/flag_enable" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">flag_enable</obj_property>
+         <obj_property name="ObjectShortName">flag_enable</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/zero_flag" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">zero_flag</obj_property>
+         <obj_property name="ObjectShortName">zero_flag</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/sel_shadow_zero" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">sel_shadow_zero</obj_property>
+         <obj_property name="ObjectShortName">sel_shadow_zero</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/low_zero" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">low_zero</obj_property>
+         <obj_property name="ObjectShortName">low_zero</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/high_zero" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">high_zero</obj_property>
+         <obj_property name="ObjectShortName">high_zero</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/low_zero_carry" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">low_zero_carry</obj_property>
+         <obj_property name="ObjectShortName">low_zero_carry</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/high_zero_carry" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">high_zero_carry</obj_property>
+         <obj_property name="ObjectShortName">high_zero_carry</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/zero_carry" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">zero_carry</obj_property>
+         <obj_property name="ObjectShortName">zero_carry</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/zero_fast_route" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">zero_fast_route</obj_property>
+         <obj_property name="ObjectShortName">zero_fast_route</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/low_parity" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">low_parity</obj_property>
+         <obj_property name="ObjectShortName">low_parity</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/high_parity" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">high_parity</obj_property>
+         <obj_property name="ObjectShortName">high_parity</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/parity_carry" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">parity_carry</obj_property>
+         <obj_property name="ObjectShortName">parity_carry</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/parity" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">parity</obj_property>
+         <obj_property name="ObjectShortName">parity</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/carry_flag" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">carry_flag</obj_property>
+         <obj_property name="ObjectShortName">carry_flag</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/sel_parity" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">sel_parity</obj_property>
+         <obj_property name="ObjectShortName">sel_parity</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/sel_arith_carry" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">sel_arith_carry</obj_property>
+         <obj_property name="ObjectShortName">sel_arith_carry</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/sel_shift_carry" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">sel_shift_carry</obj_property>
+         <obj_property name="ObjectShortName">sel_shift_carry</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/sel_shadow_carry" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">sel_shadow_carry</obj_property>
+         <obj_property name="ObjectShortName">sel_shadow_carry</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/sel_carry" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">sel_carry[3:0]</obj_property>
+         <obj_property name="ObjectShortName">sel_carry[3:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/carry_fast_route" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">carry_fast_route</obj_property>
+         <obj_property name="ObjectShortName">carry_fast_route</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/active_interrupt" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">active_interrupt</obj_property>
+         <obj_property name="ObjectShortName">active_interrupt</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/int_pulse" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">int_pulse</obj_property>
+         <obj_property name="ObjectShortName">int_pulse</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/clean_int" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">clean_int</obj_property>
+         <obj_property name="ObjectShortName">clean_int</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/shadow_carry" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">shadow_carry</obj_property>
+         <obj_property name="ObjectShortName">shadow_carry</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/shadow_zero" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">shadow_zero</obj_property>
+         <obj_property name="ObjectShortName">shadow_zero</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/int_enable" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">int_enable</obj_property>
+         <obj_property name="ObjectShortName">int_enable</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/int_update_enable" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">int_update_enable</obj_property>
+         <obj_property name="ObjectShortName">int_update_enable</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/int_enable_value" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">int_enable_value</obj_property>
+         <obj_property name="ObjectShortName">int_enable_value</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/interrupt_ack_internal" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">interrupt_ack_internal</obj_property>
+         <obj_property name="ObjectShortName">interrupt_ack_internal</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/pc" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">pc[9:0]</obj_property>
+         <obj_property name="ObjectShortName">pc[9:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/pc_vector" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">pc_vector[9:0]</obj_property>
+         <obj_property name="ObjectShortName">pc_vector[9:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/pc_vector_carry" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">pc_vector_carry[8:0]</obj_property>
+         <obj_property name="ObjectShortName">pc_vector_carry[8:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/inc_pc_vector" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">inc_pc_vector[9:0]</obj_property>
+         <obj_property name="ObjectShortName">inc_pc_vector[9:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/pc_value" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">pc_value[9:0]</obj_property>
+         <obj_property name="ObjectShortName">pc_value[9:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/pc_value_carry" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">pc_value_carry[8:0]</obj_property>
+         <obj_property name="ObjectShortName">pc_value_carry[8:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/inc_pc_value" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">inc_pc_value[9:0]</obj_property>
+         <obj_property name="ObjectShortName">inc_pc_value[9:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/pc_enable" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">pc_enable</obj_property>
+         <obj_property name="ObjectShortName">pc_enable</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/sx" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">sx[7:0]</obj_property>
+         <obj_property name="ObjectShortName">sx[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/sy" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">sy[7:0]</obj_property>
+         <obj_property name="ObjectShortName">sy[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/register_type" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">register_type</obj_property>
+         <obj_property name="ObjectShortName">register_type</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/register_write" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">register_write</obj_property>
+         <obj_property name="ObjectShortName">register_write</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/register_enable" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">register_enable</obj_property>
+         <obj_property name="ObjectShortName">register_enable</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/second_operand" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">second_operand[7:0]</obj_property>
+         <obj_property name="ObjectShortName">second_operand[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/memory_data" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">memory_data[7:0]</obj_property>
+         <obj_property name="ObjectShortName">memory_data[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/store_data" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">store_data[7:0]</obj_property>
+         <obj_property name="ObjectShortName">store_data[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/memory_type" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">memory_type</obj_property>
+         <obj_property name="ObjectShortName">memory_type</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/memory_write" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">memory_write</obj_property>
+         <obj_property name="ObjectShortName">memory_write</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/memory_enable" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">memory_enable</obj_property>
+         <obj_property name="ObjectShortName">memory_enable</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/stack_pop_data" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">stack_pop_data[9:0]</obj_property>
+         <obj_property name="ObjectShortName">stack_pop_data[9:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/stack_ram_data" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">stack_ram_data[9:0]</obj_property>
+         <obj_property name="ObjectShortName">stack_ram_data[9:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/stack_address" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">stack_address[4:0]</obj_property>
+         <obj_property name="ObjectShortName">stack_address[4:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/half_stack_address" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">half_stack_address[4:0]</obj_property>
+         <obj_property name="ObjectShortName">half_stack_address[4:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/stack_address_carry" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">stack_address_carry[3:0]</obj_property>
+         <obj_property name="ObjectShortName">stack_address_carry[3:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/next_stack_address" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">next_stack_address[4:0]</obj_property>
+         <obj_property name="ObjectShortName">next_stack_address[4:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/stack_write_enable" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">stack_write_enable</obj_property>
+         <obj_property name="ObjectShortName">stack_write_enable</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/not_active_interrupt" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">not_active_interrupt</obj_property>
+         <obj_property name="ObjectShortName">not_active_interrupt</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/logical_result" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">logical_result[7:0]</obj_property>
+         <obj_property name="ObjectShortName">logical_result[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/logical_value" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">logical_value[7:0]</obj_property>
+         <obj_property name="ObjectShortName">logical_value[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/sel_logical" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">sel_logical</obj_property>
+         <obj_property name="ObjectShortName">sel_logical</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/shift_result" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">shift_result[7:0]</obj_property>
+         <obj_property name="ObjectShortName">shift_result[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/shift_value" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">shift_value[7:0]</obj_property>
+         <obj_property name="ObjectShortName">shift_value[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/sel_shift" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">sel_shift</obj_property>
+         <obj_property name="ObjectShortName">sel_shift</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/high_shift_in" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">high_shift_in</obj_property>
+         <obj_property name="ObjectShortName">high_shift_in</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/low_shift_in" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">low_shift_in</obj_property>
+         <obj_property name="ObjectShortName">low_shift_in</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/shift_in" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">shift_in</obj_property>
+         <obj_property name="ObjectShortName">shift_in</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/shift_carry" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">shift_carry</obj_property>
+         <obj_property name="ObjectShortName">shift_carry</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/shift_carry_value" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">shift_carry_value</obj_property>
+         <obj_property name="ObjectShortName">shift_carry_value</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/arith_result" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">arith_result[7:0]</obj_property>
+         <obj_property name="ObjectShortName">arith_result[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/arith_value" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">arith_value[7:0]</obj_property>
+         <obj_property name="ObjectShortName">arith_value[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/half_arith" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">half_arith[7:0]</obj_property>
+         <obj_property name="ObjectShortName">half_arith[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/arith_internal_carry" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">arith_internal_carry[7:0]</obj_property>
+         <obj_property name="ObjectShortName">arith_internal_carry[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/sel_arith_carry_in" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">sel_arith_carry_in</obj_property>
+         <obj_property name="ObjectShortName">sel_arith_carry_in</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/arith_carry_in" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">arith_carry_in</obj_property>
+         <obj_property name="ObjectShortName">arith_carry_in</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/invert_arith_carry" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">invert_arith_carry</obj_property>
+         <obj_property name="ObjectShortName">invert_arith_carry</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/arith_carry_out" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">arith_carry_out</obj_property>
+         <obj_property name="ObjectShortName">arith_carry_out</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/sel_arith" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">sel_arith</obj_property>
+         <obj_property name="ObjectShortName">sel_arith</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/arith_carry" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">arith_carry</obj_property>
+         <obj_property name="ObjectShortName">arith_carry</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/input_fetch_type" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">input_fetch_type</obj_property>
+         <obj_property name="ObjectShortName">input_fetch_type</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/sel_group" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">sel_group</obj_property>
+         <obj_property name="ObjectShortName">sel_group</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/alu_group" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">alu_group[7:0]</obj_property>
+         <obj_property name="ObjectShortName">alu_group[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/input_group" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">input_group[7:0]</obj_property>
+         <obj_property name="ObjectShortName">input_group[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/alu_result" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">alu_result[7:0]</obj_property>
+         <obj_property name="ObjectShortName">alu_result[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/io_initial_decode" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">io_initial_decode</obj_property>
+         <obj_property name="ObjectShortName">io_initial_decode</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/write_active" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">write_active</obj_property>
+         <obj_property name="ObjectShortName">write_active</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/processor/read_active" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">read_active</obj_property>
+         <obj_property name="ObjectShortName">read_active</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group557" type="group">
+      <obj_property name="label">mem</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/do" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">do[15:0]</obj_property>
+         <obj_property name="ObjectShortName">do[15:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/dop" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">dop[1:0]</obj_property>
+         <obj_property name="ObjectShortName">dop[1:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/addr" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">addr[9:0]</obj_property>
+         <obj_property name="ObjectShortName">addr[9:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/clk" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">clk</obj_property>
+         <obj_property name="ObjectShortName">clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/di" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">di[15:0]</obj_property>
+         <obj_property name="ObjectShortName">di[15:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/dip" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">dip[1:0]</obj_property>
+         <obj_property name="ObjectShortName">dip[1:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/en" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">en</obj_property>
+         <obj_property name="ObjectShortName">en</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/ssr" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">ssr</obj_property>
+         <obj_property name="ObjectShortName">ssr</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/we" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">we</obj_property>
+         <obj_property name="ObjectShortName">we</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init[0:19]</obj_property>
+         <obj_property name="ObjectShortName">init[0:19]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/srval" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">srval[0:19]</obj_property>
+         <obj_property name="ObjectShortName">srval[0:19]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/initp_00" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">initp_00[0:255]</obj_property>
+         <obj_property name="ObjectShortName">initp_00[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/initp_01" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">initp_01[0:255]</obj_property>
+         <obj_property name="ObjectShortName">initp_01[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/initp_02" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">initp_02[0:255]</obj_property>
+         <obj_property name="ObjectShortName">initp_02[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/initp_03" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">initp_03[0:255]</obj_property>
+         <obj_property name="ObjectShortName">initp_03[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/initp_04" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">initp_04[0:255]</obj_property>
+         <obj_property name="ObjectShortName">initp_04[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/initp_05" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">initp_05[0:255]</obj_property>
+         <obj_property name="ObjectShortName">initp_05[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/initp_06" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">initp_06[0:255]</obj_property>
+         <obj_property name="ObjectShortName">initp_06[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/initp_07" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">initp_07[0:255]</obj_property>
+         <obj_property name="ObjectShortName">initp_07[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_00" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_00[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_00[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_01" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_01[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_01[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_02" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_02[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_02[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_03" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_03[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_03[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_04" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_04[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_04[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_05" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_05[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_05[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_06" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_06[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_06[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_07" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_07[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_07[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_08" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_08[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_08[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_09" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_09[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_09[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_0a" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_0a[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_0a[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_0b" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_0b[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_0b[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_0c" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_0c[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_0c[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_0d" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_0d[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_0d[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_0e" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_0e[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_0e[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_0f" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_0f[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_0f[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_10" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_10[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_10[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_11" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_11[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_11[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_12" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_12[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_12[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_13" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_13[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_13[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_14" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_14[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_14[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_15" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_15[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_15[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_16" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_16[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_16[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_17" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_17[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_17[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_18" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_18[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_18[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_19" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_19[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_19[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_1a" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_1a[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_1a[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_1b" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_1b[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_1b[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_1c" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_1c[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_1c[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_1d" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_1d[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_1d[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_1e" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_1e[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_1e[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_1f" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_1f[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_1f[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_20" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_20[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_20[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_21" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_21[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_21[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_22" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_22[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_22[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_23" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_23[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_23[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_24" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_24[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_24[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_25" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_25[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_25[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_26" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_26[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_26[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_27" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_27[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_27[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_28" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_28[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_28[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_29" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_29[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_29[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_2a" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_2a[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_2a[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_2b" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_2b[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_2b[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_2c" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_2c[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_2c[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_2d" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_2d[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_2d[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_2e" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_2e[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_2e[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_2f" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_2f[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_2f[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_30" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_30[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_30[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_31" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_31[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_31[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_32" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_32[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_32[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_33" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_33[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_33[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_34" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_34[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_34[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_35" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_35[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_35[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_36" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_36[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_36[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_37" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_37[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_37[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_38" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_38[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_38[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_39" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_39[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_39[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_3a" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_3a[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_3a[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_3b" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_3b[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_3b[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_3c" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_3c[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_3c[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_3d" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_3d[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_3d[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_3e" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_3e[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_3e[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/init_3f" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">init_3f[0:255]</obj_property>
+         <obj_property name="ObjectShortName">init_3f[0:255]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/length" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">length</obj_property>
+         <obj_property name="ObjectShortName">length</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/width" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">width</obj_property>
+         <obj_property name="ObjectShortName">width</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/parity_width" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">parity_width</obj_property>
+         <obj_property name="ObjectShortName">parity_width</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/uut/program/ram_1024_x_18/write_mode" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">write_mode[1:11]</obj_property>
+         <obj_property name="ObjectShortName">write_mode[1:11]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+   </wvobject>
+</wave_config>

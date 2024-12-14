@@ -22,7 +22,8 @@ use IEEE.STD_LOGIC_UNSIGNED.ALL;
 --
 --
 entity embedded_kcpsm3 is
-    Port (      crccalc_output : out std_logic_vector(7 downto 0);
+    Port (      crccalc_output : out std_logic_vector(31 downto 0);
+                data_in : in std_logic_vector(31 downto 0);
                 clk : in std_logic;
                 reset : in std_logic);
 end embedded_kcpsm3;
@@ -97,8 +98,6 @@ begin
                instruction => instruction,
                        clk => clk);
 
-  in_port <= "00000000";
-
   -- Adding the output registers to the processor
 
   IO_registers: process(clk,reset)
@@ -107,12 +106,33 @@ begin
     if (reset = '1') then
     
       crccalc_output <= (others => '0');
+      in_port <= (others => '0');
     
     elsif rising_edge (clk) then
 
-      -- waveform register at address 02
       if port_id(1)='1' and write_strobe='1' then
-        crccalc_output <= out_port;
+        crccalc_output (7 downto 0) <= out_port;
+      end if;
+      if port_id(2)='1' and write_strobe='1' then
+        crccalc_output (15 downto 8) <= out_port;
+      end if;
+      if port_id(3)='1' and write_strobe='1' then
+        crccalc_output (23 downto 16) <= out_port;
+      end if;
+      if port_id(4)='1' and write_strobe='1' then
+        crccalc_output (31 downto 24) <= out_port;
+      end if;
+      if port_id(1)='1' and read_strobe='1' then
+        in_port <= data_in (7 downto 0);
+      end if;
+      if port_id(2)='1' and read_strobe='1' then
+        in_port <= data_in (15 downto 8);
+      end if;
+      if port_id(3)='1' and read_strobe='1' then
+        in_port <= data_in (23 downto 16);
+      end if;
+      if port_id(4)='1' and read_strobe='1' then
+        in_port <= data_in (31 downto 24);
       end if;
 
     end if;
