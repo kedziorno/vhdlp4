@@ -7,27 +7,27 @@
 ; {
 ;   int i,data_count;
 ;   unsigned int crc,data_in;
-CONSTANT crccalc_output_0, 02
-CONSTANT crccalc_output_1, 04
-CONSTANT crccalc_output_2, 08
-CONSTANT crccalc_output_3, 10
-CONSTANT in_data_in_0, 02;
-CONSTANT in_data_in_1, 04;
-CONSTANT in_data_in_2, 08;
-CONSTANT in_data_in_3, 10;
 ;   unsigned char crc_bit[32],new_bit[32];
+CONSTANT crccalc_output_0, 02; OUTPUT 7-0 bit
+CONSTANT crccalc_output_1, 04; OUTPUT 15-8 bit
+CONSTANT crccalc_output_2, 08; OUTPUT 23-16 bit
+CONSTANT crccalc_output_3, 10; OUTPUT 31-24 bit
+CONSTANT in_data_in_0, 02; INPUT 7-0 bit
+CONSTANT in_data_in_1, 04; INPUT 15-8 bit
+CONSTANT in_data_in_2, 08; INPUT 23-16 bit
+CONSTANT in_data_in_3, 10; INPUT 31-24 bit
 NAMEREG s0, data_in_0; data_in 7-0 bit
-NAMEREG s1, data_in_1; data_in 7-0 bit
-NAMEREG s2, data_in_2; data_in 7-0 bit
-NAMEREG s3, data_in_3; data_in 7-0 bit
-NAMEREG s4, crc_bit_0; CRC 7-0 bit
-NAMEREG s5, crc_bit_1; CRC 15-8 bit
-NAMEREG s6, crc_bit_2; CRC 23-16 bit
-NAMEREG s7, crc_bit_3; CRC 31-24 bit
-NAMEREG s8, new_bit_0;
-NAMEREG s9, new_bit_1;
-NAMEREG sA, new_bit_2;
-NAMEREG sB, new_bit_3;
+NAMEREG s1, data_in_1; data_in 15-8 bit
+NAMEREG s2, data_in_2; data_in 23-16 bit
+NAMEREG s3, data_in_3; data_in 31-24 bit
+NAMEREG s4, crc_bit_0; current CRC 7-0 bit
+NAMEREG s5, crc_bit_1; current CRC 15-8 bit
+NAMEREG s6, crc_bit_2; current CRC 23-16 bit
+NAMEREG s7, crc_bit_3; current CRC 31-24 bit
+NAMEREG s8, new_bit_0; next CRC 7-0 bit
+NAMEREG s9, new_bit_1; next CRC 15-8 bit
+NAMEREG sA, new_bit_2; next CRC 23-16 bit
+NAMEREG sB, new_bit_3; next CRC 31-24 bit
 NAMEREG sC, temp0;
 NAMEREG sD, temp1;
 NAMEREG sE, temp2;
@@ -41,11 +41,7 @@ CONSTANT constant_crc_bit_3, 52;
 ;   while (scanf(" 0x%8x", &data_in) == 1) {
 ;     data_count++;
 ADDRESS 000; Programs always start at reset vector 0
-;ENABLE INTERRUPT; If using interrupts, be sure to enable
-;the INTERRUPT input
 BEGIN:
-; <<< your code here >>>
-; JUMP BEGIN; Embedded applications never end
 ;     /* Add the data_in value to the current value of the CRC held in the */
 ;     /* "register". The addition is performed modulo two (XOR). */
 ;     crc ^= data_in;
@@ -71,132 +67,122 @@ XOR crc_bit_3, constant_crc_bit_3;
 ;     /* temporary holding place for the new CRC value being calculated. */
 ;     /* Note that there are lots of shared terms in the assignments below. */
 ;     new_bit[31] = crc_bit[31] ^ crc_bit[30] ^ crc_bit[29] ^ crc_bit[28] ^ crc_bit[27] ^ crc_bit[25] ^ crc_bit[24] ^ crc_bit[23] ^ crc_bit[15] ^ crc_bit[11] ^ crc_bit [9] ^ crc_bit [8] ^ crc_bit[5];
-LOAD temp0, crc_bit_3;
-;AND temp0, 10000000; -- 31
-LOAD loop_count, 07;
-shift_right_1:
-  SR0 temp0;
-  SUB loop_count, 01;
-  TEST loop_count, 00;
-  JUMP NZ, shift_right_1;
-
+crc_bit_31:
+  LOAD temp0, crc_bit_3;
+  ;AND temp0, 10000000; -- 31
+  LOAD loop_count, 07;
+  shift_right_1:
+    SR0 temp0;
+    SUB loop_count, 01;
+    TEST loop_count, 00;
+    JUMP NZ, shift_right_1;
+crc_bit_30:
+  LOAD temp1, crc_bit_3;
+  ;AND temp1, 01000000; -- 30
+  LOAD loop_count, 06;
+  shift_right_2:
+    SR0 temp0;
+    SUB loop_count, 01;
+    TEST loop_count, 00;
+    JUMP NZ, shift_right_2;
+  XOR temp0, temp1; -- 31 ^ 30
+crc_bit_29:
+  LOAD temp1, crc_bit_3;
+  ;AND temp1, 00100000; -- 29
+  LOAD loop_count, 05;
+  shift_right_3:
+    SR0 temp0;
+    SUB loop_count, 01;
+    TEST loop_count, 00;
+    JUMP NZ, shift_right_3;
+  XOR temp0, temp1; -- 31 ^ 30 ^ 29
+crc_bit_28:
 LOAD temp1, crc_bit_3;
-;AND temp1, 01000000; -- 30
-LOAD loop_count, 06;
-shift_right_2:
-  SR0 temp0;
-  SUB loop_count, 01;
-  TEST loop_count, 00;
-  JUMP NZ, shift_right_2;
-
-XOR temp0, temp1; -- 31 ^ 30
-
-LOAD temp1, crc_bit_3;
-;AND temp1, 00100000; -- 29
-LOAD loop_count, 05;
-shift_right_3:
-  SR0 temp0;
-  SUB loop_count, 01;
-  TEST loop_count, 00;
-  JUMP NZ, shift_right_3;
-XOR temp0, temp1; -- 31 ^ 30 ^ 29
-
-LOAD temp1, crc_bit_3;
-;AND temp1, 00010000; -- 28
-LOAD loop_count, 04;
-shift_right_4:
-  SR0 temp0;
-  SUB loop_count, 01;
-  TEST loop_count, 00;
-  JUMP NZ, shift_right_4;
-XOR temp0, temp1; -- 31 ^ 30 ^ 29 ^ 28
-
-LOAD temp1, crc_bit_3;
-;AND temp1, 00001000; -- 27
-LOAD loop_count, 03;
-shift_right_5:
-  SR0 temp0;
-  SUB loop_count, 01;
-  TEST loop_count, 00;
-  JUMP NZ, shift_right_5;
-XOR temp0, temp1; -- 31 ^ 30 ^ 29 ^ 28 ^ 27
-
-LOAD temp1, crc_bit_3;
-;AND temp1, 00000010; -- 25
-SR0 temp1;
-XOR temp0, temp1; -- 31 ^ 30 ^ 29 ^ 28 ^ 27 ^ 25
-
-LOAD temp1, crc_bit_3;
-;AND temp1, 00000001; -- 24
-XOR temp0, temp1; -- 31 ^ 30 ^ 29 ^ 28 ^ 27 ^ 25 ^ 24
-
-LOAD temp1, crc_bit_2;
-;AND temp1, 10000000; -- 23
-LOAD loop_count, 07;
-shift_right_6:
-  SR0 temp0;
-  SUB loop_count, 01;
-  TEST loop_count, 00;
-  JUMP NZ, shift_right_6;
-XOR temp0, temp1; -- 31 ^ 30 ^ 29 ^ 28 ^ 27 ^ 25 ^ 24 ^ 23
-
-LOAD temp1, crc_bit_1;
-;AND temp1, 10000000; -- 15
-LOAD loop_count, 07;
-shift_right_7:
-  SR0 temp0;
-  SUB loop_count, 01;
-  TEST loop_count, 00;
-  JUMP NZ, shift_right_7;
-XOR temp0, temp1; -- 31 ^ 30 ^ 29 ^ 28 ^ 27 ^ 25 ^ 24 ^ 23 ^ 15
-
-LOAD temp1, crc_bit_1;
-;AND temp1, 00001000; -- 11
-LOAD loop_count, 03;
-shift_right_8:
-  SR0 temp0;
-  SUB loop_count, 01;
-  TEST loop_count, 00;
-  JUMP NZ, shift_right_8;
-XOR temp0, temp1; -- 31 ^ 30 ^ 29 ^ 28 ^ 27 ^ 25 ^ 24 ^ 23 ^ 15 ^ 11
-
-LOAD temp1, crc_bit_1;
-;AND temp1, 00000010; -- 9
-SR0 temp1;
-XOR temp0, temp1; -- 31 ^ 30 ^ 29 ^ 28 ^ 27 ^ 25 ^ 24 ^ 23 ^ 15 ^ 11 ^ 9
-
-LOAD temp1, crc_bit_1;
-;AND temp1, 00000001; -- 8
-SR0 temp1;
-XOR temp0, temp1; -- 31 ^ 30 ^ 29 ^ 28 ^ 27 ^ 25 ^ 24 ^ 23 ^ 15 ^ 11 ^ 9 ^ 8
-
-LOAD temp1, crc_bit_0;
-;AND temp1, 00010000; -- 5
-LOAD loop_count, 04;
-shift_right_9:
-  SR0 temp0;
-  SUB loop_count, 01;
-  TEST loop_count, 00;
-  JUMP NZ, shift_right_9;
-XOR temp0, temp1; -- 31 ^ 30 ^ 29 ^ 28 ^ 27 ^ 25 ^ 24 ^ 23 ^ 15 ^ 11 ^ 9 ^ 8 ^ 5
-
-LOAD loop_count, 08;
-shift_right_10:
-  SR0 temp0;
-  SUB loop_count, 01;
-  TEST loop_count, 00;
-  JUMP NZ, shift_right_10;
-OR new_bit_3, temp0;
-
-OUTPUT new_bit_3, crccalc_output_0;
-OUTPUT new_bit_3, crccalc_output_1;
-OUTPUT new_bit_3, crccalc_output_2;
-OUTPUT new_bit_3, crccalc_output_3;
-
-;OUTPUT crc_bit_0, crccalc_output_0; Debug - OUTPUT OK
-;OUTPUT crc_bit_1, crccalc_output_1; Debug - OUTPUT OK
-;OUTPUT crc_bit_2, crccalc_output_2; Debug - OUTPUT OK
-;OUTPUT crc_bit_3, crccalc_output_3; Debug - OUTPUT OK
+  ;AND temp1, 00010000; -- 28
+  LOAD loop_count, 04;
+  shift_right_4:
+    SR0 temp0;
+    SUB loop_count, 01;
+    TEST loop_count, 00;
+    JUMP NZ, shift_right_4;
+  XOR temp0, temp1; -- 31 ^ 30 ^ 29 ^ 28
+crc_bit_27:
+  LOAD temp1, crc_bit_3;
+  ;AND temp1, 00001000; -- 27
+  LOAD loop_count, 03;
+  shift_right_5:
+    SR0 temp0;
+    SUB loop_count, 01;
+    TEST loop_count, 00;
+    JUMP NZ, shift_right_5;
+  XOR temp0, temp1; -- 31 ^ 30 ^ 29 ^ 28 ^ 27
+crc_bit_25:
+  LOAD temp1, crc_bit_3;
+  ;AND temp1, 00000010; -- 25
+  SR0 temp1;
+  XOR temp0, temp1; -- 31 ^ 30 ^ 29 ^ 28 ^ 27 ^ 25
+crc_bit_24:
+  LOAD temp1, crc_bit_3;
+  ;AND temp1, 00000001; -- 24
+  XOR temp0, temp1; -- 31 ^ 30 ^ 29 ^ 28 ^ 27 ^ 25 ^ 24
+crc_bit_23:
+  LOAD temp1, crc_bit_2;
+  ;AND temp1, 10000000; -- 23
+  LOAD loop_count, 07;
+  shift_right_6:
+    SR0 temp0;
+    SUB loop_count, 01;
+    TEST loop_count, 00;
+    JUMP NZ, shift_right_6;
+  XOR temp0, temp1; -- 31 ^ 30 ^ 29 ^ 28 ^ 27 ^ 25 ^ 24 ^ 23
+crc_bit_15:
+  LOAD temp1, crc_bit_1;
+  ;AND temp1, 10000000; -- 15
+  LOAD loop_count, 07;
+  shift_right_7:
+    SR0 temp0;
+    SUB loop_count, 01;
+    TEST loop_count, 00;
+    JUMP NZ, shift_right_7;
+  XOR temp0, temp1; -- 31 ^ 30 ^ 29 ^ 28 ^ 27 ^ 25 ^ 24 ^ 23 ^ 15
+crc_bit_11:
+  LOAD temp1, crc_bit_1;
+  ;AND temp1, 00001000; -- 11
+  LOAD loop_count, 03;
+  shift_right_8:
+    SR0 temp0;
+    SUB loop_count, 01;
+    TEST loop_count, 00;
+    JUMP NZ, shift_right_8;
+  XOR temp0, temp1; -- 31 ^ 30 ^ 29 ^ 28 ^ 27 ^ 25 ^ 24 ^ 23 ^ 15 ^ 11
+crc_bit_9:
+  LOAD temp1, crc_bit_1;
+  ;AND temp1, 00000010; -- 9
+  SR0 temp1;
+  XOR temp0, temp1; -- 31 ^ 30 ^ 29 ^ 28 ^ 27 ^ 25 ^ 24 ^ 23 ^ 15 ^ 11 ^ 9
+crc_bit_8:
+  LOAD temp1, crc_bit_1;
+  ;AND temp1, 00000001; -- 8
+  SR0 temp1;
+  XOR temp0, temp1; -- 31 ^ 30 ^ 29 ^ 28 ^ 27 ^ 25 ^ 24 ^ 23 ^ 15 ^ 11 ^ 9 ^ 8
+crc_bit_5:
+  LOAD temp1, crc_bit_0;
+  ;AND temp1, 00010000; -- 5
+  LOAD loop_count, 04;
+  shift_right_9:
+    SR0 temp0;
+    SUB loop_count, 01;
+    TEST loop_count, 00;
+    JUMP NZ, shift_right_9;
+  XOR temp0, temp1; -- 31 ^ 30 ^ 29 ^ 28 ^ 27 ^ 25 ^ 24 ^ 23 ^ 15 ^ 11 ^ 9 ^ 8 ^ 5
+crc_index_31:
+  LOAD loop_count, 08;
+  shift_right_10:
+    SR0 temp0;
+    SUB loop_count, 01;
+    TEST loop_count, 00;
+    JUMP NZ, shift_right_10;
+  OR new_bit_3, temp0;
 
 ;     new_bit[30] = crc_bit[30] ^ crc_bit[29] ^ crc_bit[28] ^ crc_bit[27] ^ crc_bit[26] ^ crc_bit[24] ^ crc_bit[23] ^ crc_bit[22] ^ crc_bit[14] ^ crc_bit[10] ^ crc_bit [8] ^ crc_bit [7] ^ crc_bit[4];
 ;     new_bit[29] = crc_bit[31] ^ crc_bit[29] ^ crc_bit[28] ^ crc_bit[27] ^ crc_bit[26] ^ crc_bit[25] ^ crc_bit[23] ^ crc_bit[22] ^ crc_bit[21] ^ crc_bit[13] ^ crc_bit [9] ^ crc_bit [7] ^ crc_bit[6] ^ crc_bit[3];
@@ -229,6 +215,17 @@ OUTPUT new_bit_3, crccalc_output_3;
 ;     new_bit[2]  = crc_bit[31] ^ crc_bit[30] ^ crc_bit[26] ^ crc_bit[24] ^ crc_bit[18] ^ crc_bit[17] ^ crc_bit[16] ^ crc_bit[14] ^ crc_bit[13] ^ crc_bit [9] ^ crc_bit [8] ^ crc_bit [7] ^ crc_bit[6] ^ crc_bit[2] ^ crc_bit[1] ^ crc_bit[0];
 ;     new_bit[1]  = crc_bit[28] ^ crc_bit[27] ^ crc_bit[24] ^ crc_bit[17] ^ crc_bit[16] ^ crc_bit[13] ^ crc_bit[12] ^ crc_bit[11] ^ crc_bit [9] ^ crc_bit [7] ^ crc_bit [6] ^ crc_bit [1] ^ crc_bit[0];
 ;     new_bit[0]  = crc_bit[31] ^ crc_bit[30] ^ crc_bit[29] ^ crc_bit[28] ^ crc_bit[26] ^ crc_bit[25] ^ crc_bit[24] ^ crc_bit[16] ^ crc_bit[12] ^ crc_bit[10] ^ crc_bit [9] ^ crc_bit [6] ^ crc_bit[0];
+
+OUTPUT new_bit_3, crccalc_output_0;
+OUTPUT new_bit_3, crccalc_output_1;
+OUTPUT new_bit_3, crccalc_output_2;
+OUTPUT new_bit_3, crccalc_output_3;
+
+;OUTPUT crc_bit_0, crccalc_output_0; Debug - OUTPUT OK
+;OUTPUT crc_bit_1, crccalc_output_1; Debug - OUTPUT OK
+;OUTPUT crc_bit_2, crccalc_output_2; Debug - OUTPUT OK
+;OUTPUT crc_bit_3, crccalc_output_3; Debug - OUTPUT OK
+
 ;     /* The new CRC value has been calculated as individual bits in the */
 ;     /* new_bit array. Re-assembled it into a 32 bit value and "clock" it */
 ;     /* into the "register". */
