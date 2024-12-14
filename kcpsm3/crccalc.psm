@@ -7,6 +7,7 @@
 ; {
 ;   int i,data_count;
 ;   unsigned int crc,data_in;
+CONSTANT crc, 02
 ;   unsigned char crc_bit[32],new_bit[32];
 NAMEREG s0, data_in_0; data_in 7-0 bit
 NAMEREG s1, data_in_1; data_in 7-0 bit
@@ -33,11 +34,11 @@ CONSTANT constant_crc_bit_3, 52;
 ;   while (scanf(" 0x%8x", &data_in) == 1) {
 ;     data_count++;
 ADDRESS 000; Programs always start at reset vector 0
-ENABLE INTERRUPT; If using interrupts, be sure to enable
+;ENABLE INTERRUPT; If using interrupts, be sure to enable
 ;the INTERRUPT input
 BEGIN:
 ; <<< your code here >>>
-JUMP BEGIN; Embedded applications never end
+; JUMP BEGIN; Embedded applications never end
 ;     /* Add the data_in value to the current value of the CRC held in the */
 ;     /* "register". The addition is performed modulo two (XOR). */
 ;     crc ^= data_in;
@@ -170,6 +171,9 @@ SL0 temp0;
 SL0 temp0;
 SL0 temp0;
 OR new_bit_3, temp0;
+;OR new_bit_3, AA; Debug - OUTPUT OK
+
+OUTPUT new_bit_3, crc;
 
 ;     new_bit[30] = crc_bit[30] ^ crc_bit[29] ^ crc_bit[28] ^ crc_bit[27] ^ crc_bit[26] ^ crc_bit[24] ^ crc_bit[23] ^ crc_bit[22] ^ crc_bit[14] ^ crc_bit[10] ^ crc_bit [8] ^ crc_bit [7] ^ crc_bit[4];
 ;     new_bit[29] = crc_bit[31] ^ crc_bit[29] ^ crc_bit[28] ^ crc_bit[27] ^ crc_bit[26] ^ crc_bit[25] ^ crc_bit[23] ^ crc_bit[22] ^ crc_bit[21] ^ crc_bit[13] ^ crc_bit [9] ^ crc_bit [7] ^ crc_bit[6] ^ crc_bit[3];
@@ -233,14 +237,14 @@ OR new_bit_3, temp0;
 ; The CRC is 0x319FFF6F
 ; ROM output file is always called
 ; <filename>.vhd
-ISR: ; An Interrupt Service Routine (ISR) is
+; ISR: ; An Interrupt Service Routine (ISR) is
 ; required if using interrupts
 ; Interrupts are automatically disabled
 ; when an interrupt is recognized
 ; Never re-enable interrupts during the ISR
-RETURNI ENABLE ; Return from interrupt service routine
+; RETURNI ENABLE ; Return from interrupt service routine
 ; Use RETURNI DISABLE to leave interrupts
 ; disabled
-ADDRESS 3FF ; Interrupt vector is located at highest
+;ADDRESS 3FF ; Interrupt vector is located at highest
 ; instruction address
-JUMP ISR ; Jump to interrupt service routine, ISR
+;JUMP ISR ; Jump to interrupt service routine, ISR
