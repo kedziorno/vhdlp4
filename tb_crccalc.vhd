@@ -88,7 +88,8 @@ wait for 100 ns;
 reset <= '0';
 wait for clk_period*10;
 -- insert stimulus here
-wait;
+wait for 1 ms;
+report "tb done" severity failure;
 end process;
 
 END;
