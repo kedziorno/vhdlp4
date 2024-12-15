@@ -55,6 +55,7 @@ architecture connectivity of embedded_kcpsm3 is
 -- declaration of program ROM
 --
   component crccalc 
+--  component test1
     Port (      address : in std_logic_vector(9 downto 0);
             instruction : out std_logic_vector(17 downto 0);
                     clk : in std_logic);
@@ -94,6 +95,7 @@ begin
                        clk => clk);
 
   program: crccalc
+--  program: test1
     port map(      address => address,
                instruction => instruction,
                        clk => clk);

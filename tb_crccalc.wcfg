@@ -112,7 +112,7 @@
       <wvobject fp_name="/tb_crccalc/uut/processor/address" type="array" db_ref_id="1">
          <obj_property name="ElementShortName">address[9:0]</obj_property>
          <obj_property name="ObjectShortName">address[9:0]</obj_property>
-         <obj_property name="Radix">HEXRADIX</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_crccalc/uut/processor/instruction" type="array" db_ref_id="1">
          <obj_property name="ElementShortName">instruction[17:0]</obj_property>
