@@ -21,6 +21,8 @@
    <wave_markers>
       <marker time="2035000000" label="" />
       <marker time="125100000" label="" />
+      <marker time="105000000" label="" />
+      <marker time="20585100000" label="" />
    </wave_markers>
    <wvobject fp_name="/tb_crccalc/clk" type="logic" db_ref_id="1">
       <obj_property name="ElementShortName">clk</obj_property>
