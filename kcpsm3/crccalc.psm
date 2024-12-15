@@ -5,7 +5,7 @@
 ; int argc;
 ; char *argv[];
 ; {
-  int i,data_count;
+;   int i,data_count;
 ;   unsigned int crc,data_in;
 ;   unsigned char crc_bit[32],new_bit[32];
 CONSTANT crccalc_output_0, 02; OUTPUT 7-0 bit
@@ -176,7 +176,7 @@ crc_bit_31_5:
     JUMP NZ, shift_right_31_9;
   XOR temp0, temp1; -- 31 ^ 30 ^ 29 ^ 28 ^ 27 ^ 25 ^ 24 ^ 23 ^ 15 ^ 11 ^ 9 ^ 8 ^ 5
 crc_index_31:
-  LOAD loop_count, 08;
+  LOAD loop_count, 07;
   shift_right_31_10:
     SR0 temp0;
     SUB loop_count, 01;
@@ -272,11 +272,11 @@ crc_bit_30_10:
   LOAD temp1, crc_bit_1;
   ;AND temp1, 04; -- 10 , 00000100
   LOAD loop_count, 02;
-  shift_right_30_8:
+  shift_right_30_9:
     SR0 temp1;
     SUB loop_count, 01;
     TEST loop_count, 00;
-    JUMP NZ, shift_right_30_8;
+    JUMP NZ, shift_right_30_9;
   XOR temp0, temp1; -- 30 ^ 29 ^ 28 ^ 27 ^ 26 ^ 24 ^ 23 ^ 22 ^ 14 ^ 10
 crc_bit_30_8:
   LOAD temp1, crc_bit_1;
@@ -286,29 +286,29 @@ crc_bit_30_7:
   LOAD temp1, crc_bit_0;
   ;AND temp1, 80; -- 7 , 10000000
   LOAD loop_count, 07;
-  shift_right_30_9:
-    SR0 temp1;
-    SUB loop_count, 01;
-    TEST loop_count, 00;
-    JUMP NZ, shift_right_30_9;
-  XOR temp0, temp1; -- 30 ^ 29 ^ 28 ^ 27 ^ 26 ^ 24 ^ 23 ^ 22 ^ 14 ^ 10 ^ 8 ^ 7
-crc_bit_30_4:
-  LOAD temp1, crc_bit_0;
-  ;AND temp1, 10; -- 4 , 00010000
-  LOAD loop_count, 04;
   shift_right_30_10:
     SR0 temp1;
     SUB loop_count, 01;
     TEST loop_count, 00;
     JUMP NZ, shift_right_30_10;
-  XOR temp0, temp1; -- 30 ^ 29 ^ 28 ^ 27 ^ 26 ^ 24 ^ 23 ^ 22 ^ 14 ^ 10 ^ 8 ^ 7 ^ 4
-crc_index_30:
-  LOAD loop_count, 07;
+  XOR temp0, temp1; -- 30 ^ 29 ^ 28 ^ 27 ^ 26 ^ 24 ^ 23 ^ 22 ^ 14 ^ 10 ^ 8 ^ 7
+crc_bit_30_4:
+  LOAD temp1, crc_bit_0;
+  ;AND temp1, 10; -- 4 , 00010000
+  LOAD loop_count, 04;
   shift_right_30_11:
-    SR0 temp0;
+    SR0 temp1;
     SUB loop_count, 01;
     TEST loop_count, 00;
     JUMP NZ, shift_right_30_11;
+  XOR temp0, temp1; -- 30 ^ 29 ^ 28 ^ 27 ^ 26 ^ 24 ^ 23 ^ 22 ^ 14 ^ 10 ^ 8 ^ 7 ^ 4
+crc_index_30:
+  LOAD loop_count, 06;
+  shift_right_30_12:
+    SR0 temp0;
+    SUB loop_count, 01;
+    TEST loop_count, 00;
+    JUMP NZ, shift_right_30_12;
   OR new_bit_3, temp0; -- XX000000 00000000 00000000 00000000
 
 ;     new_bit[29] = crc_bit[31] ^ crc_bit[29] ^ crc_bit[28] ^ crc_bit[27] ^ crc_bit[26] ^ crc_bit[25] ^ crc_bit[23] ^ crc_bit[22] ^ crc_bit[21] ^ crc_bit[13] ^ crc_bit [9] ^ crc_bit [7] ^ crc_bit[6] ^ crc_bit[3];
