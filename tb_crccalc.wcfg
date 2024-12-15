@@ -56,7 +56,7 @@
       <wvobject fp_name="/tb_crccalc/uut/address" type="array" db_ref_id="1">
          <obj_property name="ElementShortName">address[9:0]</obj_property>
          <obj_property name="ObjectShortName">address[9:0]</obj_property>
-         <obj_property name="Radix">HEXRADIX</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_crccalc/uut/instruction" type="array" db_ref_id="1">
          <obj_property name="ElementShortName">instruction[17:0]</obj_property>
@@ -81,10 +81,14 @@
       <wvobject fp_name="/tb_crccalc/uut/write_strobe" type="logic" db_ref_id="1">
          <obj_property name="ElementShortName">write_strobe</obj_property>
          <obj_property name="ObjectShortName">write_strobe</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#ff00ff</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_crccalc/uut/read_strobe" type="logic" db_ref_id="1">
          <obj_property name="ElementShortName">read_strobe</obj_property>
          <obj_property name="ObjectShortName">read_strobe</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00ffff</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_crccalc/uut/interrupt" type="logic" db_ref_id="1">
          <obj_property name="ElementShortName">interrupt</obj_property>
