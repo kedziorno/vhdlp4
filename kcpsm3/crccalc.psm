@@ -568,50 +568,15 @@ jump end;
 ;ADDRESS 3FF ; Interrupt vector is located at highest
 ; instruction address
 ;JUMP ISR ; Jump to interrupt service routine, ISR
-SR2:
-SR0 temp1;
-SR0 temp1;
-RETURN;
 
-SR3:
-SR0 temp1;
-SR0 temp1;
-SR0 temp1;
-RETURN;
-
-SR4:
-SR0 temp1;
-SR0 temp1;
-SR0 temp1;
-SR0 temp1;
-RETURN;
-
-SR5:
-SR0 temp1;
-SR0 temp1;
-SR0 temp1;
-SR0 temp1;
-SR0 temp1;
-RETURN;
-
-SR6:
-SR0 temp1;
-SR0 temp1;
-SR0 temp1;
-SR0 temp1;
-SR0 temp1;
-SR0 temp1;
-RETURN;
-
-SR7:
-SR0 temp1;
-SR0 temp1;
-SR0 temp1;
-SR0 temp1;
-SR0 temp1;
-SR0 temp1;
-SR0 temp1;
-RETURN;
+SR7:  SR0 temp1;
+SR6:  SR0 temp1;
+SR5:  SR0 temp1;
+SR4:  SR0 temp1;
+SR3:  SR0 temp1;
+SR2:  SR0 temp1;
+      SR0 temp1;
+      RETURN;
 
 end:
 
