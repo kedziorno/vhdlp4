@@ -458,8 +458,143 @@ crc_index_29:
     TEST loop_count, 00;
     JUMP NZ, shift_right_29_15;
   OR new_bit_3, temp0; -- XXX00000 00000000 00000000 00000000
-
 ;     new_bit[28] = crc_bit[30] ^ crc_bit[28] ^ crc_bit[27] ^ crc_bit[26] ^ crc_bit[25] ^ crc_bit[24] ^ crc_bit[22] ^ crc_bit[21] ^ crc_bit[20] ^ crc_bit[12] ^ crc_bit [8] ^ crc_bit [6] ^ crc_bit[5] ^ crc_bit[2];
+crc_bit_28_30:
+  LOAD temp0, crc_bit_3;
+  ;AND temp0, 40; -- 30 , 01000000
+  LOAD loop_count, 06;
+  shift_right_28_1:
+    SR0 temp0;
+    SUB loop_count, 01;
+    TEST loop_count, 00;
+    JUMP NZ, shift_right_28_1;
+crc_bit_28_28:
+  LOAD temp1, crc_bit_3;
+  ;AND temp1, 20; -- 28 , 00010000
+  LOAD loop_count, 04;
+  shift_right_28_2:
+    SR0 temp1;
+    SUB loop_count, 01;
+    TEST loop_count, 00;
+    JUMP NZ, shift_right_28_2;
+  XOR temp0, temp1; -- 30 ^ 28
+crc_bit_28_27:
+  LOAD temp1, crc_bit_3;
+  ;AND temp1, 08; -- 27 , 00001000
+  LOAD loop_count, 03;
+  shift_right_28_3:
+    SR0 temp1;
+    SUB loop_count, 01;
+    TEST loop_count, 00;
+    JUMP NZ, shift_right_28_3;
+  XOR temp0, temp1; -- 30 ^ 28 ^ 27
+crc_bit_28_26:
+  LOAD temp1, crc_bit_3;
+  ;AND temp1, 04; -- 26 , 00000100
+  LOAD loop_count, 02;
+  shift_right_28_4:
+    SR0 temp1;
+    SUB loop_count, 01;
+    TEST loop_count, 00;
+    JUMP NZ, shift_right_28_4;
+  XOR temp0, temp1; -- 30 ^ 28 ^ 27 ^ 26
+crc_bit_28_25:
+  LOAD temp1, crc_bit_3;
+  ;AND temp1, 02; -- 25 , 00000010
+  LOAD loop_count, 01;
+  shift_right_28_5:
+    SR0 temp1;
+    SUB loop_count, 01;
+    TEST loop_count, 00;
+    JUMP NZ, shift_right_28_5;
+  XOR temp0, temp1; -- 30 ^ 28 ^ 27 ^ 26 ^ 25
+crc_bit_28_24:
+  LOAD temp1, crc_bit_3;
+  ;AND temp1, 01; -- 24 , 00000001
+  XOR temp0, temp1; -- 30 ^ 28 ^ 27 ^ 26 ^ 25 ^ 24
+crc_bit_28_22:
+  LOAD temp1, crc_bit_2;
+  ;AND temp1, 40; -- 22 , 01000000
+  LOAD loop_count, 06;
+  shift_right_28_7:
+    SR0 temp1;
+    SUB loop_count, 01;
+    TEST loop_count, 00;
+    JUMP NZ, shift_right_28_7;
+  XOR temp0, temp1; -- 30 ^ 28 ^ 27 ^ 26 ^ 25 ^ 24 ^ 22
+crc_bit_28_21:
+  LOAD temp1, crc_bit_2;
+  ;AND temp1, 20; -- 21 , 00100000
+  LOAD loop_count, 05;
+  shift_right_28_8:
+    SR0 temp1;
+    SUB loop_count, 01;
+    TEST loop_count, 00;
+    JUMP NZ, shift_right_28_8;
+  XOR temp0, temp1; -- 30 ^ 28 ^ 27 ^ 26 ^ 25 ^ 24 ^ 22 ^ 21
+crc_bit_28_20:
+  LOAD temp1, crc_bit_2;
+  ;AND temp1, 10; -- 20 , 00010000
+  LOAD loop_count, 05;
+  shift_right_28_9:
+    SR0 temp1;
+    SUB loop_count, 01;
+    TEST loop_count, 00;
+    JUMP NZ, shift_right_28_9;
+  XOR temp0, temp1; -- 30 ^ 28 ^ 27 ^ 26 ^ 25 ^ 24 ^ 22 ^ 21 ^ 20
+crc_bit_28_12:
+  LOAD temp1, crc_bit_1;
+  ;AND temp1, 10; -- 12 , 00010000
+  LOAD loop_count, 04;
+  shift_right_28_10:
+    SR0 temp1;
+    SUB loop_count, 01;
+    TEST loop_count, 00;
+    JUMP NZ, shift_right_28_10;
+  XOR temp0, temp1; -- 30 ^ 28 ^ 27 ^ 26 ^ 25 ^ 24 ^ 22 ^ 21 ^ 20 ^ 12
+crc_bit_28_8:
+  LOAD temp1, crc_bit_1;
+  ;AND temp1, 01; -- 8 , 00000001
+  XOR temp0, temp1; -- 30 ^ 28 ^ 27 ^ 26 ^ 25 ^ 24 ^ 22 ^ 21 ^ 20 ^ 12 ^ 8
+crc_bit_28_6:
+  LOAD temp1, crc_bit_0;
+  ;AND temp1, 40; -- 6 , 01000000
+  LOAD loop_count, 06;
+  shift_right_28_12:
+    SR0 temp1;
+    SUB loop_count, 01;
+    TEST loop_count, 00;
+    JUMP NZ, shift_right_28_12;
+  XOR temp0, temp1; -- 30 ^ 28 ^ 27 ^ 26 ^ 25 ^ 24 ^ 22 ^ 21 ^ 20 ^ 12 ^ 8 ^ 6
+crc_bit_28_5:
+  LOAD temp1, crc_bit_0;
+  ;AND temp1, 20; -- 5 , 00100000
+  LOAD loop_count, 05;
+  shift_right_28_13:
+    SR0 temp1;
+    SUB loop_count, 01;
+    TEST loop_count, 00;
+    JUMP NZ, shift_right_28_13;
+  XOR temp0, temp1; -- 30 ^ 28 ^ 27 ^ 26 ^ 25 ^ 24 ^ 22 ^ 21 ^ 20 ^ 12 ^ 8 ^ 6 ^ 5
+crc_bit_28_2:
+  LOAD temp1, crc_bit_0;
+  ;AND temp1, 20; -- 2 , 00000100
+  LOAD loop_count, 02;
+  shift_right_28_14:
+    SR0 temp1;
+    SUB loop_count, 01;
+    TEST loop_count, 00;
+    JUMP NZ, shift_right_28_14;
+  XOR temp0, temp1; -- 30 ^ 28 ^ 27 ^ 26 ^ 25 ^ 24 ^ 22 ^ 21 ^ 20 ^ 12 ^ 8 ^ 6 ^ 5 ^ 2
+crc_index_28:
+  LOAD loop_count, 04;
+  shift_right_28_15:
+    SR0 temp0;
+    SUB loop_count, 01;
+    TEST loop_count, 00;
+    JUMP NZ, shift_right_28_15;
+  OR new_bit_3, temp0; -- XXXX0000 00000000 00000000 00000000
+
 ;     new_bit[27] = crc_bit[29] ^ crc_bit[27] ^ crc_bit[26] ^ crc_bit[25] ^ crc_bit[24] ^ crc_bit[23] ^ crc_bit[21] ^ crc_bit[20] ^ crc_bit[19] ^ crc_bit[11] ^ crc_bit [7] ^ crc_bit [5] ^ crc_bit[4] ^ crc_bit[1];
 ;     new_bit[26] = crc_bit[31] ^ crc_bit[28] ^ crc_bit[26] ^ crc_bit[25] ^ crc_bit[24] ^ crc_bit[23] ^ crc_bit[22] ^ crc_bit[20] ^ crc_bit[19] ^ crc_bit[18] ^ crc_bit[10] ^ crc_bit [6] ^ crc_bit[4] ^ crc_bit[3] ^ crc_bit[0];
 ;     new_bit[25] = crc_bit[31] ^ crc_bit[29] ^ crc_bit[28] ^ crc_bit[22] ^ crc_bit[21] ^ crc_bit[19] ^ crc_bit[18] ^ crc_bit[17] ^ crc_bit[15] ^ crc_bit[11] ^ crc_bit [8] ^ crc_bit [3] ^ crc_bit[2];
