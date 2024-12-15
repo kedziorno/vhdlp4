@@ -456,7 +456,7 @@ crc_index_29:
     SR0 temp0;
     SUB loop_count, 01;
     TEST loop_count, 00;
-    JUMP NZ, shift_right_30_15;
+    JUMP NZ, shift_right_29_15;
   OR new_bit_3, temp0; -- XXX00000 00000000 00000000 00000000
 
 ;     new_bit[28] = crc_bit[30] ^ crc_bit[28] ^ crc_bit[27] ^ crc_bit[26] ^ crc_bit[25] ^ crc_bit[24] ^ crc_bit[22] ^ crc_bit[21] ^ crc_bit[20] ^ crc_bit[12] ^ crc_bit [8] ^ crc_bit [6] ^ crc_bit[5] ^ crc_bit[2];
