@@ -17,7 +17,7 @@
          </top_modules>
       </db_ref>
    </db_ref_list>
-   <WVObjectSize size="7" />
+   <WVObjectSize size="8" />
    <wave_markers>
       <marker time="2035000000" label="" />
       <marker time="125100000" label="" />
@@ -31,6 +31,42 @@
    <wvobject fp_name="/tb_crccalc/reset" type="logic" db_ref_id="1">
       <obj_property name="ElementShortName">reset</obj_property>
       <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject fp_name="vbus256" type="vbus" db_ref_id="1">
+      <obj_property name="label">asd</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/tb_crccalc/crccalc_output[7]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[7]</obj_property>
+         <obj_property name="ObjectShortName">crccalc_output[7]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/crccalc_output[6]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[6]</obj_property>
+         <obj_property name="ObjectShortName">crccalc_output[6]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/crccalc_output[5]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[5]</obj_property>
+         <obj_property name="ObjectShortName">crccalc_output[5]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/crccalc_output[4]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[4]</obj_property>
+         <obj_property name="ObjectShortName">crccalc_output[4]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/crccalc_output[3]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[3]</obj_property>
+         <obj_property name="ObjectShortName">crccalc_output[3]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/crccalc_output[2]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[2]</obj_property>
+         <obj_property name="ObjectShortName">crccalc_output[2]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/crccalc_output[1]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[1]</obj_property>
+         <obj_property name="ObjectShortName">crccalc_output[1]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_crccalc/crccalc_output[0]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[0]</obj_property>
+         <obj_property name="ObjectShortName">crccalc_output[0]</obj_property>
+      </wvobject>
    </wvobject>
    <wvobject fp_name="/tb_crccalc/crccalc_output" type="array" db_ref_id="1">
       <obj_property name="ElementShortName">crccalc_output[31:0]</obj_property>
