@@ -160,7 +160,6 @@ crc_bit_30_26:
 crc_bit_30_24:
   LOAD temp1, crc_bit_3;
   AND temp1, 01; -- 24 , 00000001
-  SR0 temp1;
   XOR temp0, temp1; -- 30 ^ 29 ^ 28 ^ 27 ^ 26 ^ 24
 crc_bit_30_23:
   LOAD temp1, crc_bit_2;
@@ -221,12 +220,12 @@ crc_bit_29_27:
   XOR temp0, temp1; -- 31 ^ 29 ^ 28 ^ 27
 crc_bit_29_26:
   LOAD temp1, crc_bit_3;
-  AND temp1, 40; -- 26 , 00000100
+  AND temp1, 04; -- 26 , 00000100
   CALL SR1_2;
   XOR temp0, temp1; -- 31 ^ 29 ^ 28 ^ 27 ^ 26
 crc_bit_29_25:
   LOAD temp1, crc_bit_3;
-  AND temp1, 20; -- 25 , 00000010
+  AND temp1, 02; -- 25 , 00000010
   SR0 temp1;
   XOR temp0, temp1; -- 31 ^ 29 ^ 28 ^ 27 ^ 26 ^ 25
 crc_bit_29_23:
@@ -251,7 +250,7 @@ crc_bit_29_13:
   XOR temp0, temp1; -- 31 ^ 29 ^ 28 ^ 27 ^ 26 ^ 25 ^ 23 ^ 22 ^ 21 ^ 13
 crc_bit_29_9:
   LOAD temp1, crc_bit_1;
-  AND temp1, 20; -- 9 , 00000010
+  AND temp1, 02; -- 9 , 00000010
   SR0 temp1;
   XOR temp0, temp1; -- 31 ^ 29 ^ 28 ^ 27 ^ 26 ^ 25 ^ 23 ^ 22 ^ 21 ^ 13 ^ 9
 crc_bit_29_7:
@@ -279,7 +278,7 @@ crc_bit_28_30:
   CALL SR0_6;
 crc_bit_28_28:
   LOAD temp1, crc_bit_3;
-  AND temp1, 20; -- 28 , 00010000
+  AND temp1, 10; -- 28 , 00010000
   CALL SR1_4;
   XOR temp0, temp1; -- 30 ^ 28
 crc_bit_28_27:
@@ -314,7 +313,7 @@ crc_bit_28_21:
 crc_bit_28_20:
   LOAD temp1, crc_bit_2;
   AND temp1, 10; -- 20 , 00010000
-  CALL SR1_5;
+  CALL SR1_4;
   XOR temp0, temp1; -- 30 ^ 28 ^ 27 ^ 26 ^ 25 ^ 24 ^ 22 ^ 21 ^ 20
 crc_bit_28_12:
   LOAD temp1, crc_bit_1;
@@ -337,7 +336,7 @@ crc_bit_28_5:
   XOR temp0, temp1; -- 30 ^ 28 ^ 27 ^ 26 ^ 25 ^ 24 ^ 22 ^ 21 ^ 20 ^ 12 ^ 8 ^ 6 ^ 5
 crc_bit_28_2:
   LOAD temp1, crc_bit_0;
-  AND temp1, 20; -- 2 , 00000100
+  AND temp1, 04; -- 2 , 00000100
   CALL SR1_2;
   XOR temp0, temp1; -- 30 ^ 28 ^ 27 ^ 26 ^ 25 ^ 24 ^ 22 ^ 21 ^ 20 ^ 12 ^ 8 ^ 6 ^ 5 ^ 2
 crc_index_28:
